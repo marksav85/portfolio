@@ -1,18 +1,9 @@
 import { useState } from "react";
+import React from "react";
+import { Header } from "./components/header-section/header-section";
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  return (
-    <>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-      </div>
-    </>
-  );
+  return <Header />;
 }
 
 export default App;
