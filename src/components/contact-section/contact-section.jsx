@@ -1,4 +1,4 @@
-export const Profile = () => {
+export const Contact = () => {
   return (
     <>
       <section id="three">
@@ -9,41 +9,6 @@ export const Profile = () => {
           vulputate lorem neque lorem ipsum dolor.
         </p>
         <div className="row">
-          <div className="col-8 col-12-small">
-            <form method="post" action="#">
-              <div className="row gtr-uniform gtr-50">
-                <div className="col-6 col-12-xsmall">
-                  <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    placeholder="Name"
-                  ></input>
-                </div>
-                <div className="col-6 col-12-xsmall">
-                  <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    placeholder="Email"
-                  ></input>
-                </div>
-                <div className="col-12">
-                  <textarea
-                    name="message"
-                    id="message"
-                    placeholder="Message"
-                    rows="4"
-                  ></textarea>
-                </div>
-              </div>
-            </form>
-            <ul className="actions">
-              <li>
-                <input type="submit" value="Send Message"></input>
-              </li>
-            </ul>
-          </div>
           <div className="col-4 col-12-small">
             <ul className="labeled-icons">
               <li>
@@ -75,5 +40,3 @@ export const Profile = () => {
     </>
   );
 };
-
-export default Profile;
