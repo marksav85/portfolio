@@ -9,11 +9,11 @@ export const Header = () => {
             <img src="" alt=""></img>
           </a>
           <h1>
-            <strong>I am Strata</strong>, a super simple
+            <strong>I am Mark</strong>, this is my
             <br />
-            responsive site template freebie
+            personal portfolio website
             <br />
-            crafted by <a href="">HTML5 UP</a>.
+            crafted using <a href="">React</a>.
           </h1>
         </div>
         <footer id="footer">
@@ -30,8 +30,8 @@ export const Header = () => {
                 </a>
               </li>
               <li>
-                <a href="#" className="icon brands fa-dribbble">
-                  <span className="label">Dribbble</span>
+                <a href="#" className="icon brands fa-linkedin">
+                  <span className="label">Linkedin</span>
                 </a>
               </li>
               <li>
