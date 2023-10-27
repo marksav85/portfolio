@@ -4,7 +4,6 @@ export const Header = () => {
   return (
     <>
       <header id="header">
-        {/* style="background-position: left 0px;" */}
         <div className="inner">
           <a href="#" className="image-avatar">
             <img src="" alt=""></img>
