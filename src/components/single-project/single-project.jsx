@@ -8,8 +8,12 @@ export function SingleProject({ title, description, image }) {
   };
   return (
     <article className="col-6 col-12-xsmall work-item">
-      <a href={image} className="image fit thumb" style={imageStyle}>
-        <img src={image} alt={title}></img>
+      <a
+        href={`/portfolio/images/fulls/${image}`}
+        className="image fit thumb"
+        style={imageStyle}
+      >
+        <img src={`/portfolio/images/thumbs/${image}`} alt={title}></img>
       </a>
       <h3>{title}</h3>
       <p>{description}</p>

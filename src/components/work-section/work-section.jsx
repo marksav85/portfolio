@@ -1,17 +1,54 @@
 import React from "react";
 import { SingleProject } from "../single-project/single-project";
 export const Work = () => {
+  const workArray = [
+    {
+      title: "Magna sed consequat tempus",
+      description: "Lorem ipsum dolor sit amet nisl sed nullam feugiat.",
+      image: "01.jpg",
+    },
+    {
+      title: "Ultricies lacinia interdum",
+      description: "Lorem ipsum dolor sit amet nisl sed nullam feugiat.",
+      image: "02.jpg",
+    },
+    {
+      title: "Tortor metus commodo",
+      description: "Lorem ipsum dolor sit amet nisl sed nullam feugiat.",
+      image: "03.jpg",
+    },
+    {
+      title: "Quam neque phasellus",
+      description: "Lorem ipsum dolor sit amet nisl sed nullam feugiat.",
+      image: "04.jpg",
+    },
+    {
+      title: "Nunc enim commodo aliquet",
+      description: "Lorem ipsum dolor sit amet nisl sed nullam feugiat.",
+      image: "05.jpg",
+    },
+    {
+      title: "Risus ornare lacinia",
+      description: "Lorem ipsum dolor sit amet nisl sed nullam feugiat.",
+      image: "06.jpg",
+    },
+  ];
+
   return (
     <>
       <section id="two">
         <h2>Recent Work</h2>
         <div className="row">
-          <SingleProject
-            title="Magna sed consequat tempus"
-            description="Lorem ipsum dolor sit amet nisl sed nullam feugiat."
-            image="/images/thumbs/01.jpg"
-          />
-          <SingleProject
+          {workArray.map((workItem, index) => (
+            <SingleProject
+              key={index}
+              title={workItem.title}
+              description={workItem.description}
+              image={workItem.image}
+            />
+          ))}
+
+          {/* <SingleProject
             title="Ultricies lacinia interdum"
             description="Lorem ipsum dolor sit amet nisl sed nullam feugiat."
             image="/images/thumbs/02.jpg"
@@ -35,7 +72,7 @@ export const Work = () => {
             title="Risus ornare lacinia"
             description="Lorem ipsum dolor sit amet nisl sed nullam feugiat."
             image="/images/thumbs/06.jpg"
-          />
+          /> */}
         </div>
 
         {/* <article className="col-6 col-12-xsmall work-item">
