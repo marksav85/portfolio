@@ -6,5 +6,61 @@
     "line4": "crafted using ",
     "name": "Mark",
     "codeLang": "React"
+  },
+  "profileSection": {
+    "line1": "I am a Web Developer born in the UK but residing in Germany",
+    "line2": "Full stack web developer with a background in education and technology. Skillset in building front-end and back-end applications, including web pages and both web-based (WPA) and native apps. Responsive, accessible, and user-friendly designs including customer-orientated features, developing, testing, debugging, and launching. Excited to contribute to the future of the web development and the technology industry."
+  },
+  "project1": {
+    "introTitle": "What is it?",
+    "introText": "An app that dynamically populates the page with Pokemon data from an API. The app allows you to search the list for a Pokemon by name, and when clicked on displays a modal box with the Pokemon's name, type, and an image. It is built using JavaScript, HTML and CSS with Bootstrap styling.",
+    "processTitle": "The Build Process",
+    "para1": "The aim of this project was mastering JavaScript to create an app that could efficiently fetch data from an API and display it correctly. One of the major hurdles was writing JavaScript promises to retrieve data from the API while ensuring the data returned was in the correct format. Identifying and rectifying errors in the data retrieval process posed a significant challenge. Additionally, optimizing the app's performance, particularly in handling API requests, presented a major obstacle.",
+    "para2": "After creating thr base HTML layout, I began by working on JavaScript promises, conducting thorough testing, and utilizing console logging to identify issues in the API calls. Through this iterative approach, I was able to troubleshoot issues effectively and successfully pull the data from the API. I further expanded my skills by incorporating Bootstrap to style the app and make it responsive. Integrating the API data into both the main page and the Bootstrap modal box was a crucial step that required to pull everything together. To address the slow performance caused by API requests, I made the decision to replace individual Pokémon images with a static Pokémon ball image. While this sacrificed some aesthetics, it significantly improved the app's speed and responsiveness.",
+    "para3": "The end result of these efforts was the successful creation of a Pokémon database application. Despite the challenges, I achieved my goal of developing a functional tool that allows users to find their favorite Pokémon. Through this project, I not only honed my JavaScript skills but also gained valuable experience in API integration, error handling, and performance optimization. While some aesthetic compromises were made to ensure optimal functionality, the final product fulfilled its purpose, providing users with a practical and efficient way to explore and discover their favorite Pokémon."
+  },
+  "project2": {
+    "introTitle": "What is it?",
+    "introText": "A web app that allows users to search for and view information about their favorite movies. The app is built using React, JavaScript, HTML, and CSS.",
+    "processTitle": "The Build Process",
+    "para1": "The aim of this project was to create a web app that would allow users to search for and view information about their favorite movies. The app was built using React, JavaScript, HTML, and CSS. The first step was to create the base HTML layout and then to build the React components. The app was then styled using CSS and Bootstrap.",
+    "para2": "The main challenge was to ensure that the app was responsive and that the search function worked correctly. To achieve this, I used Bootstrap to style the app and React to create the search function. I also used React to create the movie information page, which displays the movie's title, poster, and plot. The app was then tested to ensure that it worked correctly and that the search function returned the correct results.",
+    "para3": "The end result was a functional web app that allows users to search for and view information about their favorite movies. The app is responsive and works correctly on all devices. The search function returns the correct results, and the movie information page displays the movie's title, poster, and plot. The app is also easy to use and navigate, with a simple and intuitive interface. Overall, the project was a success, and I am pleased with the final result."
+  },
+  "project3": {
+    "introTitle": "What is it?",
+    "introText": "A web app that allows users to search for and view information about their favorite movies. The app is built using React, JavaScript, HTML, and CSS.",
+    "processTitle": "The Build Process",
+    "para1": "The aim of this project was to create a web app that would allow users to search for and view information about their favorite movies. The app was built using React, JavaScript, HTML, and CSS. The first step was to create the base HTML layout and then to build the React components. The app was then styled using CSS and Bootstrap.",
+    "para2": "The main challenge was to ensure that the app was responsive and that the search function worked correctly. To achieve this, I used Bootstrap to style the app and React to create the search function. I also used React to create the movie information page, which displays the movie's title, poster, and plot. The app was then tested to ensure that it worked correctly and that the search function returned the correct results.",
+    "para3": "The end result was a functional web app that allows users to search for and view information about their favorite movies. The app is responsive and works correctly on all devices. The search function returns the correct results, and the movie information page displays the movie's title, poster, and plot. The app is also easy to use and navigate, with a simple and intuitive interface. Overall, the project was a success, and I am pleased with the final result."
+  },
+  "project4": {
+    "introTitle": "What is it?",
+    "introText": "A web app that allows users to search for and view information about their favorite movies. The app is built using React, JavaScript, HTML, and CSS.",
+    "processTitle": "The Build Process",
+    "para1": "The aim of this project was to create a web app that would allow users to search for and view information about their favorite movies. The app was built using React, JavaScript, HTML, and CSS. The first step was to create the base HTML layout and then to build the React components. The app was then styled using CSS and Bootstrap.",
+    "para2": "The main challenge was to ensure that the app was responsive and that the search function worked correctly. To achieve this, I used Bootstrap to style the app and React to create the search function. I also used React to create the movie information page, which displays the movie's title, poster, and plot. The app was then tested to ensure that it worked correctly and that the search function returned the correct results.",
+    "para3": "The end result was a functional web app that allows users to search for and view information about their favorite movies. The app is responsive and works correctly on all devices. The search function returns the correct results, and the movie information page displays the movie's title, poster, and plot. The app is also easy to use and navigate, with a simple and intuitive interface. Overall, the project was a success, and I am pleased with the final result."
+  },
+  "project5": {
+    "introTitle": "What is it?",
+    "introText": "A web app that allows users to search for and view information about their favorite movies. The app is built using React, JavaScript, HTML, and CSS.",
+    "processTitle": "The Build Process",
+    "para1": "The aim of this project was to create a web app that would allow users to search for and view information about their favorite movies. The app was built using React, JavaScript, HTML, and CSS. The first step was to create the base HTML layout and then to build the React components. The app was then styled using CSS and Bootstrap.",
+    "para2": "The main challenge was to ensure that the app was responsive and that the search function worked correctly. To achieve this, I used Bootstrap to style the app and React to create the search function. I also used React to create the movie information page, which displays the movie's title, poster, and plot. The app was then tested to ensure that it worked correctly and that the search function returned the correct results.",
+    "para3": "The end result was a functional web app that allows users to search for and view information about their favorite movies. The app is responsive and works correctly on all devices. The search function returns the correct results, and the movie information page displays the movie's title, poster, and plot. The app is also easy to use and navigate, with a simple and intuitive interface. Overall, the project was a success, and I am pleased with the final result."
+  },
+  "project6": {
+    "introTitle": "What is it?",
+    "introText": "A web app that allows users to search for and view information about their favorite movies. The app is built using React, JavaScript, HTML, and CSS.",
+    "processTitle": "The Build Process",
+    "para1": "The aim of this project was to create a web app that would allow users to search for and view information about their favorite movies. The app was built using React, JavaScript, HTML, and CSS. The first step was to create the base HTML layout and then to build the React components. The app was then styled using CSS and Bootstrap.",
+    "para2": "The main challenge was to ensure that the app was responsive and that the search function worked correctly. To achieve this, I used Bootstrap to style the app and React to create the search function. I also used React to create the movie information page, which displays the movie's title, poster, and plot. The app was then tested to ensure that it worked correctly and that the search function returned the correct results.",
+    "para3": "The end result was a functional web app that allows users to search for and view information about their favorite movies. The app is responsive and works correctly on all devices. The search function returns the correct results, and the movie information page displays the movie's title, poster, and plot. The app is also easy to use and navigate, with a simple and intuitive interface. Overall, the project was a success, and I am pleased with the final result."
+  },
+  "contactSection": {
+    "title": "Get in Touch",
+    "text": "Find me on on the one of the channels below and let's get the ball rolling!"
   }
 }
