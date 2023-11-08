@@ -11,14 +11,15 @@ export const Header = () => {
       <header id="header">
         <button
           onClick={() => setIsEnglish(!isEnglish)}
-          className="button button-primary"
+          className="lang-toggle-button"
         >
-          {isEnglish ? "English" : "Deutsch"}
+          {isEnglish ? "🇬🇧" : "🇩🇪"}
         </button>
+        <br />
 
         <div className="inner">
-          <a href="#" className="image-avatar">
-            <img src="" alt=""></img>
+          <a href="#" className="image avatar">
+            <img src="/images/headshot.png" alt="headshot"></img>
           </a>
           <h1>
             {lang.headerSection.line1}
@@ -29,26 +30,38 @@ export const Header = () => {
             <strong>{lang.headerSection.codeLang}</strong> .
           </h1>
         </div>
-        <footer id="footer">
+        <footer id="footer" className="footer-top">
           <div className="inner">
             <ul className="icons">
               <li>
-                <a href="#" className="icon brands fa-twitter">
+                <a
+                  href="https://twitter.com/marksav85"
+                  className="icon brands fa-twitter"
+                >
                   <span className="label">Twitter</span>
                 </a>
               </li>
               <li>
-                <a href="#" className="icon brands fa-github">
+                <a
+                  href="https://github.com/marksav85"
+                  className="icon brands fa-github"
+                >
                   <span className="label">Github</span>
                 </a>
               </li>
               <li>
-                <a href="#" className="icon brands fa-linkedin">
+                <a
+                  href="https://linkedin.com/in/mark-saville"
+                  className="icon brands fa-linkedin"
+                >
                   <span className="label">Linkedin</span>
                 </a>
               </li>
               <li>
-                <a href="#" className="icon solid fa-envelope">
+                <a
+                  href="mailto:marksav85@gmail.com?subject=Test%20test&body=This%20is%20a%20test"
+                  className="icon solid fa-envelope"
+                >
                   <span className="label">Email</span>
                 </a>
               </li>
