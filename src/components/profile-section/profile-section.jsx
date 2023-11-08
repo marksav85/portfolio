@@ -1,21 +1,21 @@
+import React from "react";
+import * as english from "../../languages/en.json";
+import * as german from "../../languages/de.json";
+
 export const Profile = () => {
+  const [isEnglish, setIsEnglish] = React.useState(true);
+  const lang = isEnglish ? english : german;
+
   return (
     <>
       <section id="one">
         <header className="major">
-          <h2>
-            Ipsum lorem dolor aliquam ante commodo <br />
-            magna sed accumsan arcu neque.
-          </h2>
+          <button onClick={() => setIsEnglish(!isEnglish)} className="button">
+            {isEnglish ? "🇬🇧" : "🇩🇪"}
+          </button>
+          <h2>{lang.profileSection.line1}</h2>
         </header>
-        <p>
-          Accumsan orci faucibus id eu lorem semper. Eu ac iaculis ac nunc nisi
-          lorem vulputate lorem neque cubilia ac in adipiscing in curae lobortis
-          tortor primis integer massa adipiscing id nisi accumsan pellentesque
-          commodo blandit enim arcu non at amet id arcu magna. Accumsan orci
-          faucibus id eu lorem semper nunc nisi lorem vulputate lorem neque
-          cubilia.
-        </p>
+        <p>{lang.profileSection.line2}</p>
         <ul className="actions">
           <li>
             <a href="#" className="button">
