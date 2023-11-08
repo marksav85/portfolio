@@ -1,13 +1,19 @@
+import React from "react";
+import * as english from "../../languages/en.json";
+import * as german from "../../languages/de.json";
+
 export const Contact = () => {
+  const [isEnglish, setIsEnglish] = React.useState(true);
+  const lang = isEnglish ? english : german;
+
   return (
     <>
       <section id="three">
-        <h2>Get In Touch</h2>
-        <p>
-          Accumsan pellentesque commodo blandit enim arcu non at amet id arcu
-          magna. Accumsan orci faucibus id eu lorem semper nunc nisi lorem
-          vulputate lorem neque lorem ipsum dolor.
-        </p>
+        <button onClick={() => setIsEnglish(!isEnglish)} className="button">
+          {isEnglish ? "🇬🇧" : "🇩🇪"}
+        </button>
+        <h2>{lang.contactSection.title}</h2>
+        <p>{lang.contactSection.text}</p>
         <div className="row">
           <div className="col-4 col-12-small">
             <ul className="labeled-icons">
@@ -17,21 +23,23 @@ export const Contact = () => {
                 </h3>
                 1234 Somewhere Rd.
                 <br />
-                Nashville, TN 00000
+                Magdeburg, 39104
                 <br />
-                United States
+                Germany
               </li>
               <li>
                 <h3 className="icon solid fa-mobile-alt">
                   <span className="label">Phone</span>
                 </h3>
-                000-000-0000
+                +49176 4710 7960
               </li>
               <li>
                 <h3 className="icon solid fa-envelope">
                   <span className="label">Email</span>
                 </h3>
-                <a href="#">hello@untitled.tld</a>
+                <a href="mailto:marksav85@gmail.com?subject=Test%20test&body=This%20is%20a%20test">
+                  marksav85@gmail.com
+                </a>
               </li>
             </ul>
           </div>
