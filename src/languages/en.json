@@ -1,0 +1,10 @@
+{
+  "headerSection": {
+    "line1": "My name is ",
+    "line2": ", and this is my",
+    "line3": "personal portfolio website",
+    "line4": "crafted using ",
+    "name": "Mark",
+    "codeLang": "React"
+  }
+}

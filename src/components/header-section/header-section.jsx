@@ -1,19 +1,32 @@
 import React from "react";
+import * as english from "../../languages/en.json";
+import * as german from "../../languages/de.json";
 
 export const Header = () => {
+  const [isEnglish, setIsEnglish] = React.useState(true);
+  const lang = isEnglish ? english : german;
+
   return (
     <>
       <header id="header">
+        <button
+          onClick={() => setIsEnglish(!isEnglish)}
+          className="button button-primary"
+        >
+          {isEnglish ? "English" : "Deutsch"}
+        </button>
+
         <div className="inner">
           <a href="#" className="image-avatar">
             <img src="" alt=""></img>
           </a>
           <h1>
-            <strong>I am Mark</strong>, this is my
+            {lang.headerSection.line1}
+            <strong>{lang.headerSection.name}</strong>
+            {lang.headerSection.line2}
             <br />
-            personal portfolio website
-            <br />
-            crafted using <a href="">React</a>.
+            {lang.headerSection.line3} <br /> {lang.headerSection.line4}
+            <strong>{lang.headerSection.codeLang}</strong> .
           </h1>
         </div>
         <footer id="footer">

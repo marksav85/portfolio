@@ -1,0 +1,10 @@
+{
+  "headerSection": {
+    "line1": "Mein Name ist ",
+    "line2": ", und diese Seite ",
+    "line3": "ist mein personalisiertes Portfolio",
+    "line4": "entwickelt mit ",
+    "name": "Mark",
+    "codeLang": "React"
+  }
+}
