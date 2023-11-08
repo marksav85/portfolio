@@ -15,8 +15,16 @@ export function SingleProject({ title, description, image }) {
       >
         <img src={`/portfolio/images/thumbs/${image}`} alt={title}></img>
       </a>
-      <h3>{title}</h3>
-      <p>{description}</p>
+      <h2>{title}</h2>
+      <h4>{description.introTitle}</h4>
+      <p>{description.introText}</p>
+      <br />
+      <h4>{description.processTitle}</h4>
+      <p>{description.para1}</p>
+      <br />
+      <p>{description.para2}</p>
+      <br />
+      <p>{description.para3}</p>
     </article>
   );
 }

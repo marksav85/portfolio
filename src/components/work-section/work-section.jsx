@@ -1,42 +1,91 @@
 import React from "react";
+import * as english from "../../languages/en.json";
+import * as german from "../../languages/de.json";
 import { SingleProject } from "../single-project/single-project";
 export const Work = () => {
+  const [isEnglish, setIsEnglish] = React.useState(true);
+  const lang = isEnglish ? english : german;
   const workArray = [
     {
-      title: "Magna sed consequat tempus",
-      description: "Lorem ipsum dolor sit amet nisl sed nullam feugiat.",
-      image: "01.jpg",
+      title: "Pokemon App",
+      image: "project1.png",
+      description: {
+        introTitle: `${lang.project1.introTitle}`,
+        introText: `${lang.project1.introText}`,
+        processTitle: `${lang.project1.processTitle}`,
+        para1: `${lang.project1.para1}`,
+        para2: `${lang.project1.para2}`,
+        para3: `${lang.project1.para3}`,
+      },
     },
     {
-      title: "Ultricies lacinia interdum",
-      description: "Lorem ipsum dolor sit amet nisl sed nullam feugiat.",
-      image: "02.jpg",
+      title: "Pokemon App",
+      image: "project1.png",
+      description: {
+        introTitle: `${lang.project1.introTitle}`,
+        introText: `${lang.project1.introText}`,
+        processTitle: `${lang.project1.processTitle}`,
+        para1: `${lang.project1.para1}`,
+        para2: `${lang.project1.para2}`,
+        para3: `${lang.project1.para3}`,
+      },
     },
     {
-      title: "Tortor metus commodo",
-      description: "Lorem ipsum dolor sit amet nisl sed nullam feugiat.",
-      image: "03.jpg",
+      title: "Pokemon App",
+      image: "project1.png",
+      description: {
+        introTitle: `${lang.project1.introTitle}`,
+        introText: `${lang.project1.introText}`,
+        processTitle: `${lang.project1.processTitle}`,
+        para1: `${lang.project1.para1}`,
+        para2: `${lang.project1.para2}`,
+        para3: `${lang.project1.para3}`,
+      },
     },
     {
-      title: "Quam neque phasellus",
-      description: "Lorem ipsum dolor sit amet nisl sed nullam feugiat.",
-      image: "04.jpg",
+      title: "Pokemon App",
+      image: "project1.png",
+      description: {
+        introTitle: `${lang.project1.introTitle}`,
+        introText: `${lang.project1.introText}`,
+        processTitle: `${lang.project1.processTitle}`,
+        para1: `${lang.project1.para1}`,
+        para2: `${lang.project1.para2}`,
+        para3: `${lang.project1.para3}`,
+      },
     },
     {
-      title: "Nunc enim commodo aliquet",
-      description: "Lorem ipsum dolor sit amet nisl sed nullam feugiat.",
-      image: "05.jpg",
+      title: "Pokemon App",
+      image: "project1.png",
+      description: {
+        introTitle: `${lang.project1.introTitle}`,
+        introText: `${lang.project1.introText}`,
+        processTitle: `${lang.project1.processTitle}`,
+        para1: `${lang.project1.para1}`,
+        para2: `${lang.project1.para2}`,
+        para3: `${lang.project1.para3}`,
+      },
     },
     {
-      title: "Risus ornare lacinia",
-      description: "Lorem ipsum dolor sit amet nisl sed nullam feugiat.",
-      image: "06.jpg",
+      title: "Pokemon App",
+      image: "project1.png",
+      description: {
+        introTitle: `${lang.project1.introTitle}`,
+        introText: `${lang.project1.introText}`,
+        processTitle: `${lang.project1.processTitle}`,
+        para1: `${lang.project1.para1}`,
+        para2: `${lang.project1.para2}`,
+        para3: `${lang.project1.para3}`,
+      },
     },
   ];
 
   return (
     <>
       <section id="two">
+        <button onClick={() => setIsEnglish(!isEnglish)} className="button">
+          {isEnglish ? "🇬🇧" : "🇩🇪"}
+        </button>
         <h2>Recent Work</h2>
         <div className="row">
           {workArray.map((workItem, index) => (
