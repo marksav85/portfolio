@@ -10,8 +10,15 @@ export const Profile = () => {
     <>
       <section id="one">
         <header className="major">
-          <button onClick={() => setIsEnglish(!isEnglish)} className="button">
-            {isEnglish ? "🇬🇧" : "🇩🇪"}
+          <button
+            onClick={() => setIsEnglish(!isEnglish)}
+            className="lang-toggle-button"
+          >
+            {isEnglish ? (
+              <img src="/images/english.png" alt="headshot"></img>
+            ) : (
+              <img src="/images/deutsch.png" alt="headshot"></img>
+            )}
           </button>
           <h2>{lang.profileSection.line1}</h2>
         </header>

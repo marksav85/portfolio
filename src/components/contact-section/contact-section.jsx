@@ -9,8 +9,15 @@ export const Contact = () => {
   return (
     <>
       <section id="three">
-        <button onClick={() => setIsEnglish(!isEnglish)} className="button">
-          {isEnglish ? "🇬🇧" : "🇩🇪"}
+        <button
+          onClick={() => setIsEnglish(!isEnglish)}
+          className="lang-toggle-button"
+        >
+          {isEnglish ? (
+            <img src="/images/english.png" alt="headshot"></img>
+          ) : (
+            <img src="/images/deutsch.png" alt="headshot"></img>
+          )}
         </button>
         <h2>{lang.contactSection.title}</h2>
         <p>{lang.contactSection.text}</p>

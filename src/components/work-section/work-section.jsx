@@ -83,8 +83,15 @@ export const Work = () => {
   return (
     <>
       <section id="two">
-        <button onClick={() => setIsEnglish(!isEnglish)} className="button">
-          {isEnglish ? "🇬🇧" : "🇩🇪"}
+        <button
+          onClick={() => setIsEnglish(!isEnglish)}
+          className="lang-toggle-button"
+        >
+          {isEnglish ? (
+            <img src="/images/english.png" alt="headshot"></img>
+          ) : (
+            <img src="/images/deutsch.png" alt="headshot"></img>
+          )}
         </button>
         <h2>Recent Work</h2>
         <div className="row">

@@ -13,7 +13,11 @@ export const Header = () => {
           onClick={() => setIsEnglish(!isEnglish)}
           className="lang-toggle-button"
         >
-          {isEnglish ? "🇬🇧" : "🇩🇪"}
+          {isEnglish ? (
+            <img src="/images/english.png" alt="headshot"></img>
+          ) : (
+            <img src="/images/deutsch.png" alt="headshot"></img>
+          )}
         </button>
         <br />
 
