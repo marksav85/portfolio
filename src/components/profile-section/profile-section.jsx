@@ -1,10 +1,16 @@
 import React from "react";
 import * as english from "../../languages/en.json";
 import * as german from "../../languages/de.json";
+import { About } from "../about-section/about-section";
 
 export const Profile = () => {
   const [isEnglish, setIsEnglish] = React.useState(true);
   const lang = isEnglish ? english : german;
+
+  const [isVisible, setIsVisible] = React.useState(false);
+  const toggleVisibility = () => {
+    setIsVisible(!isVisible);
+  };
 
   return (
     <>
@@ -25,11 +31,12 @@ export const Profile = () => {
         <p>{lang.profileSection.line2}</p>
         <ul className="actions">
           <li>
-            <a href="#" className="button">
-              Learn More
-            </a>
+            <button onClick={toggleVisibility} className="button">
+              {isVisible ? "Hide SKills" : "Show Skills"}
+            </button>
           </li>
         </ul>
+        {isVisible && <About />}
       </section>
     </>
   );
