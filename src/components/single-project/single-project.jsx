@@ -6,6 +6,11 @@ export function SingleProject({ title, description, image }) {
     cursor: "pointer",
     outline: "0px",
   };
+  const [isVisible, setIsVisible] = React.useState(false);
+  const toggleVisibility = () => {
+    setIsVisible(!isVisible);
+  };
+
   return (
     <article className="col-6 col-12-xsmall work-item">
       <a
@@ -19,12 +24,21 @@ export function SingleProject({ title, description, image }) {
       <h4>{description.introTitle}</h4>
       <p>{description.introText}</p>
       <br />
-      <h4>{description.processTitle}</h4>
-      <p>{description.para1}</p>
-      <br />
-      <p>{description.para2}</p>
-      <br />
-      <p>{description.para3}</p>
+      {isVisible && (
+        <div>
+          <h4>{description.processTitle}</h4>
+          <p>{description.para1}</p>
+          <br />
+          <p>{description.para2}</p>
+          <br />
+          <p>{description.para3}</p>
+          <br />
+        </div>
+      )}
+
+      <button onClick={toggleVisibility} className="button">
+        {isVisible ? "Hide Build Process" : "Show Build Process"}
+      </button>
     </article>
   );
 }
