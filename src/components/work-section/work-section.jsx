@@ -2,6 +2,7 @@ import React from "react";
 import * as english from "../../languages/en.json";
 import * as german from "../../languages/de.json";
 import { SingleProject } from "../single-project/single-project";
+import { ImageModal } from "../image-modal/image-modal";
 export const Work = () => {
   const [isEnglish, setIsEnglish] = React.useState(true);
 

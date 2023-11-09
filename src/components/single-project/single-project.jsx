@@ -1,5 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { ImageModal } from "../image-modal/image-modal";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export function SingleProject({ title, description, image }) {
   const imageStyle = {
@@ -11,15 +13,25 @@ export function SingleProject({ title, description, image }) {
     setIsVisible(!isVisible);
   };
 
+  const [modalShow, setModalShow] = React.useState(false);
+  const imageUrl = "/portfolio/images/thumbs/project1.png";
+
   return (
     <article className="col-6 col-12-xsmall work-item">
-      <a
-        href={`/portfolio/images/fulls/${image}`}
+      <button
+        onClick={() => setModalShow(true)}
         className="image fit thumb"
         style={imageStyle}
       >
         <img src={`/portfolio/images/thumbs/${image}`} alt={title}></img>
-      </a>
+      </button>
+      <ImageModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        imageUrl={imageUrl}
+        title={title}
+      />
+
       <h2>{title}</h2>
       <h4>{description.introTitle}</h4>
       <p>{description.introText}</p>
