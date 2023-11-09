@@ -17,6 +17,8 @@ export const About = () => {
     "Problem Solving",
   ];
 
+
+
   const lang = isEnglish ? english : german;
   return (
     <>
