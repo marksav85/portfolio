@@ -7,6 +7,36 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
+/* SKILLS */
+.skills-table-container {
+  width: 80%;
+}
+
+.skills-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.skills-table th,
+.skills-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+
+.skills-table th {
+  background-color: #f2f2f2;
+}
+
+.skills-table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.skills-table tbody tr:hover {
+  background-color: #ddd;
+}
+
 html,
 body,
 div,
