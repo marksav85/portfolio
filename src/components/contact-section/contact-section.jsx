@@ -14,14 +14,12 @@ export const Contact = ({ isEnglish }) => {
           <div className="col-4 col-12-small">
             <ul className="labeled-icons">
               <li>
-                <h3 className="icon solid fa-home">
+                <h3 className="icon brands fa-linkedin">
                   <span className="label">Address</span>
                 </h3>
-                1234 Somewhere Rd.
-                <br />
-                Magdeburg, 39104
-                <br />
-                Germany
+                <a href="https://linkedin.com/in/mark-saville">
+                  <span className="label">Linkedin</span>
+                </a>
               </li>
               <li>
                 <h3 className="icon solid fa-mobile-alt">
