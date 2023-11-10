@@ -9,28 +9,40 @@
 
 /* SKILLS */
 .skills-table-container {
-  width: 80%;
+  text-align: center;
+  background-color: #fff;
+  padding: 20px;
 }
 
 .skills-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
 }
 
 .skills-table th,
 .skills-table td {
-  border: 1px solid #ddd;
-  padding: 12px;
-  text-align: left;
+  padding: 10px;
 }
 
-.skills-table th {
-  background-color: #f2f2f2;
+.skills-table img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
 }
 
-.skills-table tbody tr:nth-child(even) {
-  background-color: #f2f2f2;
+/* Center text in the name column */
+.skills-table td:first-child {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.skills-table td {
+  vertical-align: middle;
+}
+
+h2 {
+  text-align: center;
 }
 
 .skills-table tbody tr:hover {

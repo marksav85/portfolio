@@ -23,7 +23,7 @@ export const Profile = ({ isEnglish }) => {
         <ul className="actions">
           <li>
             <button onClick={toggleVisibility} className="button">
-              {isVisible ? "Hide SKills" : "Show Skills"}
+              {isVisible ? "Hide Skills" : "Show Skills"}
             </button>
           </li>
         </ul>

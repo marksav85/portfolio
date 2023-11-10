@@ -4,16 +4,17 @@ import * as german from "../../languages/de.json";
 
 export const About = ({ isEnglish }) => {
   const skillsData = [
-    "HTML5",
-    "CSS3",
-    "JavaScript",
-    "React.js",
-    "Node.js",
-    "Git",
-    "Responsive Design",
-    "UI/UX Design",
-    "Version Control",
-    "Problem Solving",
+    { name: "HTML5", image: "/images/icons/html5.png" },
+    { name: "CSS", image: "/images/icons/css.png" },
+    { name: "JavaScript", image: "/images/icons/javascript4.png" },
+    { name: "React", image: "/images/icons/react.png" },
+    { name: "Angular", image: "/images/icons/angular.png" },
+    { name: "TypeScript", image: "/images/icons/typescript.png" },
+    { name: "Node.js", image: "/images/icons/node.png" },
+    { name: "MongoDB", image: "/images/icons/mongodb.png" },
+    { name: "MySQL", image: "/images/icons/mysql.png" },
+    { name: "Firebase", image: "/images/icons/firebase.png" },
+    { name: "AWS", image: "/images/icons/aws.png" },
   ];
 
   const lang = isEnglish ? english : german;
@@ -24,13 +25,17 @@ export const About = ({ isEnglish }) => {
         <table className="skills-table">
           <thead>
             <tr>
-              <th>Skill</th>
+              {/*               <th></th>
+              <th></th> */}
             </tr>
           </thead>
           <tbody>
             {skillsData.map((skill, index) => (
               <tr key={index}>
-                <td>{skill}</td>
+                <td>{skill.name}</td>
+                <td>
+                  <img src={skill.image}></img>
+                </td>
               </tr>
             ))}
           </tbody>

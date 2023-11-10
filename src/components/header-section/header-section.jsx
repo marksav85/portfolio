@@ -68,12 +68,8 @@ export const Header = ({ isEnglish, setLanguage }) => {
               </li>
             </ul>
             <ul className="copyright">
-              <li>© Untitled</li>
               <li>
                 Design: <a href="https://html5up.net">HTML5 UP</a>
-              </li>
-              <li>
-                Demo Images: <a href="http://unsplash.com">Unsplash</a>
               </li>
             </ul>
           </div>
