@@ -2,17 +2,14 @@ import React from "react";
 import * as english from "../../languages/en.json";
 import * as german from "../../languages/de.json";
 
-export const Header = () => {
-  const [isEnglish, setIsEnglish] = React.useState(true);
+// eslint-disable-next-line react/prop-types
+export const Header = ({ isEnglish, setLanguage }) => {
   const lang = isEnglish ? english : german;
 
   return (
     <>
       <header id="header">
-        <button
-          onClick={() => setIsEnglish(!isEnglish)}
-          className="lang-toggle-button"
-        >
+        <button onClick={setLanguage} className="lang-toggle-button">
           {isEnglish ? (
             <img src="/images/english.png" alt="headshot"></img>
           ) : (

@@ -3,9 +3,8 @@ import * as english from "../../languages/en.json";
 import * as german from "../../languages/de.json";
 import { SingleProject } from "../single-project/single-project";
 import { ImageModal } from "../image-modal/image-modal";
-export const Work = () => {
-  const [isEnglish, setIsEnglish] = React.useState(true);
 
+export const Work = ({ isEnglish }) => {
   const lang = isEnglish ? english : german;
 
   const workArray = [
@@ -86,16 +85,6 @@ export const Work = () => {
   return (
     <>
       <section id="two">
-        <button
-          onClick={() => setIsEnglish(!isEnglish)}
-          className="lang-toggle-button"
-        >
-          {isEnglish ? (
-            <img src="/images/english.png" alt="headshot"></img>
-          ) : (
-            <img src="/images/deutsch.png" alt="headshot"></img>
-          )}
-        </button>
         <h2>Recent Work</h2>
         <div className="row">
           {workArray.map((workItem, index) => (

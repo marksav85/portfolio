@@ -2,8 +2,7 @@ import React from "react";
 import * as english from "../../languages/en.json";
 import * as german from "../../languages/de.json";
 
-export const About = () => {
-  const [isEnglish, setIsEnglish] = React.useState(true);
+export const About = ({ isEnglish }) => {
   const skillsData = [
     "HTML5",
     "CSS3",
@@ -17,21 +16,9 @@ export const About = () => {
     "Problem Solving",
   ];
 
-
-
   const lang = isEnglish ? english : german;
   return (
     <>
-      <button
-        onClick={() => setIsEnglish(!isEnglish)}
-        className="lang-toggle-button"
-      >
-        {isEnglish ? (
-          <img src="/images/english.png" alt="headshot"></img>
-        ) : (
-          <img src="/images/deutsch.png" alt="headshot"></img>
-        )}
-      </button>
       <div className="skills-table-container">
         <h2>Developer Skills</h2>
         <table className="skills-table">

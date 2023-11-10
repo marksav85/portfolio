@@ -2,23 +2,12 @@ import React from "react";
 import * as english from "../../languages/en.json";
 import * as german from "../../languages/de.json";
 
-export const Contact = () => {
-  const [isEnglish, setIsEnglish] = React.useState(true);
+export const Contact = ({ isEnglish }) => {
   const lang = isEnglish ? english : german;
 
   return (
     <>
       <section id="three">
-        <button
-          onClick={() => setIsEnglish(!isEnglish)}
-          className="lang-toggle-button"
-        >
-          {isEnglish ? (
-            <img src="/images/english.png" alt="headshot"></img>
-          ) : (
-            <img src="/images/deutsch.png" alt="headshot"></img>
-          )}
-        </button>
         <h2>{lang.contactSection.title}</h2>
         <p>{lang.contactSection.text}</p>
         <div className="row">
