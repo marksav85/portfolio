@@ -1,9 +1,20 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import PropTypes from "prop-types";
 import { ImageModal } from "../image-modal/image-modal";
 import "bootstrap/dist/css/bootstrap.min.css";
+import * as english from "../../languages/en.json";
+import * as german from "../../languages/de.json";
 
-export function SingleProject({ title, description, image }) {
+export function SingleProject({
+  title,
+  image,
+  projectData,
+  projectLabels,
+  links,
+  isEnglish,
+}) {
+  const lang = isEnglish ? english : german;
   const imageStyle = {
     cursor: "pointer",
     outline: "0px",
@@ -14,7 +25,9 @@ export function SingleProject({ title, description, image }) {
   };
 
   const [modalShow, setModalShow] = React.useState(false);
-  const imageUrl = "/portfolio/images/thumbs/project1.png";
+
+  const imageFull = `/images/fulls/${image}`;
+  const imageThumb = `/images/thumbs/${image}`;
 
   return (
     <article className="col-6 col-12-xsmall work-item">
@@ -23,40 +36,53 @@ export function SingleProject({ title, description, image }) {
         className="image fit thumb"
         style={imageStyle}
       >
-        <img src={`/portfolio/images/thumbs/${image}`} alt={title}></img>
+        <img src={imageFull} alt={title}></img>
       </button>
       <ImageModal
         show={modalShow}
         onHide={() => setModalShow(false)}
-        imageUrl={imageUrl}
+        imageUrl={imageThumb}
         title={title}
       />
 
       <h2>{title}</h2>
-      <h4>{description.introTitle}</h4>
-      <p>{description.introText}</p>
+      <h4>{projectLabels.introTitle}</h4>
+      <p>{projectData.introText}</p>
       <br />
       {isVisible && (
         <div>
-          <h4>{description.processTitle}</h4>
-          <p>{description.para1}</p>
+          <h4>{projectLabels.processTitle}</h4>
+          <p>{projectData.para1}</p>
           <br />
-          <p>{description.para2}</p>
+          <p>{projectData.para2}</p>
           <br />
-          <p>{description.para3}</p>
+          <p>{projectData.para3}</p>
+
           <br />
         </div>
       )}
 
       <button onClick={toggleVisibility} className="button">
-        {isVisible ? "Hide Build Process" : "Show Build Process"}
+        {isVisible ? lang.toggle.hide : lang.toggle.show}
       </button>
+      <p>
+        {projectLabels.technologies}
+        <span style={{ fontWeight: "bold" }}>{projectData.technologies}</span>
+      </p>
+      <p>
+        {projectLabels.site}
+        <a href={links.site}>{title}</a>
+      </p>
+      <p>
+        {projectLabels.repo}
+        <a href={links.repo}>GitHub {title}</a>
+      </p>
     </article>
   );
 }
 
 SingleProject.propTypes = {
   title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
+  projectData: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
 };

@@ -11,73 +11,136 @@ export const Work = ({ isEnglish }) => {
     {
       title: "Pokemon App",
       image: "project1.png",
-      description: {
-        introTitle: `${lang.project1.introTitle}`,
+      projectData: {
         introText: `${lang.project1.introText}`,
-        processTitle: `${lang.project1.processTitle}`,
         para1: `${lang.project1.para1}`,
         para2: `${lang.project1.para2}`,
         para3: `${lang.project1.para3}`,
+        technologies: `${lang.project1.technologies}`,
+      },
+      projectLabels: {
+        introTitle: `${lang.projectLabels.introTitle}`,
+        processTitle: `${lang.projectLabels.processTitle}`,
+        technologies: `${lang.projectLabels.technologies}`,
+        site: `${lang.projectLabels.visitSite}`,
+        repo: `${lang.projectLabels.visitRepo}`,
+      },
+      links: {
+        site: "https://marksav85.github.io/pokedex-app/",
+        repo: "https://github.com/marksav85/pokedex-app",
+      },
+    },
+
+    {
+      title: "Movie API",
+      image: "project2.png",
+      projectData: {
+        introText: `${lang.project2.introText}`,
+        para1: `${lang.project2.para1}`,
+        para2: `${lang.project2.para2}`,
+        para3: `${lang.project2.para3}`,
+        technologies: `${lang.project2.technologies}`,
+        site: `${lang.project2.visitSite}`,
+        repo: `${lang.project2.visitRepo}`,
+      },
+      projectLabels: {
+        introTitle: `${lang.projectLabels.introTitle}`,
+        processTitle: `${lang.projectLabels.processTitle}`,
+        technologies: `${lang.projectLabels.technologies}`,
+        site: `${lang.projectLabels.visitSite}`,
+        repo: `${lang.projectLabels.visitRepo}`,
+      },
+      links: {
+        site: "https://github.com/marksav85/movie-api",
+        repo: "https://github.com/marksav85/movie-api",
       },
     },
     {
       title: "Pokemon App",
       image: "project1.png",
-      description: {
-        introTitle: `${lang.project1.introTitle}`,
+      projectData: {
         introText: `${lang.project1.introText}`,
-        processTitle: `${lang.project1.processTitle}`,
         para1: `${lang.project1.para1}`,
         para2: `${lang.project1.para2}`,
         para3: `${lang.project1.para3}`,
+        technologies: `${lang.project1.technologies}`,
+      },
+      projectLabels: {
+        introTitle: `${lang.projectLabels.introTitle}`,
+        processTitle: `${lang.projectLabels.processTitle}`,
+        technologies: `${lang.projectLabels.technologies}`,
+        site: `${lang.projectLabels.visitSite}`,
+        repo: `${lang.projectLabels.visitRepo}`,
+      },
+      links: {
+        site: "https://marksav85.github.io/pokedex-app/",
+        repo: "https://github.com/marksav85/pokedex-app",
       },
     },
     {
       title: "Pokemon App",
       image: "project1.png",
-      description: {
-        introTitle: `${lang.project1.introTitle}`,
+      projectData: {
         introText: `${lang.project1.introText}`,
-        processTitle: `${lang.project1.processTitle}`,
         para1: `${lang.project1.para1}`,
         para2: `${lang.project1.para2}`,
         para3: `${lang.project1.para3}`,
+        technologies: `${lang.project1.technologies}`,
+      },
+      projectLabels: {
+        introTitle: `${lang.projectLabels.introTitle}`,
+        processTitle: `${lang.projectLabels.processTitle}`,
+        technologies: `${lang.projectLabels.technologies}`,
+        site: `${lang.projectLabels.visitSite}`,
+        repo: `${lang.projectLabels.visitRepo}`,
+      },
+      links: {
+        site: "https://marksav85.github.io/pokedex-app/",
+        repo: "https://github.com/marksav85/pokedex-app",
       },
     },
     {
       title: "Pokemon App",
       image: "project1.png",
-      description: {
-        introTitle: `${lang.project1.introTitle}`,
+      projectData: {
         introText: `${lang.project1.introText}`,
-        processTitle: `${lang.project1.processTitle}`,
         para1: `${lang.project1.para1}`,
         para2: `${lang.project1.para2}`,
         para3: `${lang.project1.para3}`,
+        technologies: `${lang.project1.technologies}`,
+      },
+      projectLabels: {
+        introTitle: `${lang.projectLabels.introTitle}`,
+        processTitle: `${lang.projectLabels.processTitle}`,
+        technologies: `${lang.projectLabels.technologies}`,
+        site: `${lang.projectLabels.visitSite}`,
+        repo: `${lang.projectLabels.visitRepo}`,
+      },
+      links: {
+        site: "https://marksav85.github.io/pokedex-app/",
+        repo: "https://github.com/marksav85/pokedex-app",
       },
     },
     {
       title: "Pokemon App",
       image: "project1.png",
-      description: {
-        introTitle: `${lang.project1.introTitle}`,
+      projectData: {
         introText: `${lang.project1.introText}`,
-        processTitle: `${lang.project1.processTitle}`,
         para1: `${lang.project1.para1}`,
         para2: `${lang.project1.para2}`,
         para3: `${lang.project1.para3}`,
+        technologies: `${lang.project1.technologies}`,
       },
-    },
-    {
-      title: "Pokemon App",
-      image: "project1.png",
-      description: {
-        introTitle: `${lang.project1.introTitle}`,
-        introText: `${lang.project1.introText}`,
-        processTitle: `${lang.project1.processTitle}`,
-        para1: `${lang.project1.para1}`,
-        para2: `${lang.project1.para2}`,
-        para3: `${lang.project1.para3}`,
+      projectLabels: {
+        introTitle: `${lang.projectLabels.introTitle}`,
+        processTitle: `${lang.projectLabels.processTitle}`,
+        technologies: `${lang.projectLabels.technologies}`,
+        site: `${lang.projectLabels.visitSite}`,
+        repo: `${lang.projectLabels.visitRepo}`,
+      },
+      links: {
+        site: "https://marksav85.github.io/pokedex-app/",
+        repo: "https://github.com/marksav85/pokedex-app",
       },
     },
   ];
@@ -91,8 +154,11 @@ export const Work = ({ isEnglish }) => {
             <SingleProject
               key={index}
               title={workItem.title}
-              description={workItem.description}
               image={workItem.image}
+              projectData={workItem.projectData}
+              projectLabels={workItem.projectLabels}
+              links={workItem.links}
+              isEnglish={isEnglish}
             />
           ))}
         </div>
