@@ -1,9 +1,9 @@
 import React from "react";
 import { Modal } from "react-bootstrap";
 import { Button } from "react-bootstrap";
-import { UncontrolledExample } from "../image-carousel/image-carousel";
+import { ImageCarousel } from "../image-carousel/image-carousel";
 
-export const ImageModal = ({ show, onHide, imageUrl, title }) => {
+export const ImageModal = ({ show, onHide, title, imageUrl }) => {
   const containerStyle = {
     display: "block",
     width: "100px",
@@ -17,8 +17,7 @@ export const ImageModal = ({ show, onHide, imageUrl, title }) => {
         <Modal.Title>{title}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <UncontrolledExample />
-        {/* <img src={imageUrl} alt="Modal Image" className="img-fluid" /> */}
+        <ImageCarousel imageUrl={imageUrl} />
       </Modal.Body>
       <Modal.Footer></Modal.Footer>
     </Modal>
