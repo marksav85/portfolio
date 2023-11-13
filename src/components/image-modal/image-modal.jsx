@@ -1,9 +1,11 @@
 import React from "react";
 import { Modal } from "react-bootstrap";
 import { Button } from "react-bootstrap";
+import { UncontrolledExample } from "../image-carousel/image-carousel";
 
 export const ImageModal = ({ show, onHide, imageUrl, title }) => {
   const containerStyle = {
+    display: "block",
     width: "100px",
     margin: "0 auto", // Center the container horizontally
     border: "1px solid #ccc", // Example border for visualization
@@ -15,7 +17,8 @@ export const ImageModal = ({ show, onHide, imageUrl, title }) => {
         <Modal.Title>{title}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <img src={imageUrl} alt="Modal Image" className="img-fluid" />
+        <UncontrolledExample />
+        {/* <img src={imageUrl} alt="Modal Image" className="img-fluid" /> */}
       </Modal.Body>
       <Modal.Footer></Modal.Footer>
     </Modal>
