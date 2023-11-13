@@ -62,21 +62,29 @@ export function SingleProject({
         </div>
       )}
 
-      <button onClick={toggleVisibility} className="button">
+      <button
+        onClick={toggleVisibility}
+        className="button"
+        style={{ marginBottom: "20px" }}
+      >
         {isVisible ? lang.toggle.hide : lang.toggle.show}
       </button>
-      <p>
-        {projectLabels.technologies}
-        <span style={{ fontWeight: "bold" }}>{projectData.technologies}</span>
-      </p>
-      <p>
-        {projectLabels.site}
-        <a href={links.site}>{title}</a>
-      </p>
-      <p>
-        {projectLabels.repo}
-        <a href={links.repo}>GitHub {title}</a>
-      </p>
+
+      <br />
+      <div className="row">
+        <p>
+          {projectLabels.technologies}
+          <span style={{ fontWeight: "bold" }}>{projectData.technologies}</span>
+        </p>
+        <p>
+          {projectLabels.site}
+          <a href={links.site}>{title}</a>
+        </p>
+        <p>
+          {projectLabels.repo}
+          <a href={links.repo}>GitHub {title}</a>
+        </p>
+      </div>
     </article>
   );
 }
