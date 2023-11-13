@@ -56,14 +56,14 @@ export const Work = ({ isEnglish }) => {
       },
     },
     {
-      title: "Pokemon App",
-      image: "project1.png",
+      title: "MyFlix Movies",
+      image: "project3.png",
       projectData: {
-        introText: `${lang.project1.introText}`,
-        para1: `${lang.project1.para1}`,
-        para2: `${lang.project1.para2}`,
-        para3: `${lang.project1.para3}`,
-        technologies: `${lang.project1.technologies}`,
+        introText: `${lang.project3.introText}`,
+        para1: `${lang.project3.para1}`,
+        para2: `${lang.project3.para2}`,
+        para3: `${lang.project3.para3}`,
+        technologies: `${lang.project3.technologies}`,
       },
       projectLabels: {
         introTitle: `${lang.projectLabels.introTitle}`,
@@ -73,13 +73,13 @@ export const Work = ({ isEnglish }) => {
         repo: `${lang.projectLabels.visitRepo}`,
       },
       links: {
-        site: "https://marksav85.github.io/pokedex-app/",
-        repo: "https://github.com/marksav85/pokedex-app",
+        site: "https://my-flix-films.netlify.app/",
+        repo: "https://github.com/marksav85/myFlix-client",
       },
     },
     {
-      title: "Pokemon App",
-      image: "project1.png",
+      title: "Meet App",
+      image: "project4.png",
       projectData: {
         introText: `${lang.project1.introText}`,
         para1: `${lang.project1.para1}`,
