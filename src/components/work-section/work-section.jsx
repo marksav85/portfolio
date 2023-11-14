@@ -109,7 +109,9 @@ export const Work = ({ isEnglish }) => {
     },
     {
       title: "Chat App",
-      image: "project5.png",
+      image1: "project5/image1.png",
+      image2: "project5/image2.png",
+      image3: "project5/image3.png",
       projectData: {
         introText: `${lang.project5.introText}`,
         para1: `${lang.project5.para1}`,
