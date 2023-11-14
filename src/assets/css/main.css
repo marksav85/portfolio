@@ -49,6 +49,16 @@ h2 {
   background-color: #ddd;
 }
 
+.carousel-fulls {
+  width: 500px;
+  height: 250px;
+}
+
+.carousel-thumbs {
+  width: 500px;
+  height: 250px;
+}
+
 html,
 body,
 div,

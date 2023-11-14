@@ -8,7 +8,9 @@ import * as german from "../../languages/de.json";
 
 export function SingleProject({
   title,
-  image,
+  image1,
+  image2,
+  image3,
   projectData,
   projectLabels,
   links,
@@ -26,8 +28,11 @@ export function SingleProject({
 
   const [modalShow, setModalShow] = React.useState(false);
 
-  const imageFull = `/images/fulls/${image}`;
-  const imageThumb = `/images/thumbs/${image}`;
+  const imageFull = `/images/fulls/${image1}`;
+  console.log(imageFull);
+  const imageThumb1 = `/images/thumbs/${image1}`;
+  const imageThumb2 = `/images/thumbs/${image2}`;
+  const imageThumb3 = `/images/thumbs/${image3}`;
 
   return (
     <article className="col-6 col-12-xsmall work-item">
@@ -36,12 +41,14 @@ export function SingleProject({
         className="image fit thumb"
         style={imageStyle}
       >
-        <img src={imageFull} alt={title}></img>
+        <img src={imageFull} alt={title} className="carousel-fulls"></img>
       </button>
       <ImageModal
         show={modalShow}
         onHide={() => setModalShow(false)}
-        imageUrl={imageThumb}
+        imageThumb1={imageThumb1}
+        imageThumb2={imageThumb2}
+        imageThumb3={imageThumb3}
         title={title}
       />
 

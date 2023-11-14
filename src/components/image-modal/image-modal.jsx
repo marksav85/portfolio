@@ -3,7 +3,14 @@ import { Modal } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { ImageCarousel } from "../image-carousel/image-carousel";
 
-export const ImageModal = ({ show, onHide, title, imageUrl }) => {
+export const ImageModal = ({
+  show,
+  onHide,
+  title,
+  imageThumb1,
+  imageThumb2,
+  imageThumb3,
+}) => {
   const containerStyle = {
     display: "block",
     width: "100px",
@@ -17,7 +24,11 @@ export const ImageModal = ({ show, onHide, title, imageUrl }) => {
         <Modal.Title>{title}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <ImageCarousel imageUrl={imageUrl} />
+        <ImageCarousel
+          imageThumb1={imageThumb1}
+          imageThumb2={imageThumb2}
+          imageThumb3={imageThumb3}
+        />
       </Modal.Body>
       <Modal.Footer></Modal.Footer>
     </Modal>

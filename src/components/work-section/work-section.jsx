@@ -10,7 +10,9 @@ export const Work = ({ isEnglish }) => {
   const workArray = [
     {
       title: "Pokemon App",
-      image: "project1.png",
+      image1: "project1/image1.png",
+      image2: "project1/image2.png",
+      image3: "project1/image3.png",
       projectData: {
         introText: `${lang.project1.introText}`,
         para1: `${lang.project1.para1}`,
@@ -33,7 +35,9 @@ export const Work = ({ isEnglish }) => {
 
     {
       title: "Movie API",
-      image: "project2.png",
+      image1: "project2/image1.png",
+      image2: "project2/image2.png",
+      image3: "project2/image3.png",
       projectData: {
         introText: `${lang.project2.introText}`,
         para1: `${lang.project2.para1}`,
@@ -57,7 +61,9 @@ export const Work = ({ isEnglish }) => {
     },
     {
       title: "MyFlix Movies",
-      image: "project3.png",
+      image1: "project3/image1.png",
+      image2: "project3/image2.png",
+      image3: "project3/image3.png",
       projectData: {
         introText: `${lang.project3.introText}`,
         para1: `${lang.project3.para1}`,
@@ -79,7 +85,9 @@ export const Work = ({ isEnglish }) => {
     },
     {
       title: "Meet App",
-      image: "project4.png",
+      image1: "project4/image1.png",
+      image2: "project4/image2.png",
+      image3: "project4/image3.png",
       projectData: {
         introText: `${lang.project4.introText}`,
         para1: `${lang.project4.para1}`,
@@ -123,7 +131,9 @@ export const Work = ({ isEnglish }) => {
     },
     {
       title: "MyFlix Angular",
-      image: "project6.png",
+      image1: "project6/image1.png",
+      image2: "project6/image2.png",
+      image3: "project6/image3.png",
       projectData: {
         introText: `${lang.project6.introText}`,
         para1: `${lang.project6.para1}`,
@@ -154,7 +164,9 @@ export const Work = ({ isEnglish }) => {
             <SingleProject
               key={index}
               title={workItem.title}
-              image={workItem.image}
+              image1={workItem.image1}
+              image2={workItem.image2}
+              image3={workItem.image3}
               projectData={workItem.projectData}
               projectLabels={workItem.projectLabels}
               links={workItem.links}
