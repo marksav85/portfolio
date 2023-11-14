@@ -1,6 +1,5 @@
 import React from "react";
 import { Modal } from "react-bootstrap";
-import { Button } from "react-bootstrap";
 import { ImageCarousel } from "../image-carousel/image-carousel";
 
 export const ImageModal = ({
@@ -11,15 +10,8 @@ export const ImageModal = ({
   imageThumb2,
   imageThumb3,
 }) => {
-  const containerStyle = {
-    display: "block",
-    width: "100px",
-    margin: "0 auto", // Center the container horizontally
-    border: "1px solid #ccc", // Example border for visualization
-    padding: "20px",
-  };
   return (
-    <Modal show={show} onHide={onHide} centered keyboard={false}>
+    <Modal show={show} onHide={onHide} centered keyboard={false} id="modal-box">
       <Modal.Header closeButton>
         <Modal.Title>{title}</Modal.Title>
       </Modal.Header>

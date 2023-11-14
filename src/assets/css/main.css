@@ -49,12 +49,13 @@ h2 {
   background-color: #ddd;
 }
 
-.carousel-fulls {
-  width: 500px;
-  height: 250px;
+#modal-box {
+  max-width: 800px;
+  height: 400px;
+  margin: 0 auto;
 }
 
-.carousel-thumbs {
+.carousel-fulls {
   width: 500px;
   height: 250px;
 }
