@@ -29,7 +29,6 @@ export function SingleProject({
   const [modalShow, setModalShow] = React.useState(false);
 
   const imageFull = `/images/fulls/${image1}`;
-  console.log(imageFull);
   const imageThumb1 = `/images/thumbs/${image1}`;
   const imageThumb2 = `/images/thumbs/${image2}`;
   const imageThumb3 = `/images/thumbs/${image3}`;
@@ -51,10 +50,11 @@ export function SingleProject({
         imageThumb3={imageThumb3}
         title={title}
       />
-
-      <h2>{title}</h2>
-      <h4>{projectLabels.introTitle}</h4>
-      <p>{projectData.introText}</p>
+      <div className="project-intro">
+        <h2>{title}</h2>
+        <h4>{projectLabels.introTitle}</h4>
+        <p>{projectData.introText}</p>
+      </div>
       <br />
       {isVisible && (
         <div>

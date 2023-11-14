@@ -82,9 +82,10 @@ h2 {
   margin: 0 auto;
 }
 
-/* #modal-box img {
-  object-fit: cover;
-} */
+.project-intro {
+  height: 300px;
+  margin-bottom: 20px;
+}
 
 html,
 body,
@@ -2641,7 +2642,7 @@ input[type="button"],
   width: fit-content;
   text-align: end;
   padding: 0 0.5em;
-  margin: 0 0 0 0.5em;
+  margin: 0 0 2em 0.5em;
   border: 0;
   background: transparent;
   color: #fff;
@@ -2791,7 +2792,7 @@ input[type="button"]:disabled,
   color: rgba(255, 255, 255, 0.5);
   height: 100%;
   left: 0;
-  padding: 8em 4em;
+  padding: 2em 2em;
   position: fixed;
   text-align: right;
   top: 0;
@@ -3197,7 +3198,7 @@ body.is-touch .poptrox-popup .closer {
   /* Header */
 
   #header {
-    padding: 6em 3em 3em 3em;
+    padding: 2em 2em 2em 2em;
     width: 30%;
   }
 
@@ -3260,7 +3261,7 @@ body.is-touch .poptrox-popup .closer {
     background-position: top left, center center;
     background-size: auto, cover;
     left: auto;
-    padding: 6em 4em;
+    padding: 2em;
     position: relative;
     text-align: center;
     top: auto;
@@ -3367,7 +3368,7 @@ body.is-touch .poptrox-popup .closer {
   /* Header */
 
   #header {
-    padding: 2.25em 1.5em;
+    padding: 2em;
   }
 
   #header h1 {
@@ -3424,7 +3425,7 @@ body.is-touch .poptrox-popup .closer {
   /* Header */
 
   #header {
-    padding: 4.5em 1.5em;
+    padding: 2em;
   }
 
   #header h1 br {
