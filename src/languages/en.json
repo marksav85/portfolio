@@ -11,6 +11,13 @@
     "line1": "I am a Full Stack Web Developer born in the UK but living in Germany",
     "line2": "Full stack web developer with a background in education and technology. Skillset in building front-end and back-end applications, including web pages and both web-based (WPA) and native apps. Responsive, accessible, and user-friendly designs including customer-orientated features, developing, testing, debugging, and launching. Excited to contribute to the future of the web development and the technology industry."
   },
+  "toggleSkills": {
+    "hide": "Hide Skills",
+    "show": "Show Skills"
+  },
+  "workTitle": {
+    "title": "Recent Work"
+  },
   "projectLabels": {
     "introTitle": "What is it?",
     "processTitle": "The Build Process",
@@ -60,7 +67,7 @@
     "para3": "The end result of these efforts was a secure, feature-rich client application. By overcoming the learning curve and embracing Angular's structured approach and TypeScript's strict typing, the application achieved a high level of robustness and security. The integration of Typedoc documentation ensured comprehensive and accessible codebase documentation, facilitating maintenance and future development. The application's user interface, designed with Angular Material, provided a visually appealing and responsive experience for users. Overall, the project successfully delivered a client-side component that met the requirements and provided a seamless movie browsing experience for users.",
     "technologies": "Angular, Angular Material, TypeScript, TypeDoc"
   },
-  "toggle": {
+  "toggleWork": {
     "hide": "See less",
     "show": "See more"
   },

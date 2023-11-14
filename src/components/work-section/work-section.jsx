@@ -148,7 +148,7 @@ export const Work = ({ isEnglish }) => {
   return (
     <>
       <section id="two">
-        <h2>Recent Work</h2>
+        <h2>{lang.workTitle.title}</h2>
         <div className="row">
           {workArray.map((workItem, index) => (
             <SingleProject

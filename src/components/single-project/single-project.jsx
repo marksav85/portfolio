@@ -67,7 +67,7 @@ export function SingleProject({
         className="button"
         style={{ marginBottom: "20px" }}
       >
-        {isVisible ? lang.toggle.hide : lang.toggle.show}
+        {isVisible ? lang.toggleWork.hide : lang.toggleWork.show}
       </button>
 
       <br />
