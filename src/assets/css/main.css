@@ -2785,10 +2785,11 @@ input[type="button"]:disabled,
   justify-content: space-between;
   background-color: #1f1815;
   background-attachment: scroll, scroll;
-  background-image: url("images/overlay.png"), url("../../images/bg.jpg");
-  background-position: top left, top left;
+  background-image: url("images/overlay.png"),
+    url("/images/headers/header4.jpg");
+  background-position: center;
   background-repeat: repeat, no-repeat;
-  background-size: auto, 150%;
+  background-size: cover;
   color: rgba(255, 255, 255, 0.5);
   height: 100%;
   left: 0;
@@ -2829,7 +2830,7 @@ input[type="button"]:disabled,
 }
 
 #header h1 {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.6);
   font-size: 1.35em;
   line-height: 1.75em;
   margin: 0;
@@ -2837,7 +2838,7 @@ input[type="button"]:disabled,
 
 #header .image.avatar {
   margin: 0 0 1em 0;
-  width: 6.25em;
+  width: 8em;
 }
 
 /* Footer */
@@ -2847,7 +2848,7 @@ input[type="button"]:disabled,
 }
 
 #footer .icons a {
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 #footer .copyright {
@@ -3282,8 +3283,9 @@ body.is-touch .poptrox-popup .closer {
   #footer {
     background-attachment: scroll;
     background-color: #1f1815;
-    background-image: url("images/overlay.png"), url("../../images/bg.jpg");
-    background-position: top left, bottom center;
+    background-image: url("images/overlay.png"),
+      url("/images/headers/header4.jpg");
+    background-position: bottom;
     background-repeat: repeat, no-repeat;
     background-size: auto, cover;
     bottom: auto;
