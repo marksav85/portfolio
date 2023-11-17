@@ -2785,8 +2785,7 @@ input[type="button"]:disabled,
   justify-content: space-between;
   background-color: #1f1815;
   background-attachment: scroll, scroll;
-  background-image: url("images/overlay.png"),
-    url("/images/headers/header4.jpg");
+  background-image: url("images/overlay.png"), url("/images/header-bg.jpg");
   background-position: center;
   background-repeat: repeat, no-repeat;
   background-size: cover;
@@ -3283,8 +3282,7 @@ body.is-touch .poptrox-popup .closer {
   #footer {
     background-attachment: scroll;
     background-color: #1f1815;
-    background-image: url("images/overlay.png"),
-      url("/images/headers/header4.jpg");
+    background-image: url("images/overlay.png"), url("/images/header-bg.jpg");
     background-position: bottom;
     background-repeat: repeat, no-repeat;
     background-size: auto, cover;
