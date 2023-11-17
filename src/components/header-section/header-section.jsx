@@ -11,9 +11,9 @@ export const Header = ({ isEnglish, setLanguage }) => {
       <header id="header">
         <button onClick={setLanguage} className="lang-toggle-button">
           {isEnglish ? (
-            <img src="/images/english.png" alt="headshot"></img>
+            <img src="/images/english.png" alt="british flag"></img>
           ) : (
-            <img src="/images/deutsch.png" alt="headshot"></img>
+            <img src="/images/deutsch.png" alt="german flag"></img>
           )}
         </button>
         <br />
