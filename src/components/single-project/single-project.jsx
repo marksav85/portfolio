@@ -28,10 +28,10 @@ export function SingleProject({
 
   const [modalShow, setModalShow] = React.useState(false);
 
-  const imageFull = `/images/fulls/${image1}`;
-  const imageThumb1 = `/images/thumbs/${image1}`;
-  const imageThumb2 = `/images/thumbs/${image2}`;
-  const imageThumb3 = `/images/thumbs/${image3}`;
+  const imageFull = `images/fulls/${image1}`;
+  const imageThumb1 = `images/thumbs/${image1}`;
+  const imageThumb2 = `images/thumbs/${image2}`;
+  const imageThumb3 = `images/thumbs/${image3}`;
 
   return (
     <article className="col-6 col-12-xsmall work-item">
