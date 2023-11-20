@@ -36,13 +36,10 @@ export const Contact = ({ isEnglish }) => {
                 </a>
               </li>
               <li>
-                <h3
-                  className="icon solid fa-download"
-                  href="./documents/Saville-Mark-Resume.docx"
-                >
+                <h3 className="icon solid fa-download">
                   <span className="label">Download</span>
                 </h3>
-                <a href="/documents/Saville-Mark-Resume.docx">Download my CV</a>
+                <a href="documents/Saville-Mark-Resume.docx">Download my CV</a>
               </li>
             </ul>
           </div>
