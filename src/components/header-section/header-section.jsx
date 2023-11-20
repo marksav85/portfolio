@@ -11,16 +11,16 @@ export const Header = ({ isEnglish, setLanguage }) => {
       <header id="header">
         <button onClick={setLanguage} className="lang-toggle-button">
           {isEnglish ? (
-            <img src="/images/english.png" alt="british flag"></img>
+            <img src="images/english.png" alt="british flag"></img>
           ) : (
-            <img src="/images/deutsch.png" alt="german flag"></img>
+            <img src="images/deutsch.png" alt="german flag"></img>
           )}
         </button>
         <br />
 
         <div className="inner">
           <a href="#" className="image avatar">
-            <img src="/images/headshot.png" alt="headshot"></img>
+            <img src="images/headshot.png" alt="headshot"></img>
           </a>
           <h1>
             {lang.headerSection.line1}
