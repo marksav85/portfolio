@@ -95,9 +95,3 @@ export function SingleProject({
     </article>
   );
 }
-
-SingleProject.propTypes = {
-  title: PropTypes.string.isRequired,
-  projectData: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
-};
