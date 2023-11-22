@@ -32,10 +32,17 @@
 }
 
 /* Center text in the name column */
+.skills-table th:first-child,
+.skills-table th:last-child,
 .skills-table td:first-child {
   text-align: center;
   vertical-align: middle;
 }
+
+/* .skills-table th:last-child {
+  text-align: center;
+  vertical-align: middle;
+} */
 
 .skills-table td {
   vertical-align: middle;
