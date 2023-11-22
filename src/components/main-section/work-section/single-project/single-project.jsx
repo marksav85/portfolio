@@ -2,8 +2,8 @@
 import React from "react";
 import { ImageModal } from "../image-modal/image-modal";
 import "bootstrap/dist/css/bootstrap.min.css";
-import * as english from "../../languages/en.json";
-import * as german from "../../languages/de.json";
+import * as english from "../../../../languages/en.json";
+import * as german from "../../../../languages/de.json";
 
 export function SingleProject({
   title,

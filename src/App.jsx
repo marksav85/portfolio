@@ -1,9 +1,8 @@
 import { useState } from "react";
 import React from "react";
 import { Header } from "./components/header-section/header-section";
-import { Profile } from "./components/profile-section/profile-section";
-import { MainView } from "./components/main-view/main-view";
-import { Footer } from "./components/footer-section/footer-section";
+import { MainView } from "./components/main-section/main-view";
+import { Footer } from "./components/main-section/footer-section/footer-section";
 
 function App() {
   const [isEnglish, setIsEnglish] = React.useState(true);

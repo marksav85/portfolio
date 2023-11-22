@@ -1,6 +1,6 @@
 import React from "react";
-import * as english from "../../languages/en.json";
-import * as german from "../../languages/de.json";
+import * as english from "../../../languages/en.json";
+import * as german from "../../../languages/de.json";
 
 export const Contact = ({ isEnglish }) => {
   const lang = isEnglish ? english : german;

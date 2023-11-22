@@ -1,11 +1,9 @@
 import React from "react";
-import * as english from "../../languages/en.json";
-import * as german from "../../languages/de.json";
-import { About } from "../about-section/about-section";
-import { Header } from "../header-section/header-section";
+import * as english from "../../../languages/en.json";
+import * as german from "../../../languages/de.json";
+import { About } from "./about-section/about-section";
 
 export const Profile = ({ isEnglish }) => {
-  /* const [isEnglish, setIsEnglish] = React.useState(true); */
   const lang = isEnglish ? english : german;
 
   const [isVisible, setIsVisible] = React.useState(false);
