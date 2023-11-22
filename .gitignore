@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 
 # headers images
-public/images/headers/
+public/images/image-storage/
