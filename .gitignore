@@ -23,5 +23,5 @@ dist-ssr
 *.sln
 *.sw?
 
-# headers images
-public/images/image-storage/
+# storage images
+image-storage
