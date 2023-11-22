@@ -24,10 +24,10 @@ export const About = ({ isEnglish }) => {
         <h2>Developer Skills</h2>
         <table className="skills-table">
           <thead>
-            <tr>
+            {/* <tr>
               <th>Technology</th>
               <th>Icon</th>
-            </tr>
+            </tr> */}
           </thead>
           <tbody>
             {skillsData.map((skill, index) => (
