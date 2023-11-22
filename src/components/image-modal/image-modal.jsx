@@ -6,9 +6,9 @@ export const ImageModal = ({
   show,
   onHide,
   title,
-  imageThumb1,
-  imageThumb2,
-  imageThumb3,
+  firstImage,
+  secondImage,
+  thirdImage,
 }) => {
   return (
     <Modal show={show} onHide={onHide} centered keyboard={false} id="modal-box">
@@ -17,9 +17,9 @@ export const ImageModal = ({
       </Modal.Header>
       <Modal.Body>
         <ImageCarousel
-          imageThumb1={imageThumb1}
-          imageThumb2={imageThumb2}
-          imageThumb3={imageThumb3}
+          firstImage={firstImage}
+          secondImage={secondImage}
+          thirdImage={thirdImage}
         />
       </Modal.Body>
       <Modal.Footer></Modal.Footer>

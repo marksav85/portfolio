@@ -1,12 +1,12 @@
 import Carousel from "react-bootstrap/Carousel";
 
-export function ImageCarousel({ imageThumb1, imageThumb2, imageThumb3 }) {
+export function ImageCarousel({ firstImage, secondImage, thirdImage }) {
   return (
     <Carousel data-bs-theme="dark">
       <Carousel.Item>
         <div className="carousel-image-container">
           <img
-            src={imageThumb1}
+            src={firstImage}
             alt="Modal Image"
             className="img-fluid carousel-thumbs"
           />
@@ -17,7 +17,7 @@ export function ImageCarousel({ imageThumb1, imageThumb2, imageThumb3 }) {
       <Carousel.Item>
         <div className="carousel-image-container">
           <img
-            src={imageThumb2}
+            src={secondImage}
             alt="Modal Image"
             className="img-fluid carousel-thumbs"
           />
@@ -27,7 +27,7 @@ export function ImageCarousel({ imageThumb1, imageThumb2, imageThumb3 }) {
       <Carousel.Item>
         <div className="carousel-image-container">
           <img
-            src={imageThumb3}
+            src={thirdImage}
             alt="Modal Image"
             className="img-fluid carousel-thumbs"
           />

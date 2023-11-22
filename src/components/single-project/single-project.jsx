@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import PropTypes from "prop-types";
 import { ImageModal } from "../image-modal/image-modal";
 import "bootstrap/dist/css/bootstrap.min.css";
 import * as english from "../../languages/en.json";
@@ -28,10 +27,9 @@ export function SingleProject({
 
   const [modalShow, setModalShow] = React.useState(false);
 
-  const imageFull = `images/fulls/${image1}`;
-  const imageThumb1 = `images/thumbs/${image1}`;
-  const imageThumb2 = `images/thumbs/${image2}`;
-  const imageThumb3 = `images/thumbs/${image3}`;
+  const firstImage = `images/project-images/${image1}`;
+  const secondImage = `images/project-images/${image2}`;
+  const thirdImage = `images/project-images/${image3}`;
 
   return (
     <article className="col-6 col-12-xsmall work-item">
@@ -40,14 +38,14 @@ export function SingleProject({
         className="image fit thumb"
         style={imageStyle}
       >
-        <img src={imageFull} alt={title} className="carousel-fulls"></img>
+        <img src={firstImage} alt={title} className="carousel-fulls"></img>
       </button>
       <ImageModal
         show={modalShow}
         onHide={() => setModalShow(false)}
-        imageThumb1={imageThumb1}
-        imageThumb2={imageThumb2}
-        imageThumb3={imageThumb3}
+        firstImage={firstImage}
+        secondImage={secondImage}
+        thirdImage={thirdImage}
         title={title}
       />
       <div className="project-intro">
