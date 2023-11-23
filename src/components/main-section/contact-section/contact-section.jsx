@@ -17,12 +17,18 @@ export const Contact = ({ isEnglish }) => {
                 <h3 className="icon brands fa-linkedin">
                   <span className="label">Address</span>
                 </h3>
-                <a href="https://linkedin.com/in/mark-saville">
+                <a
+                  href="https://linkedin.com/in/mark-saville"
+                  aria-label="Link to Twitter"
+                >
                   <span className="label">Linkedin</span>
                 </a>
               </li>
               <li>
-                <h3 className="icon solid fa-mobile-alt">
+                <h3
+                  className="icon solid fa-mobile-alt"
+                  aria-label="My telephone number"
+                >
                   <span className="label">Phone</span>
                 </h3>
                 +49176 4710 7960
@@ -31,7 +37,10 @@ export const Contact = ({ isEnglish }) => {
                 <h3 className="icon solid fa-envelope">
                   <span className="label">Email</span>
                 </h3>
-                <a href="mailto:marksav85@gmail.com?subject=Test%20test&body=This%20is%20a%20test">
+                <a
+                  href="mailto:marksav85@gmail.com?subject=Test%20test&body=This%20is%20a%20test"
+                  aria-label="Send an email"
+                >
                   marksav85@gmail.com
                 </a>
               </li>
@@ -39,7 +48,12 @@ export const Contact = ({ isEnglish }) => {
                 <h3 className="icon solid fa-download">
                   <span className="label">Download</span>
                 </h3>
-                <a href="documents/Saville-Mark-Resume.docx">Download my CV</a>
+                <a
+                  href="documents/Saville-Mark-Resume.docx"
+                  aria-label="Download my CV"
+                >
+                  Download my CV
+                </a>
               </li>
             </ul>
           </div>
