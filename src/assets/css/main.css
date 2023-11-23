@@ -281,7 +281,7 @@ body,
 input,
 select,
 textarea {
-  color: #a2a2a2;
+  color: #575757;
   font-family: "Source Sans Pro", Helvetica, sans-serif;
   font-size: 16pt;
   font-weight: 400;
@@ -2077,7 +2077,7 @@ input[type="radio"] {
 input[type="checkbox"] + label,
 input[type="radio"] + label {
   text-decoration: none;
-  color: #a2a2a2;
+  color: #575757;
   cursor: pointer;
   display: inline-block;
   font-size: 1em;
