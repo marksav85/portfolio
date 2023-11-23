@@ -306,7 +306,7 @@ a:hover {
 
 strong,
 b {
-  color: #787878;
+  color: #595959;
   font-weight: 400;
 }
 
@@ -325,7 +325,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: #787878;
+  color: #595959;
   font-weight: 400;
   line-height: 1em;
   margin: 0 0 1em 0;
@@ -1983,7 +1983,7 @@ form {
 }
 
 label {
-  color: #787878;
+  color: #595959;
   display: block;
   font-size: 0.9em;
   font-weight: 400;
@@ -2037,7 +2037,7 @@ select {
 }
 
 select option {
-  color: #787878;
+  color: #595959;
   background: #fff;
 }
 
@@ -2120,8 +2120,8 @@ input[type="radio"] + label:before {
 
 input[type="checkbox"]:checked + label:before,
 input[type="radio"]:checked + label:before {
-  background: #787878;
-  border-color: #787878;
+  background: #595959;
+  border-color: #595959;
   color: #fff;
   content: "\f00c";
 }
@@ -2570,7 +2570,7 @@ table td {
 }
 
 table th {
-  color: #787878;
+  color: #595959;
   font-size: 0.9em;
   font-weight: 400;
   padding: 0 0.75em 0.75em 0.75em;
@@ -2632,7 +2632,7 @@ input[type="button"],
   background-color: transparent;
   border-radius: 0.35em;
   border: solid 3px #efefef;
-  color: #787878 !important;
+  color: #595959 !important;
   cursor: pointer;
   display: inline-block;
   font-weight: 400;
