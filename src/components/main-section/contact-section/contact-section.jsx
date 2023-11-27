@@ -31,7 +31,7 @@ export const Contact = ({ isEnglish }) => {
                 >
                   <span className="label">Phone</span>
                 </h3>
-                +49176 4710 7960
+                +49176 4710 7968
               </li>
               <li>
                 <h3 className="icon solid fa-envelope">
@@ -49,7 +49,7 @@ export const Contact = ({ isEnglish }) => {
                   <span className="label">Download</span>
                 </h3>
                 <a
-                  href="documents/Saville-Mark-Resume.docx"
+                  href="documents/Saville-Mark-Resume-Dev.pdf"
                   aria-label="Download my CV"
                 >
                   Download my CV
