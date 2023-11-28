@@ -44,31 +44,63 @@ export const Contact = ({ isEnglish }) => {
                   mark.saville@outlook.com
                 </a>
               </li>
-              <li>
-                <h3 className="icon solid fa-download">
-                  <span className="label">Download</span>
-                </h3>
-                <a
-                  target="_blank"
-                  href="documents/Saville-Mark-Resume-Dev.pdf"
-                  aria-label="Download my CV"
-                >
-                  Download Developer CV
-                </a>
-              </li>
-              <li>
-                <h3 className="icon solid fa-download">
-                  <span className="label">Download</span>
-                </h3>
-                <a
-                  target="_blank"
-                  href="documents/Saville-Mark-Resume-Full.pdf"
-                  aria-label="Download my CV"
-                >
-                  Download Full CV
-                </a>
-              </li>
             </ul>
+
+            {isEnglish ? (
+              <ul className="labeled-icons">
+                <li>
+                  <h3 className="icon solid fa-download">
+                    <span className="label">Download</span>
+                  </h3>
+                  <a
+                    target="_blank"
+                    href="documents/Saville-Mark-Resume-Dev.pdf"
+                    aria-label="Download my CV"
+                  >
+                    Download Developer CV
+                  </a>
+                </li>
+                <li>
+                  <h3 className="icon solid fa-download">
+                    <span className="label">Download</span>
+                  </h3>
+                  <a
+                    target="_blank"
+                    href="documents/Saville-Mark-Resume-Full.pdf"
+                    aria-label="Download my CV"
+                  >
+                    Download Full CV
+                  </a>
+                </li>
+              </ul>
+            ) : (
+              <ul className="labeled-icons">
+                <li>
+                  <h3 className="icon solid fa-download">
+                    <span className="label">Download</span>
+                  </h3>
+                  <a
+                    target="_blank"
+                    href="documents/Saville-Mark-Lebenslauf-Entwickler.pdf"
+                    aria-label="Download my CV"
+                  >
+                    Entwickler Lebenslauf herunterladen
+                  </a>
+                </li>
+                <li>
+                  <h3 className="icon solid fa-download">
+                    <span className="label">Download</span>
+                  </h3>
+                  <a
+                    target="_blank"
+                    href="documents/Saville-Mark-Lebenslauf-vollständig.pdf"
+                    aria-label="Download my CV"
+                  >
+                    Vollständigen Lebenslauf herunterladen
+                  </a>
+                </li>
+              </ul>
+            )}
           </div>
         </div>
       </section>
