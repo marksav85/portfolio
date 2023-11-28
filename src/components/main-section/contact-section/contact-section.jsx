@@ -52,7 +52,18 @@ export const Contact = ({ isEnglish }) => {
                   href="documents/Saville-Mark-Resume-Dev.pdf"
                   aria-label="Download my CV"
                 >
-                  Download my CV
+                  Download Developer CV
+                </a>
+              </li>
+              <li>
+                <h3 className="icon solid fa-download">
+                  <span className="label">Download</span>
+                </h3>
+                <a
+                  href="documents/Saville-Mark-Resume-Full.pdf"
+                  aria-label="Download my CV"
+                >
+                  Download Full CV
                 </a>
               </li>
             </ul>
