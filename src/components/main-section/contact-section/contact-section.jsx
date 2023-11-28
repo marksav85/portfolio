@@ -49,6 +49,7 @@ export const Contact = ({ isEnglish }) => {
                   <span className="label">Download</span>
                 </h3>
                 <a
+                  target="_blank"
                   href="documents/Saville-Mark-Resume-Dev.pdf"
                   aria-label="Download my CV"
                 >
@@ -60,6 +61,7 @@ export const Contact = ({ isEnglish }) => {
                   <span className="label">Download</span>
                 </h3>
                 <a
+                  target="_blank"
                   href="documents/Saville-Mark-Resume-Full.pdf"
                   aria-label="Download my CV"
                 >
