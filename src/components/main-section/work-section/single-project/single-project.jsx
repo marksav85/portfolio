@@ -51,7 +51,9 @@ export function SingleProject({
       <div className="project-intro">
         <h2>{title}</h2>
         <h4>{projectLabels.introTitle}</h4>
-        <p>{projectData.introText}</p>
+        <div className="project-intro-text">
+          <p>{projectData.introText}</p>
+        </div>
       </div>
       <br />
       {isVisible && (
@@ -62,6 +64,8 @@ export function SingleProject({
           <p>{projectData.para2}</p>
           <br />
           <p>{projectData.para3}</p>
+          <br />
+          <p>{projectData.para4}</p>
 
           <br />
         </div>

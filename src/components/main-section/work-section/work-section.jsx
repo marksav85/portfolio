@@ -17,6 +17,7 @@ export const Work = ({ isEnglish }) => {
         para1: `${lang.project1.para1}`,
         para2: `${lang.project1.para2}`,
         para3: `${lang.project1.para3}`,
+        para4: `${lang.project1.para4}`,
         technologies: `${lang.project1.technologies}`,
       },
       projectLabels: {
@@ -42,6 +43,7 @@ export const Work = ({ isEnglish }) => {
         para1: `${lang.project2.para1}`,
         para2: `${lang.project2.para2}`,
         para3: `${lang.project2.para3}`,
+        para4: `${lang.project2.para4}`,
         technologies: `${lang.project2.technologies}`,
         site: `${lang.project2.visitSite}`,
         repo: `${lang.project2.visitRepo}`,
@@ -68,6 +70,7 @@ export const Work = ({ isEnglish }) => {
         para1: `${lang.project3.para1}`,
         para2: `${lang.project3.para2}`,
         para3: `${lang.project3.para3}`,
+        para4: `${lang.project3.para4}`,
         technologies: `${lang.project3.technologies}`,
       },
       projectLabels: {
@@ -92,6 +95,7 @@ export const Work = ({ isEnglish }) => {
         para1: `${lang.project4.para1}`,
         para2: `${lang.project4.para2}`,
         para3: `${lang.project4.para3}`,
+        para4: `${lang.project4.para4}`,
         technologies: `${lang.project4.technologies}`,
       },
       projectLabels: {
@@ -116,6 +120,7 @@ export const Work = ({ isEnglish }) => {
         para1: `${lang.project5.para1}`,
         para2: `${lang.project5.para2}`,
         para3: `${lang.project5.para3}`,
+        para4: `${lang.project5.para4}`,
         technologies: `${lang.project5.technologies}`,
       },
       projectLabels: {
@@ -140,6 +145,7 @@ export const Work = ({ isEnglish }) => {
         para1: `${lang.project6.para1}`,
         para2: `${lang.project6.para2}`,
         para3: `${lang.project6.para3}`,
+        para4: `${lang.project6.para4}`,
         technologies: `${lang.project6.technologies}`,
       },
       projectLabels: {
