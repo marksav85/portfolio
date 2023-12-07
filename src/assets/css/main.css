@@ -87,7 +87,7 @@ h2 {
 .project-intro {
   display: flex;
   flex-direction: column;
-  height: 200px;
+  height: 250px;
   margin-bottom: 20px;
   align-items: center;
 }
@@ -98,31 +98,31 @@ h2 {
 
 @media (min-width: 1800px) {
   .project-intro {
-    height: 250px;
+    height: 300px;
   }
 }
 
 @media (min-width: 980px) and (max-width: 1280px) {
   .project-intro {
-    height: 200px;
+    height: 250px;
   }
 }
 
 @media (min-width: 735px) and (max-width: 980px) {
   .project-intro {
-    height: 200px;
+    height: 250px;
   }
 }
 
 @media (min-width: 480px) and (max-width: 735px) {
   .project-intro {
-    height: 250px;
+    height: 300px;
   }
 }
 
 @media (max-width: 480px) {
   .project-intro {
-    height: 150px;
+    height: 200px;
   }
 }
 
