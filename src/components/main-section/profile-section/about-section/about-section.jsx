@@ -3,6 +3,7 @@ import * as english from "../../../../languages/en.json";
 import * as german from "../../../../languages/de.json";
 
 export const About = ({ isEnglish }) => {
+  const lang = isEnglish ? english : german;
   const skillsData = [
     {
       name: "HTML5",
@@ -54,17 +55,16 @@ export const About = ({ isEnglish }) => {
     { name: "AWS", image: "images/aboutme-icons/aws.png", expertise: "3/5" },
   ];
 
-  const lang = isEnglish ? english : german;
   return (
     <>
       <div className="skills-table-container">
-        <h2>Developer Skills</h2>
+        <h2>{lang.aboutSection.skillsHeader}</h2>
         <table className="skills-table">
           <thead>
             <tr>
-              <th>Technology</th>
+              <th>{lang.aboutSection.techTableHeader}</th>
               <th></th>
-              <th>Expertise</th>
+              <th>{lang.aboutSection.expertiseTableHeader}</th>
             </tr>
           </thead>
           <tbody>

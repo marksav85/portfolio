@@ -25,7 +25,7 @@ export const Profile = ({ isEnglish }) => {
             </button>
           </li>
         </ul>
-        {isVisible && <About />}
+        {isVisible && <About isEnglish={isEnglish} />}
       </section>
     </>
   );
