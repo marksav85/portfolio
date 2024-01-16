@@ -9,13 +9,16 @@ export const Header = ({ isEnglish, setLanguage }) => {
   return (
     <>
       <header id="header">
-        <button onClick={setLanguage} className="lang-toggle-button">
-          {isEnglish ? (
-            <img src="images/english.jpg" alt="british flag"></img>
-          ) : (
-            <img src="images/deutsch.jpg" alt="german flag"></img>
-          )}
-        </button>
+        <div className="lang-toggle">
+          <button onClick={setLanguage}>
+            {isEnglish ? (
+              <img src="images/english.jpg" alt="british flag"></img>
+            ) : (
+              <img src="images/deutsch.jpg" alt="german flag"></img>
+            )}
+          </button>
+          <p>{lang.headerSection.buttonText}</p>
+        </div>
         <br />
 
         <div className="inner">
