@@ -38,7 +38,7 @@ export const Contact = ({ isEnglish }) => {
                   <span className="label">Email</span>
                 </h3>
                 <a
-                  href="mailto:mark.saville@outlook.com?subject=Enquiry:"
+                  href="mailto:mark.saville@outlook.com"
                   aria-label="Send an email"
                 >
                   mark.saville@outlook.com
