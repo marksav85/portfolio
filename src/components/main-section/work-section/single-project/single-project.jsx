@@ -73,6 +73,7 @@ export function SingleProject({
 
       <button
         onClick={toggleVisibility}
+        id="project-text-button"
         className="button"
         style={{ marginBottom: "20px" }}
       >

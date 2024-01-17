@@ -132,6 +132,12 @@ h2 {
   margin-bottom: 20px;
 }
 
+/* #project-text-button {
+  min-width: 100px;
+  height: auto;
+  line-height: normal;
+} */
+
 @media (min-width: 1800px) {
   .project-intro {
     height: 200px;
