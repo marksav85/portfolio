@@ -50,7 +50,7 @@ export function SingleProject({
       />
       <div className="project-intro">
         <h2>{title}</h2>
-        <h4>{projectLabels.introTitle}</h4>
+
         <div className="project-intro-text">
           <p>{projectData.introText}</p>
         </div>
