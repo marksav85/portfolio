@@ -138,6 +138,69 @@ h2 {
   line-height: normal;
 } */
 
+/* REFERENCES */
+
+.reference-image-container {
+  position: relative;
+}
+
+.reference-image {
+  position: relative;
+  max-width: 250px;
+  height: 250px;
+  margin: 0 auto;
+  text-align: center;
+  border-radius: 0.35em;
+}
+
+@media (max-width: 480px) {
+  .reference-image {
+    max-width: 150px;
+    height: 150px;
+  }
+}
+
+.reference-caption {
+  margin: 10px;
+  text-align: center;
+}
+
+/* Custom styles for Bootstrap Carousel controls and items */
+.carousel-item {
+  text-align: center;
+  position: relative;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  width: auto;
+  position: absolute;
+  top: 75%; /* Center the controls vertically */
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: black;
+  border: none;
+  border-radius: 5px;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.7
+  ); /* Adjust the background color on hover */
+}
+
+.carousel-control-prev {
+  left: 0; /* Position the left control to the left side */
+}
+
+.carousel-control-next {
+  right: 0; /* Position the right control to the right side */
+}
+
 @media (min-width: 1800px) {
   .project-intro {
     height: 200px;
