@@ -10,7 +10,7 @@ export default function References({ isEnglish }) {
 
   return (
     <section id="four">
-      <h2>References</h2>
+      <h2>{lang.references.title}</h2>
       <Carousel indicators={false}>
         {refData.map((reference, index) => (
           <Carousel.Item key={index} className="carousel-item">
