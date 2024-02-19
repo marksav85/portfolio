@@ -87,5 +87,17 @@
   "contactSection": {
     "title": "Kontakt",
     "text": "Du findest mich auf einem der unten stehenden Kanäle – lass uns loslegen!"
-  }
+  },
+  "references": {
+    "title": "Kundenrenzensionen"
+  },
+  "referenceData": [
+    {
+      "quote": "Professionell und kundenfreundlich",
+      "text": "Mark war sehr nett und freundlich. Er war geduldig und kommunikativ während des Entwicklungsprozesses, und ich bin mit dem Ergebnis sehr zufrieden. Ich würde ihn sehr empfehlen.",
+      "image": "language-coach-aa.png",
+      "link": "https://language-coach-aa.com/",
+      "linkText": "Language Coach Andrea Ahlborn"
+    }
+  ]
 }
