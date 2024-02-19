@@ -173,6 +173,7 @@ h2 {
 
 .carousel-control-prev,
 .carousel-control-next {
+  display: none;
   width: auto;
   position: absolute;
   top: 75%; /* Center the controls vertically */
