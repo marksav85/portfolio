@@ -87,5 +87,18 @@
   "contactSection": {
     "title": "Get in Touch",
     "text": "Find me on on the one of the channels below and let's get the ball rolling!"
-  }
+  },
+
+  "references": {
+    "title": "References"
+  },
+  "referenceData": [
+    {
+      "quote": "Professional and customer-friendly",
+      "text": "Mark is a professional and customer-friendly developer. He is always willing to go the extra mile to ensure the customer is satisfied. He is a great asset to any team and I would highly recommend him.",
+      "image": "language-coach-aa.png",
+      "link": "https://language-coach-aa.com/",
+      "linkText": "Language Coach Andrea Ahlborn"
+    }
+  ]
 }
