@@ -1,4 +1,3 @@
-import React from "react";
 import * as english from "../../languages/en.json";
 import * as german from "../../languages/de.json";
 
