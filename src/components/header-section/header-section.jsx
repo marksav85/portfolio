@@ -1,4 +1,3 @@
-import React from "react";
 import * as english from "../../languages/en.json";
 import * as german from "../../languages/de.json";
 
@@ -66,7 +65,7 @@ export const Header = ({ isEnglish, setLanguage }) => {
               </li>
               <li>
                 <a
-                  href="mailto:marksav85@gmail.com?subject=Test%20test&body=This%20is%20a%20test"
+                  href="mailto:mark.saville@outlook.com"
                   className="icon solid fa-envelope"
                   aria-label="Send an email"
                 >
