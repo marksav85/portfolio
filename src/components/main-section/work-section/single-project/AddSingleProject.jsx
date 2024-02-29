@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import { ImageModal } from "../image-modal/image-modal";
 import "bootstrap/dist/css/bootstrap.min.css";
 import * as english from "../../../../languages/en.json";
@@ -19,12 +19,12 @@ export function AddSingleProject({
     cursor: "pointer",
     outline: "0px",
   };
-  const [isVisible, setIsVisible] = React.useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const toggleVisibility = () => {
     setIsVisible(!isVisible);
   };
 
-  const [modalShow, setModalShow] = React.useState(false);
+  const [modalShow, setModalShow] = useState(false);
 
   const firstImage = `images/project-images/${image1}`;
   const secondImage = `images/project-images/${image2}`;
