@@ -54,8 +54,8 @@ export default function AdditionalProjects({ isEnglish }) {
         repo: `${lang.projectLabels.visitRepo}`,
       },
       links: {
-        site: "https://github.com/marksav85/movie-api",
-        repo: "https://github.com/marksav85/movie-api",
+        site: "https://my-travel-weather-app-997ff38afb18.herokuapp.com/",
+        repo: "https://github.com/marksav85/travel_app",
       },
     },
   ];
