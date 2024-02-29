@@ -1,7 +1,6 @@
-import { useState } from "react";
 import * as english from "../../../../languages/en.json";
 import * as german from "../../../../languages/de.json";
-import { SingleProject } from "../single-project/single-project";
+import { AddSingleProject } from "../single-project/AddSingleProject";
 
 export default function AdditionalProjects({ isEnglish }) {
   const lang = isEnglish ? english : german;
@@ -22,7 +21,7 @@ export default function AdditionalProjects({ isEnglish }) {
       },
       projectLabels: {
         introTitle: `${lang.projectLabels.introTitle}`,
-        processTitle: `${lang.projectLabels.processTitle}`,
+        descTitle: `${lang.projectLabels.descTitle}`,
         technologies: `${lang.projectLabels.technologies}`,
         site: `${lang.projectLabels.visitSite}`,
         repo: `${lang.projectLabels.visitRepo}`,
@@ -49,7 +48,7 @@ export default function AdditionalProjects({ isEnglish }) {
       },
       projectLabels: {
         introTitle: `${lang.projectLabels.introTitle}`,
-        processTitle: `${lang.projectLabels.processTitle}`,
+        descTitle: `${lang.projectLabels.descTitle}`,
         technologies: `${lang.projectLabels.technologies}`,
         site: `${lang.projectLabels.visitSite}`,
         repo: `${lang.projectLabels.visitRepo}`,
@@ -67,7 +66,7 @@ export default function AdditionalProjects({ isEnglish }) {
         <h2>{lang.workTitle.title}</h2>
         <div className="row">
           {workArray.map((workItem, index) => (
-            <SingleProject
+            <AddSingleProject
               key={index}
               title={workItem.title}
               image1={workItem.image1}
