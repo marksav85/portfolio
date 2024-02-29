@@ -27,6 +27,7 @@
   "projectLabels": {
     "introTitle": "What is it?",
     "processTitle": "The Development Process",
+    "descTitle": "Project Description",
     "technologies": "Built using: ",
     "visitSite": "Visit the site: ",
     "visitRepo": "Visit the repository: "
