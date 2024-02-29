@@ -1,10 +1,16 @@
-import React from "react";
+import { useState } from "react";
 import * as english from "../../../languages/en.json";
 import * as german from "../../../languages/de.json";
 import { SingleProject } from "./single-project/single-project";
+import AdditionalProjects from "./additional-projects/AdditionalProjects";
 
 export const Work = ({ isEnglish }) => {
   const lang = isEnglish ? english : german;
+
+  const [isVisible, setIsVisible] = useState(false);
+  const toggleVisibility = () => {
+    setIsVisible(!isVisible);
+  };
 
   const workArray = [
     {
@@ -183,8 +189,13 @@ export const Work = ({ isEnglish }) => {
         </div>
 
         <ul className="actions">
-          <li></li>
+          <li>
+            <button onClick={toggleVisibility} className="button">
+              Additional Projects
+            </button>
+          </li>
         </ul>
+        {isVisible && <AdditionalProjects />}
       </section>
     </>
   );
