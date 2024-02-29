@@ -195,7 +195,7 @@ export const Work = ({ isEnglish }) => {
             </button>
           </li>
         </ul>
-        {isVisible && <AdditionalProjects />}
+        {isVisible && <AdditionalProjects isEnglish={isEnglish} />}
       </section>
     </>
   );
