@@ -27,6 +27,7 @@
   "projectLabels": {
     "introTitle": "Was ist das?",
     "processTitle": "der Entwicklungsprozess",
+    "descTitle": "Projektbeschreibung",
     "technologies": "Entwickelt mit: ",
     "visitSite": "Besuche die Seite: ",
     "visitRepo": "Besuche das Repository: "
@@ -78,6 +79,22 @@
     "para3": "Nachdem alle Komponenten fertiggestellt waren, beschloss ich, einige zusätzliche Features einzubauen, um die Seite attraktiver zu gestalten. Die erste war, neben den Filmdetails für jeden Film eine Favoriten-Schaltfläche hinzuzufügen. Damit können Sie Filme bevorzugen oder nicht bevorzugen. Dann fügte ich einen zusätzlichen Bereich in der Profilkomponente hinzu, in dem die favorisierten Filme angezeigt wurden - im Grunde eine Favoritenliste. Weitere Verbesserungen der Benutzerfreundlichkeit wurden mit angepassten CSS-Stylings zusammen mit dem Angular Material-Layout hinzugefügt, um der App ihren eigenen modernen und einzigartigen Look zu verleihen.",
     "para4": "Die fertige Anwendung war eine benutzerfreundliche und moderne Client-seitige Filmanwendung. Durch die Überwindung der Lernkurve und die Nutzung des strukturierten Ansatzes von Angular und der strengen Typisierung von TypeScript erreichte die Anwendung ein hohes Maß an Robustheit und Sicherheit. Die Dokumentation von Typedoc wurde durchgängig verwendet, um eine umfassende und zugängliche Dokumentation der Codebasis zu gewährleisten, die die Wartung und zukünftige Entwicklung erleichtert. Die mit Angular Material gestaltete Benutzeroberfläche der Anwendung bot ein optisch ansprechendes und reaktionsschnelles Erlebnis für die Benutzer. Insgesamt hat das Projekt erfolgreich eine clientseitige Komponente geliefert, die die Anforderungen erfüllte und den Benutzern ein nahtloses Filmblättererlebnis bot.",
     "technologies": "Angular, Angular Material, TypeScript, TypeDoc"
+  },
+  "project7": {
+    "introText": "Dies ist eine webbasierte Projektmanagement-App, die mit React, Vite und Firebase entwickelt wurde und es Benutzern ermöglicht, Projekte in einem kollaborativen Arbeitsbereich effizient zu verwalten. Die App bietet eine Reihe von Funktionen, darunter Benutzerauthentifizierung, Projekterstellung, Benutzerverwaltung, Projektverfolgung und Kommentierung von Projekten.",
+    "para1": "Benutzerauthentifizierung: ermöglicht die Anmeldung, so dass sich Benutzer für ein Konto bei der App registrieren können, und die Anmeldung, so dass sich Benutzer einloggen können, um auf ihren personalisierten Arbeitsbereich zuzugreifen.",
+    "para2": "Benutzerverwaltung: Die Funktionen zur Benutzerverwaltung umfassen die Möglichkeit, eine umfassende Liste aller registrierten Benutzer innerhalb des Arbeitsbereichs einzusehen. Außerdem können die Benutzer den Online- oder Offline-Status jedes Benutzers leicht erkennen.",
+    "para3": "Projektverwaltung: Im Rahmen des Projektmanagements haben Benutzer die Möglichkeit, neue Projekte zu erstellen, indem sie Details wie Titel, Beschreibung, Fälligkeitsdatum und Typ angeben. Die Zusammenarbeit wird durch die Möglichkeit verbessert, Teammitglieder zu Projekten zuzuweisen. Über ein Dashboard können Benutzer alle bestehenden Projekte einsehen und Filter nach Kriterien wie Status oder Typ anwenden. Außerdem wird die Kommunikation durch die Möglichkeit erleichtert, Kommentare zu den Projektdetails hinzuzufügen. Schließlich können Benutzer Projekte als abgeschlossen markieren, wenn sie fertig sind.",
+    "para4": "Zusammenfassend lässt sich sagen, dass sich die Funktionen zur Benutzerverwaltung darauf konzentrieren, Einblicke in registrierte Benutzer und deren Status zu geben, während die Funktionen zur Projektverwaltung die Erstellung von Projekten, die Zusammenarbeit im Team, die Projektübersicht, das Filtern, das Kommentieren und die Verfolgung des Projektabschlusses umfassen.",
+    "technologies": "React, JavaScript, Node, Vite, Firebase/Firestore"
+  },
+  "project8": {
+    "introText": "Eine Reise-App, die die Web-API von OpenWeatherMap.org nutzt, um nahtlos umfassende Wetterdaten für benutzerdefinierte Ziele abzurufen und zu liefern. Mit einer benutzerfreundlichen Oberfläche gewährleistet die App einen einfachen Zugriff auf vergangene, aktuelle und zukünftige Wetterbedingungen und ermöglicht es Reisenden, fundierte Entscheidungen auf der Grundlage genauer und aktueller Informationen zu treffen.",
+    "para1": "Um die App nutzen zu können, müssen die Nutzer einen Zielort eingeben, indem sie den Namen der Stadt und das Reisedatum angeben. In Fällen, in denen keine Daten eingegeben werden, wird in den Standardeinstellungen Berlin als Zielort und das heutige Datum berücksichtigt. Wenn Sie auf die Schaltfläche Senden klicken, zeigt die Benutzeroberfläche sofort die Wetterdaten für das angegebene Ziel und Datum an.",
+    "para2": "Benutzer können nach Wetterdaten nach Städtenamen suchen, indem sie die Open Weather Geocoding API nutzen, um Informationen aus ihrer umfangreichen Datenbank abzurufen. Wenn die eingegebene Stadt nicht in der Datenbank gefunden wird, wird eine Fehlermeldung erzeugt, um den Benutzer über das Problem zu informieren.",
+    "para3": "Die App unterstützt Zukunftsprognosen für bis zu 1,5 Jahre im Voraus und bietet dem Nutzer die Flexibilität, weit im Voraus zu planen. Darüber hinaus können historische Wetterdaten für Zeiträume von über 40 Jahren abgerufen werden, was eine umfassende Palette von Informationen für verschiedene Zwecke bietet.",
+    "para4": "Nach dem Absenden der Suche gibt die App detaillierte Wetterinformationen zurück, darunter den Namen der Stadt, das Datum, die Temperatur (in Celsius), die Bewölkung, den Niederschlag und ein Symbol, das die vorherrschenden Wetterbedingungen symbolisiert. Dieser umfassende Datensatz vermittelt dem Nutzer ein ganzheitliches Verständnis der Wettervorhersage für das von ihm gewählte Ziel und Datum.",
+    "technologies": "HTML, CSS, JavaScript, Restful API, Express, Node, Webpack"
   },
 
   "toggleWork": {
