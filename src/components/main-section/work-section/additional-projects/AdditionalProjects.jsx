@@ -63,7 +63,6 @@ export default function AdditionalProjects({ isEnglish }) {
   return (
     <>
       <section id="two">
-        <h2>{lang.workTitle.title}</h2>
         <div className="row">
           {workArray.map((workItem, index) => (
             <AddSingleProject
