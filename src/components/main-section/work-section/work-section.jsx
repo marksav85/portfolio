@@ -188,7 +188,7 @@ export const Work = ({ isEnglish }) => {
           ))}
         </div>
 
-        <ul className="actions">
+        <ul className="actions add-projects">
           <li>
             <button onClick={toggleVisibility} className="button">
               Additional Projects
