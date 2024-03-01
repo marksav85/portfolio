@@ -22,7 +22,8 @@
     "show": "Anzeigen"
   },
   "workTitle": {
-    "title": "Meine Arbeit"
+    "title": "Meine Arbeit",
+    "addTitle": "Zusätzliche Arbeit"
   },
   "projectLabels": {
     "introTitle": "Was ist das?",

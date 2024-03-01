@@ -22,7 +22,8 @@
     "show": "Show Skills"
   },
   "workTitle": {
-    "title": "Recent Work"
+    "title": "Recent Work",
+    "addTitle": "Additional Projects"
   },
   "projectLabels": {
     "introTitle": "What is it?",
