@@ -9,6 +9,7 @@ export function ImageCarousel({ firstImage, secondImage, thirdImage }) {
             src={firstImage}
             alt="Modal Image"
             className="img-fluid carousel-thumbs"
+            loading="lazy"
           />
         </div>
 
@@ -20,6 +21,7 @@ export function ImageCarousel({ firstImage, secondImage, thirdImage }) {
             src={secondImage}
             alt="Modal Image"
             className="img-fluid carousel-thumbs"
+            loading="lazy"
           />
         </div>
         <Carousel.Caption></Carousel.Caption>
@@ -30,6 +32,7 @@ export function ImageCarousel({ firstImage, secondImage, thirdImage }) {
             src={thirdImage}
             alt="Modal Image"
             className="img-fluid carousel-thumbs"
+            loading="lazy"
           />
         </div>
         <Carousel.Caption></Carousel.Caption>
