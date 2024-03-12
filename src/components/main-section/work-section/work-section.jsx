@@ -14,7 +14,7 @@ export const Work = ({ isEnglish }) => {
 
   const workArray = [
     {
-      title: "Pokemon App",
+      title: "Language Coach App",
       image1: "project1/image1.jpg",
       image2: "project1/image2.jpg",
       image3: "project1/image3.jpg",
