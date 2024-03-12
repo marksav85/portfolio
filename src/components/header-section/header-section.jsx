@@ -1,6 +1,9 @@
 import * as english from "../../languages/en.json";
 import * as german from "../../languages/de.json";
 
+import { GB } from "country-flag-icons/react/3x2";
+import { DE } from "country-flag-icons/react/3x2";
+
 // eslint-disable-next-line react/prop-types
 export const Header = ({ isEnglish, setLanguage }) => {
   const lang = isEnglish ? english : german;
@@ -11,9 +14,9 @@ export const Header = ({ isEnglish, setLanguage }) => {
         <div className="lang-toggle">
           <button onClick={setLanguage}>
             {isEnglish ? (
-              <img src="images/english.jpg" alt="british flag"></img>
+              <GB title="English" className="flags" />
             ) : (
-              <img src="images/deutsch.jpg" alt="german flag"></img>
+              <DE title="German" className="flags" />
             )}
           </button>
           <p>{lang.headerSection.buttonText}</p>
