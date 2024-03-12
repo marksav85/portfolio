@@ -3,6 +3,8 @@ import * as german from "../../languages/de.json";
 
 import { GB } from "country-flag-icons/react/3x2";
 import { DE } from "country-flag-icons/react/3x2";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 
 // eslint-disable-next-line react/prop-types
 export const Header = ({ isEnglish, setLanguage }) => {
@@ -42,9 +44,10 @@ export const Header = ({ isEnglish, setLanguage }) => {
               <li>
                 <a
                   href="https://twitter.com/marksav85"
-                  className="icon brands fa-twitter"
+                  className="icon brands"
                   aria-label="Link to Twitter"
                 >
+                  <FontAwesomeIcon className="react-icon" icon={faXTwitter} />
                   <span className="label">Twitter</span>
                 </a>
               </li>

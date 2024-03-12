@@ -1,4 +1,5 @@
-import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 
 export const Footer = () => {
   return (
@@ -9,9 +10,10 @@ export const Footer = () => {
             <li>
               <a
                 href="https://twitter.com/marksav85"
-                className="icon brands fa-twitter"
+                className="icon brands"
                 aria-label="Link to Twitter"
               >
+                <FontAwesomeIcon className="react-icon" icon={faXTwitter} />
                 <span className="label">Twitter</span>
               </a>
             </li>
