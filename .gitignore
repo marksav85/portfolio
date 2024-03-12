@@ -25,3 +25,6 @@ dist-ssr
 
 # storage images
 image-storage
+
+#unused files
+src/assets/sass
