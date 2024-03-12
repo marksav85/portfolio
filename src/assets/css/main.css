@@ -39,6 +39,11 @@
   height: 50px;
 }
 
+.image .avatar {
+  max-width: 300px;
+  max-height: 300px;
+}
+
 /* ABOUT COMPONENT */
 .skills-table-container {
   text-align: center;
