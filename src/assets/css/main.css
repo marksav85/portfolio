@@ -157,6 +157,10 @@ h2 {
   border-radius: 0.35em;
 }
 
+#footer .react-icon {
+  height: 1.5em;
+}
+
 @media (max-width: 480px) {
   .reference-image {
     max-width: 300px;
