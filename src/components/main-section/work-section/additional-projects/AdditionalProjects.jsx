@@ -59,6 +59,60 @@ export default function AdditionalProjects({ isEnglish }) {
         repo: "https://github.com/marksav85/travel_app",
       },
     },
+    {
+      title: "Restaurant Website",
+      image1: "project9/image1.jpg",
+      image2: "project9/image2.jpg",
+      image3: "project9/image3.jpg",
+      projectData: {
+        introText: `${lang.project9.introText}`,
+        para1: `${lang.project9.para1}`,
+        para2: `${lang.project9.para2}`,
+        para3: `${lang.project9.para3}`,
+        para4: `${lang.project9.para4}`,
+        technologies: `${lang.project9.technologies}`,
+        site: `${lang.project9.visitSite}`,
+        repo: `${lang.project9.visitRepo}`,
+      },
+      projectLabels: {
+        introTitle: `${lang.projectLabels.introTitle}`,
+        descTitle: `${lang.projectLabels.descTitle}`,
+        technologies: `${lang.projectLabels.technologies}`,
+        site: `${lang.projectLabels.visitSite}`,
+        repo: `${lang.projectLabels.visitRepo}`,
+      },
+      links: {
+        site: "https://marksav85.github.io/restaurant-website/",
+        repo: "https://github.com/marksav85/restaurant-website",
+      },
+    },
+    {
+      title: "Bikeshare App",
+      image1: "project10/image1.jpg",
+      image2: "project10/image2.jpg",
+      image3: "project10/image3.jpg",
+      projectData: {
+        introText: `${lang.project10.introText}`,
+        para1: `${lang.project10.para1}`,
+        para2: `${lang.project10.para2}`,
+        para3: `${lang.project10.para3}`,
+        para4: `${lang.project10.para4}`,
+        technologies: `${lang.project10.technologies}`,
+        site: `${lang.project10.visitSite}`,
+        repo: `${lang.project10.visitRepo}`,
+      },
+      projectLabels: {
+        introTitle: `${lang.projectLabels.introTitle}`,
+        descTitle: `${lang.projectLabels.descTitle}`,
+        technologies: `${lang.projectLabels.technologies}`,
+        site: `${lang.projectLabels.visitSite}`,
+        repo: `${lang.projectLabels.visitRepo}`,
+        noSite: `${lang.projectLabels.noSite}`,
+      },
+      links: {
+        repo: "https://github.com/marksav85/bikeshare_project",
+      },
+    },
   ];
 
   return (

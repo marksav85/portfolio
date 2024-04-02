@@ -135,9 +135,9 @@ export const Work = ({ isEnglish }) => {
         technologies: `${lang.projectLabels.technologies}`,
         site: `${lang.projectLabels.visitSite}`,
         repo: `${lang.projectLabels.visitRepo}`,
+        noSite: `${lang.projectLabels.noSite}`,
       },
       links: {
-        site: "https://github.com/marksav85/chat-app",
         repo: "https://github.com/marksav85/chat-app",
       },
     },

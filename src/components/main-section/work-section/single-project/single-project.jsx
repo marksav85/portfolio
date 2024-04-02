@@ -88,7 +88,11 @@ export function SingleProject({
         </p>
         <p>
           {projectLabels.site}
-          <a href={links.site}>{title}</a>
+          {links.site ? (
+            <a href={links.site}>{title}</a>
+          ) : (
+            <span>{projectLabels.noSite}</span>
+          )}
         </p>
         <p>
           {projectLabels.repo}
