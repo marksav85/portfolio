@@ -31,7 +31,8 @@
     "descTitle": "Project Description",
     "technologies": "Built using: ",
     "visitSite": "Visit the site: ",
-    "visitRepo": "Visit the repository: "
+    "visitRepo": "Visit the repository: ",
+    "noSite": "No site available"
   },
   "project1": {
     "introText": "A single page application built using React for a language business. The page is available in 3 languages with the language data accessed via Strapi and GraphQL. The site owner can update the text on the page via a separate admin site, which has login authentication (handled by Firebase), and which allows dynamic updating of the client-side website.",
@@ -98,13 +99,22 @@
     "technologies": "HTML, CSS, JavaScript, Restful API, Express, Node, Webpack"
   },
   "project9": {
-    "introText": "An app that dynamically populates the page with Pokemon data from an API. The app allows you to search the list for a Pokemon by name, and when clicked on displays a modal box with the Pokemon's name, type, and an image. It is built using JavaScript, HTML and CSS with Bootstrap styling.",
-    "para1": "The aim of this project was mastering JavaScript to create an app that could efficiently fetch data from an API and use it display it on the page using bootstrap cards and modals. The API data was stored in Json format, so it needed to be retrieved through the use of JavaScript API calls, and then added to the DOM by creating and appending the necessary HTML elements to display the data correctly.",
-    "para2": "I started on this task by creating a basic HTML layout, which I could later use to insert the relevant elements and API data from JavaScript. Next, I began working on JavaScript promises, conducting thorough testing, and utilizing console logging to identify issues in the API calls. Through this iterative approach, I was able to troubleshoot issues effectively and successfully pull the data from the API. Once I could successfully pull the data I needed, I began integrating the API data into the page by creating the necessary Bootstrap elements and classes and appending them, along with the data, to the page. After testing and some alterations of the code and styling, this was enough to successfully meet the criteria outlined at the beginning of the project. An issue I had difficulty solving was related to performance - there was a small but noticeable delay in displaying the information on the initial load up page. After attempting a few different solutions, including adjusting async requests, it seemed this delay was mostly unavoidable (the time it took to get the information from the API and load it onto the page). To work around this issue, I added a loading screen with animated progress bar which appeared on load up, and then disappeared after the Pokémon data was successfully loaded.",
-    "para3": "Having achieved the aims of the project and reviewing its functionality, I set about adding additional features I felt would improve the project. Firstly, I added a search bar to the HTML using bootstrap form classes, which would allow the user to search for their favourite Pokémon. For this to work, I used a filter method in the JavaScript which displayed only the Pokémon matching the text typed by the user and hid the rest. Additionally, I added a card color for each Pokémon based on their Pokémon type – this involved first accessing and checking the relevant Json data from the API, and then add the matching class color to that card to give each type its own color. ",
-    "para4": "The end result of these efforts was the successful creation of a Pokémon database application written almost entirely in JavaScript. Pulling the data successfully and dynamically displaying on the page was enough to create a successful project. However I think the added features of search navigation and loading screen made the app a much more user-friendly product.",
+    "introText": "A website for a restaurant. It uses a standard website design, is accessible and responsive, incorporates a Google Maps location tab to quickly find the location of the restaurant, and the menu pages use JavaScript to dynamically populate the page with the menu items. Styled with Bootstrap classes.",
+    "para1": "The website is a responsive platform for a restaurant, crafted using HTML, CSS, and JavaScript. Ensuring accessibility, it has been tested to guarantee a seamless experience for all users, including those with disabilities. Using Bootstrap, the design adapts to mobile phones, enhancing user engagement across various devices.",
+    "para2": "One of the standout features is its dynamic menu pages, efficiently populated using JavaScript. With numerous food items to display, manual coding would be impractical and time-consuming. This dynamic approach not only streamlines content management but also ensures a smooth browsing experience for visitors.",
+    "para3": "Additionally, the homepage integrates a Google Maps location, allowing visitors to easily locate the restaurant. This feature enhances user convenience and provides valuable information upfront.",
+    "para4": "",
     "technologies": "HTML, CSS, Bootstrap, JavaScript"
   },
+  "project10": {
+    "introText": "This project is a Python-based bikeshare data analysis tool. It allows users to explore bikeshare data for three cities: Chicago, New York, and Washington. Users can filter data by city, month, and day of the week to gain insights into bike usage patterns.",
+    "para1": "The tool offers a robust platform for exploring and extracting insights from bikeshare data across three major cities: Chicago, New York, and Washington. Users can delve into detailed analytics by filtering data based on their preferences, such as city, month, and day of the week. The program loads the selected data into a pandas DataFrame, enabling efficient manipulation and analysis.",
+    "para2": "Once the data is loaded, users can leverage a variety of functionalities to gain comprehensive insights into bikeshare usage patterns. The tool provides a range of statistical analyses, including the identification of popular times for travel, the most frequently used stations, and the duration of trips. Additionally, users can delve into user demographics, examining user types and, where available, gender distribution and birth year statistics.",
+    "para3": "Implemented using Python's pandas library, this project showcases advanced data handling capabilities and offers a user-friendly interface for exploring bikeshare data. By facilitating in-depth analysis of bikeshare usage trends across different cities, the tool provides valuable insights for bikeshare companies, urban planners, and researchers interested in optimizing bike infrastructure and promoting sustainable transportation solutions.",
+    "para4": "",
+    "technologies": "Python, Pandas"
+  },
+
   "toggleWork": {
     "hide": "See less",
     "show": "See more"
