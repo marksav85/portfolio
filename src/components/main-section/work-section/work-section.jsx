@@ -34,8 +34,8 @@ export const Work = ({ isEnglish }) => {
         repo: `${lang.projectLabels.visitRepo}`,
       },
       links: {
-        site: "https://marksav85.github.io/pokedex-app/",
-        repo: "https://github.com/marksav85/pokedex-app",
+        site: "https://language-coach-aa.com/",
+        repo: "https://github.com/marksav85/language-coach-aa",
       },
     },
 
