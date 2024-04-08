@@ -1,3 +1,4 @@
+import React from "react";
 import * as english from "../../languages/en.json";
 import * as german from "../../languages/de.json";
 
@@ -31,12 +32,18 @@ export const Header = ({ isEnglish, setLanguage }) => {
           </button>
           <p>{lang.headerSection.buttonText}</p> */}
           <button onClick={handleLanguageChange}>
-            {/* Display language navigation button text or DE if content not loaded*/}
-            {language && language.navigation.buttonText === "EN"
-              ? <GB title="English" className="flags" /> || "EN"
-              : language && language.navigation.buttonText === "DE"
-              ? <DE title="German" className="flags" /> || "DE"
-              : language && language.navigation.buttonText}
+            {/* Display language navigation button text or fallback to "EN" if content not loaded */}
+            {
+              language && language.header && language.header.Button === "EN" ? (
+                <GB title="English" className="flags" />
+              ) : language &&
+                language.header &&
+                language.header.Button === "DE" ? (
+                <DE title="German" className="flags" />
+              ) : (
+                "EN"
+              ) /* Fallback to "EN" if header content not loaded */
+            }
           </button>
         </div>
         <br />
@@ -45,14 +52,30 @@ export const Header = ({ isEnglish, setLanguage }) => {
           <a href="#" className="image avatar">
             <img src="images/headshot.jpg" alt="headshot"></img>
           </a>
-          <h1>
-            {lang.headerSection.line1}
+          {/* {lang.headerSection.line1}
             <strong>{lang.headerSection.name}</strong>
             {lang.headerSection.line2}
             <br />
             {lang.headerSection.line3} <br /> {lang.headerSection.line4}
-            <strong>{lang.headerSection.codeLang}</strong> .
-          </h1>
+            <strong>{lang.headerSection.codeLang}</strong> . */}
+          {language && language.header && language.header.Text && (
+            <h1>
+              {language.header.Text.map((paragraph, index) => (
+                <React.Fragment key={index}>
+                  {paragraph.children.map((child, childIndex) => (
+                    <span
+                      key={childIndex}
+                      style={
+                        child.bold ? { fontWeight: "400", color: "#fff" } : null
+                      }
+                    >
+                      {child.text}
+                    </span>
+                  ))}
+                </React.Fragment>
+              ))}
+            </h1>
+          )}
         </div>
         <footer id="footer" className="footer-top">
           <div className="inner">
