@@ -13,11 +13,27 @@ const useLanguageContent = () => {
   // Switch statement to determine the language content based on the selected language
   switch (selectedLanguage) {
     case "german":
-      return data && data[0].attributes.LanguageText; // German
+      return (
+        data && {
+          header: data.header.data.attributes.localizations.data[0].attributes,
+          profile:
+            data.profile.data.attributes.localizations.data[0].attributes,
+        }
+      ); // German
     case "english":
-      return data && data[1].attributes.LanguageText; // English
+      return (
+        data && {
+          header: data.header.data.attributes,
+          profile: data.profile.data.attributes,
+        }
+      ); // English
     default:
-      return data && data[0].attributes.LanguageText; // Default to German if the language is not recognized
+      return (
+        data && {
+          header: data.header.data.attributes,
+          profile: data.profile.data.attributes,
+        }
+      ); // Default to German if the language is not recognized
   }
 };
 
