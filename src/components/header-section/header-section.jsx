@@ -6,22 +6,38 @@ import { DE } from "country-flag-icons/react/3x2";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 
+// Import language-related context and custom hook
+import { useLanguage } from "../../context/LanguageContext";
+import useLanguageContent from "../../hooks/useLanguageContent";
+
 // eslint-disable-next-line react/prop-types
 export const Header = ({ isEnglish, setLanguage }) => {
   const lang = isEnglish ? english : german;
+
+  // Use language-related context and custom hook
+  const { handleLanguageChange } = useLanguage();
+  const language = useLanguageContent();
 
   return (
     <>
       <header id="header">
         <div className="lang-toggle">
-          <button onClick={setLanguage}>
+          {/* <button onClick={setLanguage}>
             {isEnglish ? (
               <GB title="English" className="flags" />
             ) : (
               <DE title="German" className="flags" />
             )}
           </button>
-          <p>{lang.headerSection.buttonText}</p>
+          <p>{lang.headerSection.buttonText}</p> */}
+          <button onClick={handleLanguageChange}>
+            {/* Display language navigation button text or DE if content not loaded*/}
+            {language && language.navigation.buttonText === "EN"
+              ? <GB title="English" className="flags" /> || "EN"
+              : language && language.navigation.buttonText === "DE"
+              ? <DE title="German" className="flags" /> || "DE"
+              : language && language.navigation.buttonText}
+          </button>
         </div>
         <br />
 
