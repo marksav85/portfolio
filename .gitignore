@@ -28,3 +28,6 @@ image-storage
 
 #unused files
 src/assets/sass
+
+# language csv
+src/languages/*.xlsx
