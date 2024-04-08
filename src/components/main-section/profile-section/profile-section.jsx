@@ -3,6 +3,10 @@ import * as english from "../../../languages/en.json";
 import * as german from "../../../languages/de.json";
 import { About } from "./about-section/about-section";
 
+// Import language-related context and custom hook
+import { useLanguage } from "../../../context/LanguageContext";
+import useLanguageContent from "../../../hooks/useLanguageContent";
+
 export const Profile = ({ isEnglish }) => {
   const lang = isEnglish ? english : german;
 
@@ -11,17 +15,23 @@ export const Profile = ({ isEnglish }) => {
     setIsVisible(!isVisible);
   };
 
+  // Use language-related context and custom hook
+  const { handleLanguageChange } = useLanguage();
+  const language = useLanguageContent();
+
   return (
     <>
       <section id="one">
         <header className="major">
-          <h2>{lang.profileSection.line1}</h2>
+          <h2>{language && language.profile && language.profile.Title}</h2>
         </header>
-        <p>{lang.profileSection.line2}</p>
+        <p>{language && language.profile && language.profile.Text}</p>
         <ul className="actions">
           <li>
             <button onClick={toggleVisibility} className="button">
-              {isVisible ? lang.toggleSkills.hide : lang.toggleSkills.show}
+              {isVisible
+                ? language && language.profile && language.profile.buttonHide
+                : language && language.profile && language.profile.buttonShow}
             </button>
           </li>
         </ul>
