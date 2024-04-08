@@ -18,6 +18,7 @@ const useLanguageContent = () => {
           header: data.header.data.attributes.localizations.data[0].attributes,
           profile:
             data.profile.data.attributes.localizations.data[0].attributes,
+          skillsTables: data.skillsTables.data,
         }
       ); // German
     case "english":
@@ -25,6 +26,7 @@ const useLanguageContent = () => {
         data && {
           header: data.header.data.attributes,
           profile: data.profile.data.attributes,
+          skillsTables: data.skillsTables.data,
         }
       ); // English
     default:
@@ -32,6 +34,7 @@ const useLanguageContent = () => {
         data && {
           header: data.header.data.attributes,
           profile: data.profile.data.attributes,
+          skillsTables: data.skillsTables.data,
         }
       ); // Default to German if the language is not recognized
   }
