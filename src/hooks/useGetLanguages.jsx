@@ -4,6 +4,7 @@ import { useQuery, gql } from "@apollo/client";
 // Define the GraphQL query
 const GET_LANGUAGES = gql`
   query GetLanguages {
+    # Query for HEADER data
     header {
       data {
         attributes {
@@ -14,6 +15,33 @@ const GET_LANGUAGES = gql`
               attributes {
                 Button
                 Text
+              }
+            }
+          }
+        }
+      }
+    }
+    # Query for PROFILE data
+    profile {
+      data {
+        attributes {
+          Title
+          Text
+          skillsTitle
+          tableTech
+          tableExpertise
+          buttonShow
+          buttonHide
+          localizations {
+            data {
+              attributes {
+                Title
+                Text
+                skillsTitle
+                tableTech
+                tableExpertise
+                buttonShow
+                buttonHide
               }
             }
           }
