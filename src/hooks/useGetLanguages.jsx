@@ -48,6 +48,24 @@ const GET_LANGUAGES = gql`
         }
       }
     }
+    # Query for SKILLS TABLE data
+    skillsTables(sort: "Column3:desc", pagination: { limit: 100 }) {
+      data {
+        attributes {
+          Column1
+          Column2 {
+            data {
+              attributes {
+                name
+                alternativeText
+                url
+              }
+            }
+          }
+          Column3
+        }
+      }
+    }
   }
 `;
 
