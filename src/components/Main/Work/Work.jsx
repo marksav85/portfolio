@@ -4,7 +4,15 @@ import * as german from "../../../languages/de.json";
 import { SingleProject } from "./SingleProject/SingleProject";
 import AdditionalProjects from "./AdditionalProjects/AdditionalProjects";
 
+// Import language-related context and custom hook
+import { useLanguage } from "../../../context/LanguageContext";
+import useLanguageContent from "../../../hooks/useLanguageContent";
+
 export const Work = ({ isEnglish }) => {
+  // Use language-related context and custom hook
+  const { handleLanguageChange } = useLanguage();
+  const language = useLanguageContent();
+
   const lang = isEnglish ? english : german;
 
   const [isVisible, setIsVisible] = useState(false);
@@ -171,7 +179,7 @@ export const Work = ({ isEnglish }) => {
   return (
     <>
       <section id="two">
-        <h2>{lang.workTitle.title}</h2>
+        <h2>{language && language.work && language.work.Title}</h2>
         <div className="row">
           {workArray.map((workItem, index) => (
             <SingleProject
@@ -191,7 +199,7 @@ export const Work = ({ isEnglish }) => {
         <ul className="actions add-projects">
           <li>
             <button onClick={toggleVisibility} className="button">
-              {lang.workTitle.addTitle}
+              {language && language.work && language.work.Button}
             </button>
           </li>
         </ul>
