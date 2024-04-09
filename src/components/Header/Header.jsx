@@ -1,7 +1,4 @@
 import React from "react";
-import * as english from "../../languages/en.json";
-import * as german from "../../languages/de.json";
-
 import { GB } from "country-flag-icons/react/3x2";
 import { DE } from "country-flag-icons/react/3x2";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,9 +9,7 @@ import { useLanguage } from "../../context/LanguageContext";
 import useLanguageContent from "../../hooks/useLanguageContent";
 
 // eslint-disable-next-line react/prop-types
-export const Header = ({ isEnglish, setLanguage }) => {
-  const lang = isEnglish ? english : german;
-
+export const Header = () => {
   // Use language-related context and custom hook
   const { handleLanguageChange } = useLanguage();
   const language = useLanguageContent();
@@ -23,14 +18,6 @@ export const Header = ({ isEnglish, setLanguage }) => {
     <>
       <header id="header">
         <div className="lang-toggle">
-          {/* <button onClick={setLanguage}>
-            {isEnglish ? (
-              <GB title="English" className="flags" />
-            ) : (
-              <DE title="German" className="flags" />
-            )}
-          </button>
-          <p>{lang.headerSection.buttonText}</p> */}
           <button onClick={handleLanguageChange}>
             {/* Display language navigation button text or fallback to "EN" if content not loaded */}
             {
@@ -52,12 +39,6 @@ export const Header = ({ isEnglish, setLanguage }) => {
           <a href="#" className="image avatar">
             <img src="images/headshot.jpg" alt="headshot"></img>
           </a>
-          {/* {lang.headerSection.line1}
-            <strong>{lang.headerSection.name}</strong>
-            {lang.headerSection.line2}
-            <br />
-            {lang.headerSection.line3} <br /> {lang.headerSection.line4}
-            <strong>{lang.headerSection.codeLang}</strong> . */}
           {language && language.header && language.header.Text && (
             <h1>
               {language.header.Text.map((paragraph, index) => (
