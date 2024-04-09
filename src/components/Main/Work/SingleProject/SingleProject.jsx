@@ -1,10 +1,11 @@
-import { useState } from "react";
-import { ImageModal } from "../image-modal/image-modal";
+/* eslint-disable react/prop-types */
+import React from "react";
+import { ImageModal } from "../ImageModal/ImageModal";
 import "bootstrap/dist/css/bootstrap.min.css";
 import * as english from "../../../../languages/en.json";
 import * as german from "../../../../languages/de.json";
 
-export function AddSingleProject({
+export function SingleProject({
   title,
   image1,
   image2,
@@ -19,12 +20,12 @@ export function AddSingleProject({
     cursor: "pointer",
     outline: "0px",
   };
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = React.useState(false);
   const toggleVisibility = () => {
     setIsVisible(!isVisible);
   };
 
-  const [modalShow, setModalShow] = useState(false);
+  const [modalShow, setModalShow] = React.useState(false);
 
   const firstImage = `images/project-images/${image1}`;
   const secondImage = `images/project-images/${image2}`;
@@ -57,7 +58,7 @@ export function AddSingleProject({
       <br />
       {isVisible && (
         <div>
-          <h4>{projectLabels.descTitle}</h4>
+          <h4>{projectLabels.processTitle}</h4>
           <p>{projectData.para1}</p>
           <br />
           <p>{projectData.para2}</p>

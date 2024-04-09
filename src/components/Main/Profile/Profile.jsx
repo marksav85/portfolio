@@ -1,7 +1,7 @@
 import { useState } from "react";
 import * as english from "../../../languages/en.json";
 import * as german from "../../../languages/de.json";
-import { About } from "./about-section/about-section";
+import { About } from "./About/about-section";
 
 // Import language-related context and custom hook
 import { useLanguage } from "../../../context/LanguageContext";

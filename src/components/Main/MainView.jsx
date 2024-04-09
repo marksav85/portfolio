@@ -1,7 +1,7 @@
-import { Profile } from "./profile-section/profile-section";
-import { Work } from "./work-section/work-section";
-import { Contact } from "./contact-section/contact-section";
-import References from "./references-section/References";
+import { Profile } from "./Profile/Profile";
+import { Work } from "./Work/Work";
+import { Contact } from "./Contact/Contact";
+import References from "./References/References";
 
 export const MainView = ({ isEnglish }) => {
   return (

@@ -1,6 +1,6 @@
 import React from "react";
 import { Modal } from "react-bootstrap";
-import { ImageCarousel } from "../image-carousel/image-carousel";
+import { ImageCarousel } from "../ImageCarousel/ImageCarousel";
 
 export const ImageModal = ({
   show,

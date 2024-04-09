@@ -1,6 +1,6 @@
 import * as english from "../../../../languages/en.json";
 import * as german from "../../../../languages/de.json";
-import { AddSingleProject } from "../single-project/AddSingleProject";
+import { AddSingleProject } from "../SingleProject/AddSingleProject";
 
 export default function AdditionalProjects({ isEnglish }) {
   const lang = isEnglish ? english : german;
