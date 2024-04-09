@@ -6,7 +6,6 @@ import * as german from "../../../languages/de.json";
 export default function References({ isEnglish }) {
   const lang = isEnglish ? english : german;
   const refData = lang.referenceData;
-  console.log(refData);
 
   return (
     <section id="four">
