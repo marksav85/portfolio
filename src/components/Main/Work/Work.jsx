@@ -1,7 +1,7 @@
 import { useState } from "react";
 import * as english from "../../../languages/en.json";
 import * as german from "../../../languages/de.json";
-import { SingleProject } from "./SingleProject/single-project";
+import { SingleProject } from "./SingleProject/SingleProject";
 import AdditionalProjects from "./AdditionalProjects/AdditionalProjects";
 
 export const Work = ({ isEnglish }) => {
