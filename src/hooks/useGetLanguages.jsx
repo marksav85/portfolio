@@ -1,6 +1,31 @@
 import { useState, useEffect } from "react";
 import { useQuery, gql } from "@apollo/client";
 
+// const PROJECT_ATTRIBUTES_FRAGMENT = gql`
+//   fragment ProjectAttributes on ProjectsProject1 {
+//     Title
+//   }
+// `;
+
+const projectAttributes = `
+  Intro
+  Text
+  Title
+  Technologies
+  Repository
+  Homepage
+  hasHomepage
+  Images {
+    data {
+      attributes {
+        name
+        alternativeText
+        url
+      }
+    }
+  }
+`;
+
 // Define the GraphQL query
 const GET_LANGUAGES = gql`
   query GetLanguages {
@@ -63,6 +88,124 @@ const GET_LANGUAGES = gql`
             }
           }
           Column3
+        }
+      }
+    }
+    # Query for WORK data
+    work {
+      data {
+        attributes {
+          Title
+          Button
+          localizations {
+            data {
+              attributes {
+                Title
+                Button
+              }
+            }
+          }
+        }
+      }
+    }
+#Query for LABELS data
+    labels {
+      data {
+        attributes {
+          Process
+          Description
+          Technologies
+          Homepage
+          Repository
+          buttonShow
+          buttonHide
+          localizations {
+          data {
+            attributes {
+              Process
+              Description
+              Technologies
+              Homepage
+              Repository
+              buttonShow
+              buttonHide
+            }
+          }
+        }
+      }
+    }
+  }
+
+    #Query for PROJECTS data
+    projects {
+      data {
+        attributes {
+          Project1 {
+            ${projectAttributes}
+          }
+          Project2 {
+            ${projectAttributes}
+          }
+          Project3 {
+            ${projectAttributes}
+          }
+          Project4 {
+            ${projectAttributes}
+          }
+          Project5 {
+            ${projectAttributes}
+          }
+          Project6 {
+            ${projectAttributes}
+          }
+          Project7 {
+            ${projectAttributes}
+          }
+          Project8 {
+            ${projectAttributes}
+          }
+          Project9 {
+            ${projectAttributes}
+          }
+          Project10 {
+            ${projectAttributes}
+          }
+          localizations {
+            data {
+              attributes {
+                Project1 {
+                  ${projectAttributes}
+                }
+                Project2 {
+                  ${projectAttributes}
+                }
+                Project3 {
+                  ${projectAttributes}
+                }
+                Project4 {
+                  ${projectAttributes}
+                }
+                Project5 {
+                  ${projectAttributes}
+                }
+                Project6 {
+                  ${projectAttributes}
+                }
+                Project7 {
+                  ${projectAttributes}
+                }
+                Project8 {
+                  ${projectAttributes}
+                }
+                Project9 {
+                  ${projectAttributes}
+                }
+                Project10 {
+                  ${projectAttributes}
+                }     
+              }
+            }
+          }
         }
       }
     }
