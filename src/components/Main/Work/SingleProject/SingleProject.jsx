@@ -43,7 +43,11 @@ export function SingleProject({ projectNumber }) {
           className="carousel-fulls"
         ></img>
       </button>
-      <ImageModal show={modalShow} onHide={() => setModalShow(false)} />
+      <ImageModal
+        projectNumber={projectNumber}
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
       <div className="project-intro">
         <h2>{language?.projects?.[`Project${projectNumber}`]?.Title}</h2>
 
