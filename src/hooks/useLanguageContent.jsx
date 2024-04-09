@@ -19,6 +19,11 @@ const useLanguageContent = () => {
           profile:
             data.profile.data.attributes.localizations.data[0].attributes,
           skillsTables: data.skillsTables.data,
+          work: data.work.data.attributes.localizations.data[0].attributes,
+          labels:
+            data.labels.data[0].attributes.localizations.data[0].attributes,
+          projects:
+            data.projects.data[0].attributes.localizations.data[0].attributes,
         }
       ); // German
     case "english":
@@ -27,6 +32,9 @@ const useLanguageContent = () => {
           header: data.header.data.attributes,
           profile: data.profile.data.attributes,
           skillsTables: data.skillsTables.data,
+          work: data.work.data.attributes,
+          labels: data.labels.data[0].attributes,
+          projects: data.projects.data[0].attributes,
         }
       ); // English
     default:
@@ -35,6 +43,9 @@ const useLanguageContent = () => {
           header: data.header.data.attributes,
           profile: data.profile.data.attributes,
           skillsTables: data.skillsTables.data,
+          work: data.work.data.attributes,
+          labels: data.labels.data[0].attributes,
+          projects: data.projects.data[0].attributes,
         }
       ); // Default to German if the language is not recognized
   }
