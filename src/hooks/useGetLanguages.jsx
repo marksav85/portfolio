@@ -10,6 +10,7 @@ import { useQuery, gql } from "@apollo/client";
 const projectAttributes = `
   Intro
   Text
+  TextBlock
   Title
   Technologies
   Repository
