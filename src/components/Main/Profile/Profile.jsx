@@ -17,15 +17,15 @@ export const Profile = () => {
     <>
       <section id="one">
         <header className="major">
-          <h2>{language && language.profile && language.profile.Title}</h2>
+          <h2>{language?.profile?.Title}</h2>
         </header>
-        <p>{language && language.profile && language.profile.Text}</p>
+        <p>{language?.profile?.Text}</p>
         <ul className="actions">
           <li>
             <button onClick={toggleVisibility} className="button">
               {isVisible
-                ? language && language.profile && language.profile.buttonHide
-                : language && language.profile && language.profile.buttonShow}
+                ? language?.profile?.buttonHide
+                : language?.profile?.buttonShow}
             </button>
           </li>
         </ul>
