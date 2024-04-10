@@ -273,6 +273,66 @@ const GET_LANGUAGES = gql`
         }
       }
     }
+
+    #Query for REFERENCE data
+    reference {
+      data {
+        attributes {
+          Title
+          localizations {
+            data {
+              attributes {
+                Title
+              }
+            }
+          }
+        }
+      }
+    }
+
+    # Query for REFERENCELIST data
+    referenceLists {
+      data {
+        attributes {
+          ReferenceList {
+            Quote
+            Text
+            Link
+            LinkText
+            Image {
+              data {
+                attributes {
+                  name
+                  alternativeText
+                  url
+                }
+              }
+            }
+          }
+          localizations {
+            data {
+              attributes {
+                ReferenceList {
+                  Quote
+                  Text
+                  Link
+                  LinkText
+                  Image {
+                    data {
+                      attributes {
+                        name
+                        alternativeText
+                        url
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 `;
 
