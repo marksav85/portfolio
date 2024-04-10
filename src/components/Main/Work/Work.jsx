@@ -40,7 +40,19 @@ export const Work = () => {
             </button>
           </li>
         </ul>
-        {isVisible && <AdditionalProjects />}
+        <div className="row">
+          {isVisible &&
+            language &&
+            Object.values(language.projects)
+              .slice(7, 11) // Slice the array to get the projects from index 7 to 11
+              .map((project, index) => {
+                const mainProjectNumber = 6; // Increment the index by 1 to start from 7
+                const projectNumber = index + mainProjectNumber + 1; // Increment the index by 1
+                return (
+                  <SingleProject key={index} projectNumber={projectNumber} />
+                );
+              })}
+        </div>
       </section>
     </>
   );
