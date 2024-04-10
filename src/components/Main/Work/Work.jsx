@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { SingleProject } from "./SingleProject/SingleProject";
-import AdditionalProjects from "./AdditionalProjects/AdditionalProjects";
 // Import language-related context and custom hook
 import { useLanguage } from "../../../context/LanguageContext";
 import useLanguageContent from "../../../hooks/useLanguageContent";
