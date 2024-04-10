@@ -8,7 +8,6 @@ import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import { useLanguage } from "../../context/LanguageContext";
 import useLanguageContent from "../../hooks/useLanguageContent";
 
-// eslint-disable-next-line react/prop-types
 export const Header = () => {
   // Use language-related context and custom hook
   const { handleLanguageChange } = useLanguage();
@@ -21,11 +20,9 @@ export const Header = () => {
           <button onClick={handleLanguageChange}>
             {/* Display language navigation button text or fallback to "EN" if content not loaded */}
             {
-              language && language.header && language.header.Button === "EN" ? (
+              language?.header?.Button === "EN" ? (
                 <GB title="English" className="flags" />
-              ) : language &&
-                language.header &&
-                language.header.Button === "DE" ? (
+              ) : language?.header?.Button === "DE" ? (
                 <DE title="German" className="flags" />
               ) : (
                 "EN"
@@ -39,9 +36,9 @@ export const Header = () => {
           <a href="#" className="image avatar">
             <img src="images/headshot.jpg" alt="headshot"></img>
           </a>
-          {language && language.header && language.header.Text && (
+          {language?.header?.Text && (
             <h1>
-              {language.header.Text.map((paragraph, index) => (
+              {language?.header?.Text.map((paragraph, index) => (
                 <React.Fragment key={index}>
                   {paragraph.children.map((child, childIndex) => (
                     <span
