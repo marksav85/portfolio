@@ -1,22 +1,16 @@
 import { useState } from "react";
-import * as english from "../../../languages/en.json";
-import * as german from "../../../languages/de.json";
 import { About } from "./About/About";
 
 // Import language-related context and custom hook
-import { useLanguage } from "../../../context/LanguageContext";
 import useLanguageContent from "../../../hooks/useLanguageContent";
 
-export const Profile = ({ isEnglish }) => {
-  const lang = isEnglish ? english : german;
-
+export const Profile = () => {
   const [isVisible, setIsVisible] = useState(false);
   const toggleVisibility = () => {
     setIsVisible(!isVisible);
   };
 
   // Use language-related context and custom hook
-  const { handleLanguageChange } = useLanguage();
   const language = useLanguageContent();
 
   return (
@@ -35,7 +29,7 @@ export const Profile = ({ isEnglish }) => {
             </button>
           </li>
         </ul>
-        {isVisible && <About isEnglish={isEnglish} />}
+        {isVisible && <About />}
       </section>
     </>
   );
