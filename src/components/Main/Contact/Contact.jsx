@@ -1,17 +1,14 @@
-import React from "react";
-import * as english from "../../../languages/en.json";
-import * as german from "../../../languages/de.json";
-
 // Import language-related context and custom hook
-import { useLanguage } from "../../../context/LanguageContext";
 import useLanguageContent from "../../../hooks/useLanguageContent";
 
-export const Contact = ({ isEnglish }) => {
-  // Use language-related context and custom hook
-  const { handleLanguageChange } = useLanguage();
+export const Contact = () => {
+  // Use language-related context and custom hook to access language content
   const language = useLanguageContent();
 
+  // Base URL for resume links
   const baseUrl = "http://localhost:1337";
+
+  // Construct URLs for developer and full resumes
   const resumeDevUrl =
     baseUrl + language?.contact?.ResumeDeveloperLink?.data?.attributes?.url;
   const resumeFullUrl =
@@ -19,16 +16,22 @@ export const Contact = ({ isEnglish }) => {
 
   return (
     <>
+      {/* Contact section */}
       <section id="three">
+        {/* Contact title */}
         <h2>{language?.contact?.Title}</h2>
+        {/* Contact subtitle */}
         <p>{language?.contact?.Subtitle}</p>
         <div className="row">
           <div className="col-4 col-12-small">
+            {/* List of contact information */}
             <ul className="labeled-icons">
               <li>
+                {/* Linkedin */}
                 <h3 className="icon brands fa-linkedin">
                   <span className="label">Linkedin Address</span>
                 </h3>
+                {/* Display Linkedin link */}
                 <a
                   href="https://linkedin.com/in/mark-saville"
                   aria-label="Link to Linedkin"
@@ -37,18 +40,22 @@ export const Contact = ({ isEnglish }) => {
                 </a>
               </li>
               <li>
+                {/* Phone */}
                 <h3
                   className="icon solid fa-mobile-alt"
                   aria-label="My telephone number"
                 >
                   <span className="label">Phone</span>
                 </h3>
+                {/* Display telephone number */}
                 {language?.contact?.Telephone}
               </li>
               <li>
+                {/* Email */}
                 <h3 className="icon solid fa-envelope">
                   <span className="label">Email</span>
                 </h3>
+                {/* Display email address */}
                 <a
                   href="mailto:mark.saville@outlook.com"
                   aria-label="Send an email"
@@ -58,11 +65,14 @@ export const Contact = ({ isEnglish }) => {
               </li>
             </ul>
 
+            {/* List of resume download links */}
             <ul className="labeled-icons">
               <li>
+                {/* Developer resume */}
                 <h3 className="icon solid fa-download">
                   <span className="label">Download</span>
                 </h3>
+                {/* Display link to download developer resume */}
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
@@ -73,9 +83,11 @@ export const Contact = ({ isEnglish }) => {
                 </a>
               </li>
               <li>
+                {/* Full resume */}
                 <h3 className="icon solid fa-download">
                   <span className="label">Download</span>
                 </h3>
+                {/* Display link to download full resume */}
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
