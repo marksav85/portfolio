@@ -26,6 +26,11 @@ const useLanguageContent = () => {
             data.projects.data[0].attributes.localizations.data[0].attributes,
           contact:
             data.contact.data.attributes.localizations.data[0].attributes,
+          reference:
+            data.reference.data.attributes.localizations.data[0].attributes,
+          referenceLists:
+            data.referenceLists.data[0].attributes.localizations.data[0]
+              .attributes,
         }
       ); // German
     case "english":
@@ -38,6 +43,8 @@ const useLanguageContent = () => {
           labels: data.labels.data[0].attributes,
           projects: data.projects.data[0].attributes,
           contact: data.contact.data.attributes,
+          reference: data.reference.data.attributes,
+          referenceLists: data.referenceLists.data[0].attributes,
         }
       ); // English
     default:
@@ -50,6 +57,8 @@ const useLanguageContent = () => {
           labels: data.labels.data[0].attributes,
           projects: data.projects.data[0].attributes,
           contact: data.contact.data.attributes,
+          reference: data.reference.data.attributes,
+          referenceLists: data.referenceLists.data[0].attributes,
         }
       ); // Default to German if the language is not recognized
   }
