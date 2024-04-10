@@ -1,33 +1,38 @@
 import Carousel from "react-bootstrap/Carousel";
 // Import language-related context and custom hook
-import { useLanguage } from "../../../../context/LanguageContext";
 import useLanguageContent from "../../../../hooks/useLanguageContent";
 
 export default function SingleReference() {
-  // Use language-related context and custom hook
-  const { handleLanguageChange } = useLanguage();
+  // Use language-related context and custom hook to access language content
   const language = useLanguageContent();
-  console.log(language?.referenceLists?.ReferenceList);
+
+  // Base URL for reference image URLs
   const baseUrl = "http://localhost:1337";
 
   return (
     <>
+      {/* Carousel to display reference items */}
       <Carousel indicators={false}>
+        {/* Map over reference list items and render each reference */}
         {language &&
           Object.values(language?.referenceLists?.ReferenceList).map(
             (reference, index) => (
               <Carousel.Item key={index} className="carousel-item">
+                {/* Reference quote */}
                 <div>
                   <blockquote>
-                    &quot;
-                    {reference.Quote[0].children[0].text}
-                    &quot;
+                    {/* Display reference quote */}
+                    &quot;{reference.Quote[0].children[0].text}&quot;
                   </blockquote>
                 </div>
+                {/* Reference text */}
                 <div>
+                  {/* Display reference text */}
                   <p>{reference.Text}</p>
                 </div>
+                {/* Reference image */}
                 <div className="reference-image-container">
+                  {/* Display reference image */}
                   <img
                     className="d-block img-fluid reference-image"
                     src={baseUrl + reference.Image.data.attributes.url}
@@ -36,7 +41,9 @@ export default function SingleReference() {
                     }
                   />
                 </div>
+                {/* Reference caption */}
                 <div className="reference-caption">
+                  {/* Display reference link */}
                   <a
                     href={reference.Link}
                     target="_blank"
