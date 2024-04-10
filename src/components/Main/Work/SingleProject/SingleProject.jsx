@@ -35,6 +35,8 @@ export function SingleProject({ projectNumber }) {
     language?.projects?.[`Project${projectNumber}`]?.Images?.data[0]?.attributes
       ?.url;
 
+  console.log(language);
+
   return (
     <article className="col-6 col-12-xsmall work-item">
       {/* Button to show image modal */}
@@ -74,7 +76,19 @@ export function SingleProject({ projectNumber }) {
         <div className="project-description">
           <h4>{language?.labels?.Process}</h4>
           {/* Display project description text */}
-          <p>{language?.projects?.[`Project${projectNumber}`]?.Text}</p>
+          {language?.projects?.[`Project${projectNumber}`]?.TextBlock?.map(
+            // TextBlock is an array of paragraphs
+            (paragraph, index) =>
+              // Check if paragraph has children and type is 'text'
+              paragraph.children && paragraph.children[0]?.type === "text" ? (
+                // Render the text content
+                <div key={index}>
+                  <p>{paragraph.children[0].text}</p>
+                  <br />
+                </div>
+              ) : null
+          )}
+
           <br />
         </div>
       )}
