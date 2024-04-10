@@ -1,27 +1,26 @@
 import { useState } from "react";
 import { SingleProject } from "./SingleProject/SingleProject";
 // Import language-related context and custom hook
-import { useLanguage } from "../../../context/LanguageContext";
 import useLanguageContent from "../../../hooks/useLanguageContent";
 
 export const Work = () => {
   // Use language-related context and custom hook
-  const { handleLanguageChange } = useLanguage();
   const language = useLanguageContent();
 
+  // Toggle visibility of additional projects
   const [isVisible, setIsVisible] = useState(false);
   const toggleVisibility = () => {
     setIsVisible(!isVisible);
   };
 
-  console.log(language);
-
   return (
     <>
       <section id="two">
-        <h2>{language && language.work && language.work.Title}</h2>
+        {/* Display work title */}
+        <h2>{language?.work?.Title}</h2>
         <div className="row">
-          {language &&
+          {/* Map over projects and render each project */}
+          {language?.projects &&
             Object.values(language.projects)
               .slice(0, 6) // Slice the array to get the first 6 objects
               .map((project, index) => {
@@ -32,16 +31,18 @@ export const Work = () => {
               })}
         </div>
 
+        {/* Button to toggle visibility of additional projects */}
         <ul className="actions add-projects">
           <li>
             <button onClick={toggleVisibility} className="button">
-              {language && language.work && language.work.Button}
+              {language?.work?.Button}
             </button>
           </li>
         </ul>
         <div className="row">
+          {/* Render additional projects if isVisible is true */}
           {isVisible &&
-            language &&
+            language?.projects &&
             Object.values(language.projects)
               .slice(7, 11) // Slice the array to get the projects from index 7 to 11
               .map((project, index) => {
