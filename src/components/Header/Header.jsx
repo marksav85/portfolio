@@ -1,4 +1,5 @@
 import React from "react";
+// Import flags and icons
 import { GB } from "country-flag-icons/react/3x2";
 import { DE } from "country-flag-icons/react/3x2";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,8 +10,9 @@ import { useLanguage } from "../../context/LanguageContext";
 import useLanguageContent from "../../hooks/useLanguageContent";
 
 export const Header = () => {
-  // Use language-related context and custom hook
+  // Accessing language change handler from context
   const { handleLanguageChange } = useLanguage();
+  // Getting language content using custom hook
   const language = useLanguageContent();
 
   return (
@@ -18,24 +20,28 @@ export const Header = () => {
       <header id="header">
         <div className="lang-toggle">
           <button onClick={handleLanguageChange}>
-            {/* Display language navigation button text or fallback to "EN" if content not loaded */}
+            {/* Display language navigation button */}
             {
               language?.header?.Button === "EN" ? (
                 <GB title="English" className="flags" />
               ) : language?.header?.Button === "DE" ? (
                 <DE title="German" className="flags" />
               ) : (
-                "EN"
-              ) /* Fallback to "EN" if header content not loaded */
+                "DE"
+              ) /* Fallback to "DE" if header content not loaded */
             }
           </button>
         </div>
         <br />
 
+        {/* Main Section */}
         <div className="inner">
+          {/* Displaying headshot image */}
           <a href="#" className="image avatar">
             <img src="images/headshot.jpg" alt="headshot"></img>
           </a>
+
+          {/* Displaying header text */}
           {language?.header?.Text && (
             <h1>
               {language?.header?.Text.map((paragraph, index) => (
@@ -55,6 +61,8 @@ export const Header = () => {
             </h1>
           )}
         </div>
+
+        {/* Display footer links */}
         <footer id="footer" className="footer-top">
           <div className="inner">
             <ul className="icons">
