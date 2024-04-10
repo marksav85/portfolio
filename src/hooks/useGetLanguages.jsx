@@ -108,7 +108,7 @@ const GET_LANGUAGES = gql`
         }
       }
     }
-#Query for LABELS data
+    #Query for LABELS data
     labels {
       data {
         attributes {
@@ -129,12 +129,12 @@ const GET_LANGUAGES = gql`
               Repository
               buttonShow
               buttonHide
+              }
             }
           }
         }
       }
     }
-  }
 
     #Query for PROJECTS data
     projects {
@@ -203,6 +203,70 @@ const GET_LANGUAGES = gql`
                 Project10 {
                   ${projectAttributes}
                 }     
+              }
+            }
+          }
+        }
+      }
+    }
+
+    # Query for CONTACTS data
+    contact {
+      data {
+        attributes {
+          Title
+          Subtitle
+          Linkedin
+          Telephone
+          Email
+          ResumeFullText
+          ResumeFullLink {
+            data {
+              attributes {
+                name
+                alternativeText
+                url
+              }
+            }
+          }
+          ResumeDeveloperText
+          ResumeDeveloperLink {
+            data {
+              attributes {
+                name
+                alternativeText
+                url
+              }
+            }
+          }
+          localizations {
+            data {
+              attributes {
+                Title
+                Subtitle
+                Linkedin
+                Telephone
+                Email
+                ResumeFullText
+                ResumeFullLink {
+                  data {
+                    attributes {
+                      name
+                      alternativeText
+                      url
+                    }
+                  }
+                }
+                ResumeDeveloperText
+                ResumeDeveloperLink {
+                  data {
+                    attributes {
+                      name
+                      alternativeText
+                      url
+                    }
+                  }
+                }
               }
             }
           }
