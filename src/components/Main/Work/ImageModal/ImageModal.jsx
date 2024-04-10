@@ -1,15 +1,16 @@
 import { Modal } from "react-bootstrap";
 import { ImageCarousel } from "../ImageCarousel/ImageCarousel";
 // Import language-related context and custom hook
-import { useLanguage } from "../../../../context/LanguageContext";
 import useLanguageContent from "../../../../hooks/useLanguageContent";
 
 export const ImageModal = ({ projectNumber, show, onHide }) => {
-  // Use language-related context and custom hook
-  const { handleLanguageChange } = useLanguage();
+  // Use language-related context and custom hook to access language content
   const language = useLanguageContent();
 
+  // Base URL for image URLs
   const baseUrl = "http://localhost:1337";
+
+  // Construct URLs for project images
   const image1Url =
     language?.projects?.[`Project${projectNumber}`]?.Images?.data[0]?.attributes
       ?.url;
@@ -20,18 +21,22 @@ export const ImageModal = ({ projectNumber, show, onHide }) => {
     language?.projects?.[`Project${projectNumber}`]?.Images?.data[2]?.attributes
       ?.url;
 
+  // Complete URLs for project images
   const firstImage = baseUrl + image1Url;
   const secondImage = baseUrl + image2Url;
   const thirdImage = baseUrl + image3Url;
 
   return (
+    // Modal component to display project images
     <Modal show={show} onHide={onHide} centered keyboard={false} id="modal-box">
       <Modal.Header closeButton>
+        {/* Display project title in modal header */}
         <Modal.Title>
           {language?.projects?.[`Project${projectNumber}`]?.Title}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
+        {/* ImageCarousel component to display project images */}
         <ImageCarousel
           firstImage={firstImage}
           secondImage={secondImage}
