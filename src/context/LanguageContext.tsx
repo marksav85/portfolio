@@ -1,7 +1,15 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, ReactNode } from "react";
 
-// Create a context for managing language-related state
-const LanguageContext = createContext();
+// Define types for the context value
+interface LanguageContextType {
+  selectedLanguage: string;
+  handleLanguageChange: () => void;
+}
+
+// Define the context with a default value
+const LanguageContext = createContext<LanguageContextType | undefined>(
+  undefined
+);
 
 // Custom hook for consuming language-related context
 export const useLanguage = () => {
@@ -17,8 +25,15 @@ export const useLanguage = () => {
   return context;
 };
 
+// Define types for the provider props
+interface LanguageProviderProps {
+  children: ReactNode;
+}
+
 // Provider component for managing language state and providing it to the context
-export const LanguageProvider = ({ children }) => {
+export const LanguageProvider: React.FC<LanguageProviderProps> = ({
+  children,
+}) => {
   // State to track the selected language
   const [selectedLanguage, setSelectedLanguage] = useState("german");
 
