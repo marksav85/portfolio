@@ -18,7 +18,7 @@ module.exports = {
   },
   settings: {
     react: {
-      version: "detect", // Detect React version automatically
+      version: "^18.2.0",
     },
   },
   plugins: ["react", "@typescript-eslint"], // Add @typescript-eslint plugin
