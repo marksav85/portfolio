@@ -11,10 +11,16 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <LanguageProvider>
-    <ApolloProvider client={client}>
-      <App />
-    </ApolloProvider>
-  </LanguageProvider>
-);
+const rootElement = document.getElementById("root");
+
+if (rootElement) {
+  ReactDOM.createRoot(rootElement).render(
+    <LanguageProvider>
+      <ApolloProvider client={client}>
+        <App />
+      </ApolloProvider>
+    </LanguageProvider>
+  );
+} else {
+  console.error("Root element not found");
+}
