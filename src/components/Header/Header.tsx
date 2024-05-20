@@ -9,11 +9,26 @@ import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import { useLanguage } from "../../context/LanguageContext";
 import useLanguageContent from "../../hooks/useLanguageContent";
 
+// TypeScript interfaces
+interface Paragraph {
+  children: {
+    bold: boolean;
+    text: string;
+  }[];
+}
+
+interface Language {
+  header?: {
+    Button: string;
+    Text: string;
+  };
+}
+
 export const Header = () => {
   // Accessing language change handler from context
   const { handleLanguageChange } = useLanguage();
   // Getting language content using custom hook
-  const language = useLanguageContent();
+  const language: Language = useLanguageContent() ?? {}; // Provide a default empty object if language is null
 
   return (
     <>
@@ -42,22 +57,28 @@ export const Header = () => {
           </a>
 
           {/* Displaying header text */}
-          {language?.header?.Text && (
+          {Array.isArray(language?.header?.Text) && ( // Type check that .map property is array or object
             <h1>
-              {language?.header?.Text.map((paragraph, index) => (
-                <React.Fragment key={index}>
-                  {paragraph.children.map((child, childIndex) => (
-                    <span
-                      key={childIndex}
-                      style={
-                        child.bold ? { fontWeight: "400", color: "#fff" } : null
-                      }
-                    >
-                      {child.text}
-                    </span>
-                  ))}
-                </React.Fragment>
-              ))}
+              {language?.header?.Text.map(
+                (paragraph: Paragraph, index: number) => (
+                  <React.Fragment key={index}>
+                    {paragraph.children.map(
+                      (child: any, childIndex: number) => (
+                        <span
+                          key={childIndex}
+                          style={
+                            child.bold
+                              ? { fontWeight: "400", color: "#fff" }
+                              : undefined
+                          }
+                        >
+                          {child.text}
+                        </span>
+                      )
+                    )}
+                  </React.Fragment>
+                )
+              )}
             </h1>
           )}
         </div>
