@@ -1,11 +1,22 @@
 import { useState, useEffect } from "react";
 import { useQuery, gql } from "@apollo/client";
 
-// const PROJECT_ATTRIBUTES_FRAGMENT = gql`
-//   fragment ProjectAttributes on ProjectsProject1 {
-//     Title
-//   }
-// `;
+// Define types for the fetched data and error
+interface LanguageData {
+  header: any;
+  profile: any;
+  skillsTables: any;
+  work: any;
+  labels: any;
+  projects: any;
+  contact: any;
+  reference: any;
+  referenceLists: any;
+}
+
+interface LanguageError {
+  message: string;
+}
 
 const projectAttributes = `
   Intro
@@ -340,9 +351,9 @@ const GET_LANGUAGES = gql`
 // Custom hook to fetch languages using GraphQL query
 export const useGetLanguages = () => {
   // State to store the fetched data
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [data, setData] = useState<LanguageData | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<LanguageError | null>(null);
 
   // Use the useQuery hook from @apollo/client to fetch the data
   const {
