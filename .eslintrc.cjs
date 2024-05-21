@@ -26,5 +26,6 @@ module.exports = {
     "react/prop-types": "off", // Disable prop-types check since TypeScript handles types
     "@typescript-eslint/explicit-module-boundary-types": "off", // Allow implicit return types
     "@typescript-eslint/no-explicit-any": "off", // Allow usage of 'any' type
+    "react/react-in-jsx-scope": "off", // Disable the rule for React in scope
   },
 };
