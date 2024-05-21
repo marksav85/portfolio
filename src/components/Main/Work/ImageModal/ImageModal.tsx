@@ -3,7 +3,18 @@ import { ImageCarousel } from "../ImageCarousel/ImageCarousel";
 // Import language-related context and custom hook
 import useLanguageContent from "../../../../hooks/useLanguageContent";
 
-export const ImageModal = ({ projectNumber, show, onHide }) => {
+// TypeScript interfaces for ImageModal component
+interface ImageModalProps {
+  projectNumber: number;
+  show: boolean;
+  onHide: () => void;
+}
+
+export const ImageModal: React.FC<ImageModalProps> = ({
+  projectNumber,
+  show,
+  onHide,
+}) => {
   // Use language-related context and custom hook to access language content
   const language = useLanguageContent();
 
