@@ -1,22 +1,252 @@
 import { useState, useEffect } from "react";
 import { useQuery, gql } from "@apollo/client";
 
-// Define types for the fetched data and error
+// Interfaces for the fetched data
+interface ImageAttributes {
+  name: string;
+  alternativeText: string;
+  url: string;
+}
+
+interface ProjectAttributes {
+  Intro: string;
+  Text: string;
+  TextBlock: string;
+  Title: string;
+  Technologies: string;
+  Repository: string;
+  Homepage: string;
+  hasHomepage: boolean;
+  Images: {
+    data: {
+      attributes: ImageAttributes[];
+    };
+  };
+}
+
+interface ProjectData {
+  attributes: ProjectAttributes;
+}
+
+interface ProjectLocalizationData {
+  attributes: {
+    [key: string]: ProjectAttributes;
+  };
+}
+
+interface ProjectsData {
+  attributes: {
+    [key: string]: ProjectData;
+  };
+  localizations?: {
+    data: {
+      attributes: ProjectLocalizationData;
+    };
+  };
+}
+
 interface LanguageData {
-  header: any;
-  profile: any;
-  skillsTables: any;
-  work: any;
-  labels: any;
-  projects: any;
-  contact: any;
-  reference: any;
-  referenceLists: any;
+  header: {
+    data: {
+      attributes: {
+        Button: string;
+        Text: string;
+        localizations?: {
+          data: {
+            attributes: {
+              Button: string;
+              Text: string;
+            };
+          };
+        };
+      };
+    };
+  };
+  profile: {
+    data: {
+      attributes: {
+        Title: string;
+        Text: string;
+        skillsTitle: string;
+        tableTech: string;
+        tableExpertise: string;
+        buttonShow: string;
+        buttonHide: string;
+        localizations?: {
+          data: {
+            attributes: {
+              Title: string;
+              Text: string;
+              skillsTitle: string;
+              tableTech: string;
+              tableExpertise: string;
+              buttonShow: string;
+              buttonHide: string;
+            };
+          };
+        };
+      };
+    };
+  };
+  skillsTables: {
+    data: {
+      attributes: {
+        Column1: string;
+        Column2: {
+          data: {
+            attributes: ImageAttributes;
+          }[];
+        };
+        Column3: string;
+      };
+    };
+  };
+  work: {
+    data: {
+      attributes: {
+        Title: string;
+        Button: string;
+        localizations?: {
+          data: {
+            attributes: {
+              Title: string;
+              Button: string;
+            };
+          };
+        };
+      };
+    };
+  };
+  labels: {
+    data: {
+      attributes: {
+        Process: string;
+        Description: string;
+        Technologies: string;
+        Homepage: string;
+        Repository: string;
+        buttonShow: string;
+        buttonHide: string;
+        localizations?: {
+          data: {
+            attributes: {
+              Process: string;
+              Description: string;
+              Technologies: string;
+              Homepage: string;
+              Repository: string;
+              buttonShow: string;
+              buttonHide: string;
+            };
+          };
+        };
+      };
+    };
+  };
+  projects: {
+    data: ProjectsData;
+  };
+  contact: {
+    data: {
+      attributes: {
+        Title: string;
+        Subtitle: string;
+        Linkedin: string;
+        Telephone: string;
+        Email: string;
+        ResumeFullText: string;
+        ResumeFullLink: {
+          data: {
+            attributes: ImageAttributes;
+          };
+        };
+        ResumeDeveloperText: string;
+        ResumeDeveloperLink: {
+          data: {
+            attributes: ImageAttributes;
+          };
+        };
+        localizations?: {
+          data: {
+            attributes: {
+              Title: string;
+              Subtitle: string;
+              Linkedin: string;
+              Telephone: string;
+              Email: string;
+              ResumeFullText: string;
+              ResumeFullLink: {
+                data: {
+                  attributes: ImageAttributes;
+                };
+              };
+              ResumeDeveloperText: string;
+              ResumeDeveloperLink: {
+                data: {
+                  attributes: ImageAttributes;
+                };
+              };
+            };
+          };
+        };
+      };
+    };
+  };
+  reference: {
+    data: {
+      attributes: {
+        Title: string;
+        localizations?: {
+          data: {
+            attributes: {
+              Title: string;
+            };
+          };
+        };
+      };
+    };
+  };
+  referenceLists: {
+    data: {
+      attributes: {
+        ReferenceList: {
+          Quote: string;
+          Text: string;
+          Link: string;
+          LinkText: string;
+          Image: {
+            data: {
+              attributes: ImageAttributes;
+            };
+          };
+        };
+        localizations?: {
+          data: {
+            attributes: {
+              ReferenceList: {
+                Quote: string;
+                Text: string;
+                Link: string;
+                LinkText: string;
+                Image: {
+                  data: {
+                    attributes: ImageAttributes;
+                  };
+                };
+              };
+            };
+          };
+        };
+      };
+    };
+  };
 }
 
 interface LanguageError {
   message: string;
 }
+
+// Define the project attributes to query
 
 const projectAttributes = `
   Intro
