@@ -10,17 +10,19 @@ import { useLanguage } from "../../context/LanguageContext";
 import useLanguageContent from "../../hooks/useLanguageContent";
 
 // TypeScript interfaces
+interface Child {
+  bold: boolean;
+  text: string;
+}
+
 interface Paragraph {
-  children: {
-    bold: boolean;
-    text: string;
-  }[];
+  children: Child[];
 }
 
 interface Language {
-  header?: {
+  header: {
     Button: string;
-    Text: string;
+    Text: Paragraph[];
   };
 }
 
@@ -28,7 +30,7 @@ export const Header = () => {
   // Accessing language change handler from context
   const { handleLanguageChange } = useLanguage();
   // Getting language content using custom hook
-  const language: Language = useLanguageContent() ?? {}; // Provide a default empty object if language is null
+  const language = useLanguageContent() as Language;
 
   return (
     <>
@@ -59,11 +61,11 @@ export const Header = () => {
           {/* Displaying header text */}
           {Array.isArray(language?.header?.Text) && ( // Type check that .map property is array or object
             <h1>
-              {language?.header?.Text.map(
-                (paragraph: Paragraph, index: number) => (
-                  <React.Fragment key={index}>
-                    {paragraph.children.map(
-                      (child: any, childIndex: number) => (
+              {language.header?.Text && (
+                <h1>
+                  {language.header.Text.map((paragraph, index) => (
+                    <React.Fragment key={index}>
+                      {paragraph.children.map((child, childIndex) => (
                         <span
                           key={childIndex}
                           style={
@@ -74,10 +76,10 @@ export const Header = () => {
                         >
                           {child.text}
                         </span>
-                      )
-                    )}
-                  </React.Fragment>
-                )
+                      ))}
+                    </React.Fragment>
+                  ))}
+                </h1>
               )}
             </h1>
           )}
