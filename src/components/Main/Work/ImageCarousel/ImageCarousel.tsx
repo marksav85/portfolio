@@ -1,6 +1,16 @@
 import Carousel from "react-bootstrap/Carousel";
 
-export function ImageCarousel({ firstImage, secondImage, thirdImage }) {
+interface ImageCarouselProps {
+  firstImage: string;
+  secondImage: string;
+  thirdImage: string;
+}
+
+export function ImageCarousel({
+  firstImage,
+  secondImage,
+  thirdImage,
+}: ImageCarouselProps) {
   return (
     // Bootstrap Carousel component to display project images
     <Carousel data-bs-theme="dark">
