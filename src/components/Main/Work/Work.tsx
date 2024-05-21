@@ -3,15 +3,24 @@ import { SingleProject } from "./SingleProject/SingleProject";
 // Import language-related context and custom hook
 import useLanguageContent from "../../../hooks/useLanguageContent";
 
-export const Work = () => {
-  // Use language-related context and custom hook
-  const language = useLanguageContent();
+// TypeScript interface for additional projects section
+interface toggleVisibility {
+  initialVisibility?: boolean; // Initial visibility of the Additonal projects section
+}
 
-  // Toggle visibility of additional projects
-  const [isVisible, setIsVisible] = useState(false);
-  const toggleVisibility = () => {
-    setIsVisible(!isVisible);
+export const Work: React.FC<toggleVisibility> = ({
+  initialVisibility = false,
+}) => {
+  // State to manage visibility of additional projects
+  const [isVisible, setIsVisible] = useState<boolean>(initialVisibility);
+
+  // Function to toggle visibility of additional projects
+  const toggleVisibility: () => void = () => {
+    setIsVisible((prevVisibility) => !prevVisibility);
   };
+
+  // Getting language content using custom hook
+  const language = useLanguageContent();
 
   return (
     <>
