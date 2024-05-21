@@ -1,7 +1,7 @@
 // Import language-related context and custom hook
 import useLanguageContent from "../../../hooks/useLanguageContent";
 
-export const Contact = () => {
+export const Contact: React.FC = () => {
   // Use language-related context and custom hook to access language content
   const language = useLanguageContent();
 
