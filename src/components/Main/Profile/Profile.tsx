@@ -4,12 +4,12 @@ import { About } from "./About/About";
 // Import language-related context and custom hook
 import useLanguageContent from "../../../hooks/useLanguageContent";
 
-// TypeScript interface for Profile component props
-interface ProfileProps {
+// TypeScript interface for About section visibilty toggle
+interface toggleVisibility {
   initialVisibility?: boolean; // Initial visibility of the "About" section
 }
 
-export const Profile: React.FC<ProfileProps> = ({
+export const Profile: React.FC<toggleVisibility> = ({
   initialVisibility = false,
 }) => {
   // State to manage visibility of the "About" section
