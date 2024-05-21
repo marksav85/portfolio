@@ -89,18 +89,17 @@ interface LanguageData {
     };
   };
   skillsTables: {
-    data: {
-      attributes: {
-        Column1: string;
-        Column2: {
-          data: {
-            attributes: ImageAttributes;
-          }[];
-        };
-        Column3: string;
+    attributes: {
+      Column1: string;
+      Column2: {
+        data: {
+          attributes: ImageAttributes;
+        }[];
       };
+      Column3: string;
     };
   };
+
   work: {
     data: {
       attributes: {

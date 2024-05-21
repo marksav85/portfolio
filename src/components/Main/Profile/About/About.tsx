@@ -2,7 +2,7 @@
 import useLanguageContent from "../../../../hooks/useLanguageContent";
 
 // Interface for skills table data
-interface SkillsTable {
+interface Skills {
   attributes: {
     Column1: string;
     Column2: {
@@ -40,27 +40,23 @@ export const About = () => {
           </thead>
           <tbody>
             {/* Map over skills tables data and render each skill */}
-            {language?.skillsTables?.map(
-              (skill: SkillsTable, index: number) => (
-                <tr key={index}>
-                  {/* Display technology name */}
-                  <td>{skill.attributes.Column1}</td>
-                  <td>
-                    {/* Display technology icon */}
-                    <img
-                      src={
-                        baseUrl + skill.attributes.Column2.data.attributes.url
-                      }
-                      alt={
-                        skill.attributes.Column2.data.attributes.alternativeText
-                      }
-                    />
-                  </td>
-                  {/* Display expertise level */}
-                  <td>{`${skill.attributes.Column3}/5`}</td>
-                </tr>
-              )
-            )}
+            {language?.skillsTables?.map((skill: Skills, index: number) => (
+              <tr key={index}>
+                {/* Display technology name */}
+                <td>{skill.attributes.Column1}</td>
+                <td>
+                  {/* Display technology icon */}
+                  <img
+                    src={baseUrl + skill.attributes.Column2.data.attributes.url}
+                    alt={
+                      skill.attributes.Column2.data.attributes.alternativeText
+                    }
+                  />
+                </td>
+                {/* Display expertise level */}
+                <td>{`${skill.attributes.Column3}/5`}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
