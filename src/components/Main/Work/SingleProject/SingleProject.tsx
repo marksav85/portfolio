@@ -3,10 +3,36 @@ import { useState } from "react";
 import { ImageModal } from "../ImageModal/ImageModal";
 import "bootstrap/dist/css/bootstrap.min.css";
 // Import language-related context and custom hook
-
 import useLanguageContent from "../../../../hooks/useLanguageContent";
 
-export function SingleProject({ projectNumber }) {
+// Define the props interface
+interface SingleProjectProps {
+  initialVisibility?: boolean;
+  projectNumber: number;
+  paragraphs?: Paragraph[]; // Optional prop for paragraphs
+}
+
+interface ParagraphChild {
+  type: string;
+  text: string;
+}
+
+interface Paragraph {
+  children: ParagraphChild[];
+}
+
+export const SingleProject: React.FC<SingleProjectProps> = ({
+  initialVisibility = false,
+  projectNumber,
+}) => {
+  // State to manage visibility of additional projects
+  const [isVisible, setIsVisible] = useState<boolean>(initialVisibility);
+
+  // Function to toggle visibility of additional projects
+  const toggleVisibility: () => void = () => {
+    setIsVisible((prevVisibility) => !prevVisibility);
+  };
+
   // Use language-related context and custom hook to access language content
   const language = useLanguageContent();
 
@@ -14,14 +40,6 @@ export function SingleProject({ projectNumber }) {
   const imageStyle = {
     cursor: "pointer", // Set cursor style to pointer
     outline: "0px", // Remove outline on focus
-  };
-
-  // State to manage visibility of project description
-  const [isVisible, setIsVisible] = useState(false);
-
-  // Function to toggle visibility of project description
-  const toggleVisibility = () => {
-    setIsVisible(!isVisible);
   };
 
   // State to manage visibility of image modal
@@ -34,8 +52,6 @@ export function SingleProject({ projectNumber }) {
   const imageUrl =
     language?.projects?.[`Project${projectNumber}`]?.Images?.data[0]?.attributes
       ?.url;
-
-  console.log(language);
 
   return (
     <article className="col-6 col-12-xsmall work-item">
@@ -78,7 +94,7 @@ export function SingleProject({ projectNumber }) {
           {/* Display project description text */}
           {language?.projects?.[`Project${projectNumber}`]?.TextBlock?.map(
             // TextBlock is an array of paragraphs
-            (paragraph, index) =>
+            (paragraph: Paragraph, index: number) =>
               // Check if paragraph has children and type is 'text'
               paragraph.children && paragraph.children[0]?.type === "text" ? (
                 // Render the text content
@@ -155,4 +171,4 @@ export function SingleProject({ projectNumber }) {
       </div>
     </article>
   );
-}
+};
