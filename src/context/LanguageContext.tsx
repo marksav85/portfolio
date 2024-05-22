@@ -4,6 +4,7 @@ import { createContext, useContext, useState, ReactNode } from "react";
 interface LanguageContextType {
   selectedLanguage: string;
   handleLanguageChange: () => void;
+  baseUrl: string;
 }
 
 // Define the context with a default value
@@ -52,12 +53,15 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({
     setSelectedLanguage(availableLanguages[nextIndex]);
   };
 
+  const baseUrl = "http://localhost:1337"; // Base URL
+
   // Provide the language-related values through the LanguageContext.Provider
   return (
     <LanguageContext.Provider
       value={{
         selectedLanguage,
         handleLanguageChange,
+        baseUrl,
       }}
     >
       {children}
