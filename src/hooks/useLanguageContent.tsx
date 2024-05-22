@@ -10,29 +10,45 @@ const useLanguageContent = () => {
   // Fetch language data using the useGetLanguages hook
   const { data } = useGetLanguages();
 
+  // Check if the data is available
+  if (!data) {
+    return null;
+  }
+
+  // Utility function to safely access localizations
+  const getLocalizationAttributes = (localizations: any) =>
+    localizations?.data?.[0]?.attributes || {};
+
   // Switch statement to determine the language content based on the selected language
   switch (selectedLanguage) {
     case "german":
-      return (
-        data && {
-          header: data.header.data.attributes.localizations.data[0].attributes,
-          profile:
-            data.profile.data.attributes.localizations.data[0].attributes,
-          skillsTables: data.skillsTables.data,
-          work: data.work.data.attributes.localizations.data[0].attributes,
-          labels:
-            data.labels.data[0].attributes.localizations.data[0].attributes,
-          projects:
-            data.projects.data[0].attributes.localizations.data[0].attributes,
-          contact:
-            data.contact.data.attributes.localizations.data[0].attributes,
-          reference:
-            data.reference.data.attributes.localizations.data[0].attributes,
-          referenceLists:
-            data.referenceLists.data[0].attributes.localizations.data[0]
-              .attributes,
-        }
-      ); // German
+      return {
+        header: getLocalizationAttributes(
+          data.header.data.attributes.localizations
+        ),
+        profile: getLocalizationAttributes(
+          data.profile.data.attributes.localizations
+        ),
+        skillsTables: data.skillsTables.data,
+        work: getLocalizationAttributes(
+          data.work.data.attributes.localizations
+        ),
+        labels: getLocalizationAttributes(
+          data.labels.data[0].attributes.localizations
+        ),
+        projects: getLocalizationAttributes(
+          data.projects.data[0].attributes.localizations
+        ),
+        contact: getLocalizationAttributes(
+          data.contact.data.attributes.localizations
+        ),
+        reference: getLocalizationAttributes(
+          data.reference.data.attributes.localizations
+        ),
+        referenceLists: getLocalizationAttributes(
+          data.referenceLists.data[0].attributes.localizations
+        ),
+      }; // German
     case "english":
       return (
         data && {
