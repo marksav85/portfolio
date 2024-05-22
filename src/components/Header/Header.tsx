@@ -60,7 +60,7 @@ export const Header = () => {
 
           {/* Displaying header text */}
           {Array.isArray(language?.header?.Text) && ( // Type check that .map property is array or object
-            <h1>
+            <>
               {language.header?.Text && (
                 <h1>
                   {language.header.Text.map((paragraph, index) => (
@@ -81,7 +81,7 @@ export const Header = () => {
                   ))}
                 </h1>
               )}
-            </h1>
+            </>
           )}
         </div>
 
