@@ -16,7 +16,7 @@ export default function SingleReference() {
         {/* Map over reference list items and render each reference */}
         {language &&
           Object.values(language?.referenceLists?.ReferenceList).map(
-            (reference, index) => (
+            (reference: any, index: number) => (
               <Carousel.Item key={index} className="carousel-item">
                 {/* Reference quote */}
                 <div>
