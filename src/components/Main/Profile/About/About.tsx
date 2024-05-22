@@ -1,26 +1,11 @@
 // Import language-related context and custom hook
 import useLanguageContent from "../../../../hooks/useLanguageContent";
-
-// Interface for skills table data
-interface Skills {
-  attributes: {
-    Column1: string;
-    Column2: {
-      data: {
-        attributes: {
-          url: string;
-          alternativeText: string;
-        };
-      };
-    };
-    Column3: number;
-  };
-}
+import { useLanguage } from "../../../../context/LanguageContext";
 
 export const About = () => {
   // Use language-related context and custom hook
   const language = useLanguageContent();
-  const baseUrl = "http://localhost:1337";
+  const { baseUrl } = useLanguage();
 
   return (
     <>
@@ -40,7 +25,7 @@ export const About = () => {
           </thead>
           <tbody>
             {/* Map over skills tables data and render each skill */}
-            {language?.skillsTables?.map((skill: Skills, index: number) => (
+            {language?.skillsTables?.map((skill: any, index: number) => (
               <tr key={index}>
                 {/* Display technology name */}
                 <td>{skill.attributes.Column1}</td>

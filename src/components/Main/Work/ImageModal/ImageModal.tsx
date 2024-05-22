@@ -2,6 +2,7 @@ import { Modal } from "react-bootstrap";
 import { ImageCarousel } from "../ImageCarousel/ImageCarousel";
 // Import language-related context and custom hook
 import useLanguageContent from "../../../../hooks/useLanguageContent";
+import { useLanguage } from "../../../../context/LanguageContext";
 
 // TypeScript interfaces for ImageModal component
 interface ImageModalProps {
@@ -18,8 +19,8 @@ export const ImageModal: React.FC<ImageModalProps> = ({
   // Use language-related context and custom hook to access language content
   const language = useLanguageContent();
 
-  // Base URL for image URLs
-  const baseUrl = "http://localhost:1337";
+  // Base URL for resume links
+  const { baseUrl } = useLanguage();
 
   // Construct URLs for project images
   const image1Url =

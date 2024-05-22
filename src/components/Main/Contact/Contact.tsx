@@ -1,12 +1,13 @@
 // Import language-related context and custom hook
 import useLanguageContent from "../../../hooks/useLanguageContent";
+import { useLanguage } from "../../../context/LanguageContext";
 
 export const Contact: React.FC = () => {
   // Use language-related context and custom hook to access language content
   const language = useLanguageContent();
 
   // Base URL for resume links
-  const baseUrl = "http://localhost:1337";
+  const { baseUrl } = useLanguage();
 
   // Construct URLs for developer and full resumes
   const resumeDevUrl =

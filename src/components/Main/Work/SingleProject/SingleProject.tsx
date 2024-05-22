@@ -4,6 +4,7 @@ import { ImageModal } from "../ImageModal/ImageModal";
 import "bootstrap/dist/css/bootstrap.min.css";
 // Import language-related context and custom hook
 import useLanguageContent from "../../../../hooks/useLanguageContent";
+import { useLanguage } from "../../../../context/LanguageContext";
 
 // Define the props interface
 interface SingleProjectProps {
@@ -45,8 +46,8 @@ export const SingleProject: React.FC<SingleProjectProps> = ({
   // State to manage visibility of image modal
   const [modalShow, setModalShow] = useState(false);
 
-  // Base URL for image URLs
-  const baseUrl = "http://localhost:1337";
+  // Base URL for resume links
+  const { baseUrl } = useLanguage();
 
   // Construct URL for the project image
   const imageUrl =

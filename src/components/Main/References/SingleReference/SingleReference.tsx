@@ -1,13 +1,14 @@
 import Carousel from "react-bootstrap/Carousel";
 // Import language-related context and custom hook
 import useLanguageContent from "../../../../hooks/useLanguageContent";
+import { useLanguage } from "../../../../context/LanguageContext";
 
 export default function SingleReference() {
   // Use language-related context and custom hook to access language content
   const language = useLanguageContent();
 
   // Base URL for reference image URLs
-  const baseUrl = "http://localhost:1337";
+  const { baseUrl } = useLanguage();
 
   return (
     <>
