@@ -8,40 +8,27 @@ interface ImageAttributes {
   url: string;
 }
 
-interface ProjectAttributes {
-  Intro: string;
-  Text: string;
-  TextBlock: string;
+interface LocalizationAttributes<T> {
+  data: Array<{
+    attributes: T;
+  }>;
+}
+
+interface ProfileAttributes {
   Title: string;
-  Technologies: string;
-  Repository: string;
-  Homepage: string;
-  hasHomepage: boolean;
-  Images: {
-    data: {
-      attributes: ImageAttributes[];
-    };
-  };
+  Text: string;
+  skillsTitle: string;
+  tableTech: string;
+  tableExpertise: string;
+  buttonShow: string;
+  buttonHide: string;
+  localizations?: LocalizationAttributes<ProfileAttributes>;
 }
 
 interface ProjectData {
-  attributes: ProjectAttributes;
-}
-
-interface ProjectLocalizationData {
   attributes: {
-    [key: string]: ProjectAttributes;
-  };
-}
-
-interface ProjectsData {
-  attributes: {
-    [key: string]: ProjectData;
-  };
-  localizations?: {
-    data: {
-      attributes: ProjectLocalizationData;
-    };
+    [key: string]: any;
+    localizations?: LocalizationAttributes<{ [key: string]: any }> | undefined;
   };
 }
 
@@ -51,68 +38,40 @@ interface LanguageData {
       attributes: {
         Button: string;
         Text: string;
-        localizations?: {
-          data: {
-            attributes: {
-              Button: string;
-              Text: string;
-            };
-          };
-        };
+        localizations?: LocalizationAttributes<{
+          Button: string;
+          Text: string;
+        }>;
       };
     };
   };
   profile: {
     data: {
-      attributes: {
-        Title: string;
-        Text: string;
-        skillsTitle: string;
-        tableTech: string;
-        tableExpertise: string;
-        buttonShow: string;
-        buttonHide: string;
-        localizations?: {
-          data: {
-            attributes: {
-              Title: string;
-              Text: string;
-              skillsTitle: string;
-              tableTech: string;
-              tableExpertise: string;
-              buttonShow: string;
-              buttonHide: string;
-            };
-          };
-        };
-      };
+      attributes: ProfileAttributes;
     };
   };
   skillsTables: {
-    attributes: {
-      Column1: string;
-      Column2: {
-        data: {
-          attributes: ImageAttributes;
-        }[];
+    data: {
+      attributes: {
+        Column1: string;
+        Column2: {
+          data: {
+            attributes: ImageAttributes;
+          }[];
+        };
+        Column3: string;
       };
-      Column3: string;
-    };
+    }[];
   };
-
   work: {
     data: {
       attributes: {
         Title: string;
         Button: string;
-        localizations?: {
-          data: {
-            attributes: {
-              Title: string;
-              Button: string;
-            };
-          };
-        };
+        localizations?: LocalizationAttributes<{
+          Title: string;
+          Button: string;
+        }>;
       };
     };
   };
@@ -126,24 +85,20 @@ interface LanguageData {
         Repository: string;
         buttonShow: string;
         buttonHide: string;
-        localizations?: {
-          data: {
-            attributes: {
-              Process: string;
-              Description: string;
-              Technologies: string;
-              Homepage: string;
-              Repository: string;
-              buttonShow: string;
-              buttonHide: string;
-            };
-          };
-        };
+        localizations?: LocalizationAttributes<{
+          Process: string;
+          Description: string;
+          Technologies: string;
+          Homepage: string;
+          Repository: string;
+          buttonShow: string;
+          buttonHide: string;
+        }>;
       };
-    };
+    }[];
   };
   projects: {
-    data: ProjectsData;
+    data: ProjectData[];
   };
   contact: {
     data: {
@@ -165,29 +120,25 @@ interface LanguageData {
             attributes: ImageAttributes;
           };
         };
-        localizations?: {
-          data: {
-            attributes: {
-              Title: string;
-              Subtitle: string;
-              Linkedin: string;
-              Telephone: string;
-              Email: string;
-              ResumeFullText: string;
-              ResumeFullLink: {
-                data: {
-                  attributes: ImageAttributes;
-                };
-              };
-              ResumeDeveloperText: string;
-              ResumeDeveloperLink: {
-                data: {
-                  attributes: ImageAttributes;
-                };
-              };
+        localizations?: LocalizationAttributes<{
+          Title: string;
+          Subtitle: string;
+          Linkedin: string;
+          Telephone: string;
+          Email: string;
+          ResumeFullText: string;
+          ResumeFullLink: {
+            data: {
+              attributes: ImageAttributes;
             };
           };
-        };
+          ResumeDeveloperText: string;
+          ResumeDeveloperLink: {
+            data: {
+              attributes: ImageAttributes;
+            };
+          };
+        }>;
       };
     };
   };
@@ -195,13 +146,7 @@ interface LanguageData {
     data: {
       attributes: {
         Title: string;
-        localizations?: {
-          data: {
-            attributes: {
-              Title: string;
-            };
-          };
-        };
+        localizations?: LocalizationAttributes<{ Title: string }>;
       };
     };
   };
@@ -219,25 +164,21 @@ interface LanguageData {
             };
           };
         };
-        localizations?: {
-          data: {
-            attributes: {
-              ReferenceList: {
-                Quote: string;
-                Text: string;
-                Link: string;
-                LinkText: string;
-                Image: {
-                  data: {
-                    attributes: ImageAttributes;
-                  };
-                };
+        localizations?: LocalizationAttributes<{
+          ReferenceList: {
+            Quote: string;
+            Text: string;
+            Link: string;
+            LinkText: string;
+            Image: {
+              data: {
+                attributes: ImageAttributes;
               };
             };
           };
-        };
+        }>;
       };
-    };
+    }[];
   };
 }
 
@@ -603,7 +544,7 @@ export const useGetLanguages = () => {
       setError(queryError); // Set the error in the state
       setLoading(false); // Set loading to false
     }
-  }, [queryData, queryError]); // Run the effect when query data or error changes
+  }, [queryData, queryError, queryLoading]); // Run the effect when query data or error changes
 
   // Return the fetched data, loading state, and error
   return { data, loading, error };
