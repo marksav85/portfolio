@@ -7,7 +7,7 @@ import "./assets/css/main.css";
 
 // apollo client
 const client = new ApolloClient({
-  uri: "http://localhost:1337/graphql",
+  uri: "https://strapi-ai51.onrender.com/graphql",
   cache: new InMemoryCache(),
 });
 
