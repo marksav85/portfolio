@@ -7,13 +7,11 @@ export const Contact: React.FC = () => {
   const language = useLanguageContent();
 
   // Base URL for resume links
-  const { baseUrl } = useLanguage();
+  // const { baseUrl } = useLanguage();
 
   // Construct URLs for developer and full resumes
-  const resumeDevUrl =
-    baseUrl + language?.contact?.ResumeDeveloperLink?.data?.attributes?.url;
-  const resumeFullUrl =
-    baseUrl + language?.contact?.ResumeFullLink?.data?.attributes?.url;
+  const resumeDevUrl = language?.contact?.ResumeDeveloperLink;
+  const resumeFullUrl = language?.contact?.ResumeFullLink;
 
   return (
     <>
@@ -79,6 +77,7 @@ export const Contact: React.FC = () => {
                   rel="noopener noreferrer"
                   href={resumeDevUrl}
                   aria-label={language?.contact?.ResumeDeveloperText}
+                  download
                 >
                   {language?.contact?.ResumeDeveloperText}
                 </a>
@@ -94,6 +93,7 @@ export const Contact: React.FC = () => {
                   rel="noopener noreferrer"
                   href={resumeFullUrl}
                   aria-label={language?.contact?.ResumeFullText}
+                  download
                 >
                   {language?.contact?.ResumeFullText}
                 </a>
