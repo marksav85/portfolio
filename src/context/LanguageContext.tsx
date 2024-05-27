@@ -4,7 +4,7 @@ import { createContext, useContext, useState, ReactNode } from "react";
 interface LanguageContextType {
   selectedLanguage: string;
   handleLanguageChange: () => void;
-  baseUrl: string;
+  // baseUrl: string;
 }
 
 // Define the context with a default value
@@ -53,7 +53,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({
     setSelectedLanguage(availableLanguages[nextIndex]);
   };
 
-  const baseUrl = "http://localhost:1337"; // Base URL
+  // const baseUrl = "https://strapi-ai51.onrender.com/";
 
   // Provide the language-related values through the LanguageContext.Provider
   return (
@@ -61,7 +61,6 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({
       value={{
         selectedLanguage,
         handleLanguageChange,
-        baseUrl,
       }}
     >
       {children}
