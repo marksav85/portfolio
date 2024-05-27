@@ -109,17 +109,9 @@ interface LanguageData {
         Telephone: string;
         Email: string;
         ResumeFullText: string;
-        ResumeFullLink: {
-          data: {
-            attributes: ImageAttributes;
-          };
-        };
+        ResumeFullLink: string;
         ResumeDeveloperText: string;
-        ResumeDeveloperLink: {
-          data: {
-            attributes: ImageAttributes;
-          };
-        };
+        ResumeDeveloperLink: string;
         localizations?: LocalizationAttributes<{
           Title: string;
           Subtitle: string;
@@ -127,17 +119,9 @@ interface LanguageData {
           Telephone: string;
           Email: string;
           ResumeFullText: string;
-          ResumeFullLink: {
-            data: {
-              attributes: ImageAttributes;
-            };
-          };
+          ResumeFullLink: string;
           ResumeDeveloperText: string;
-          ResumeDeveloperLink: {
-            data: {
-              attributes: ImageAttributes;
-            };
-          };
+          ResumeDeveloperLink: string;
         }>;
       };
     };
@@ -402,25 +386,9 @@ const GET_LANGUAGES = gql`
           Telephone
           Email
           ResumeFullText
-          ResumeFullLink {
-            data {
-              attributes {
-                name
-                alternativeText
-                url
-              }
-            }
-          }
+          ResumeFullLink 
           ResumeDeveloperText
-          ResumeDeveloperLink {
-            data {
-              attributes {
-                name
-                alternativeText
-                url
-              }
-            }
-          }
+          ResumeDeveloperLink 
           localizations {
             data {
               attributes {
@@ -430,25 +398,9 @@ const GET_LANGUAGES = gql`
                 Telephone
                 Email
                 ResumeFullText
-                ResumeFullLink {
-                  data {
-                    attributes {
-                      name
-                      alternativeText
-                      url
-                    }
-                  }
-                }
+                ResumeFullLink 
                 ResumeDeveloperText
-                ResumeDeveloperLink {
-                  data {
-                    attributes {
-                      name
-                      alternativeText
-                      url
-                    }
-                  }
-                }
+                ResumeDeveloperLink 
               }
             }
           }
