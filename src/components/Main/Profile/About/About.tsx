@@ -5,7 +5,7 @@ import { useLanguage } from "../../../../context/LanguageContext";
 export const About = () => {
   // Use language-related context and custom hook
   const language = useLanguageContent();
-  const { baseUrl } = useLanguage();
+  // const { baseUrl } = useLanguage();
 
   return (
     <>
@@ -32,7 +32,7 @@ export const About = () => {
                 <td>
                   {/* Display technology icon */}
                   <img
-                    src={baseUrl + skill.attributes.Column2.data.attributes.url}
+                    src={skill.attributes.Column2.data.attributes.url}
                     alt={
                       skill.attributes.Column2.data.attributes.alternativeText
                     }
