@@ -8,7 +8,7 @@ export default function SingleReference() {
   const language = useLanguageContent();
 
   // Base URL for reference image URLs
-  const { baseUrl } = useLanguage();
+  // const { baseUrl } = useLanguage();
 
   return (
     <>
@@ -36,10 +36,8 @@ export default function SingleReference() {
                   {/* Display reference image */}
                   <img
                     className="d-block img-fluid reference-image"
-                    src={baseUrl + reference.Image.data.attributes.url}
-                    alt={
-                      baseUrl + reference.Image.data.attributes.alternativeText
-                    }
+                    src={reference.Image.data.attributes.url}
+                    alt={reference.Image.data.attributes.alternativeText}
                   />
                 </div>
                 {/* Reference caption */}

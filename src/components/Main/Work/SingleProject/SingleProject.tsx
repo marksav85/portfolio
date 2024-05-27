@@ -47,7 +47,7 @@ export const SingleProject: React.FC<SingleProjectProps> = ({
   const [modalShow, setModalShow] = useState(false);
 
   // Base URL for resume links
-  const { baseUrl } = useLanguage();
+  // const { baseUrl } = useLanguage();
 
   // Construct URL for the project image
   const imageUrl =
@@ -63,11 +63,7 @@ export const SingleProject: React.FC<SingleProjectProps> = ({
         style={imageStyle}
       >
         {/* Display project image */}
-        <img
-          src={baseUrl + imageUrl}
-          alt="cover image"
-          className="carousel-fulls"
-        ></img>
+        <img src={imageUrl} alt="cover image" className="carousel-fulls"></img>
       </button>
 
       {/* Modal for displaying project images */}

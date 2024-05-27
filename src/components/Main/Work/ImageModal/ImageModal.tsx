@@ -20,7 +20,7 @@ export const ImageModal: React.FC<ImageModalProps> = ({
   const language = useLanguageContent();
 
   // Base URL for resume links
-  const { baseUrl } = useLanguage();
+  // const { baseUrl } = useLanguage();
 
   // Construct URLs for project images
   const image1Url =
@@ -34,9 +34,9 @@ export const ImageModal: React.FC<ImageModalProps> = ({
       ?.url;
 
   // Complete URLs for project images
-  const firstImage = baseUrl + image1Url;
-  const secondImage = baseUrl + image2Url;
-  const thirdImage = baseUrl + image3Url;
+  const firstImage = image1Url;
+  const secondImage = image2Url;
+  const thirdImage = image3Url;
 
   return (
     // Modal component to display project images
