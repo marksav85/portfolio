@@ -26,6 +26,10 @@ dist-ssr
 # storage images
 image-storage
 
+# images in dev mode
+public/images/aboutme-icons/*
+public/images/project-images/*
+
 #unused files
 src/assets/sass
 
