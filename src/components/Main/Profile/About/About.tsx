@@ -1,6 +1,5 @@
 // Import language-related context and custom hook
 import useLanguageContent from "../../../../hooks/useLanguageContent";
-import { useLanguage } from "../../../../context/LanguageContext";
 
 export const About = () => {
   // Use language-related context and custom hook

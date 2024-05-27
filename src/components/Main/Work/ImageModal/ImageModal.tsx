@@ -2,7 +2,6 @@ import { Modal } from "react-bootstrap";
 import { ImageCarousel } from "../ImageCarousel/ImageCarousel";
 // Import language-related context and custom hook
 import useLanguageContent from "../../../../hooks/useLanguageContent";
-import { useLanguage } from "../../../../context/LanguageContext";
 
 // TypeScript interfaces for ImageModal component
 interface ImageModalProps {

@@ -4,7 +4,6 @@ import { ImageModal } from "../ImageModal/ImageModal";
 import "bootstrap/dist/css/bootstrap.min.css";
 // Import language-related context and custom hook
 import useLanguageContent from "../../../../hooks/useLanguageContent";
-import { useLanguage } from "../../../../context/LanguageContext";
 
 // Define the props interface
 interface SingleProjectProps {
