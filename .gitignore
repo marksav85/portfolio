@@ -35,3 +35,6 @@ src/assets/sass
 
 # language csv
 src/languages/*.xlsx
+
+#.env
+.env
