@@ -8,8 +8,8 @@ import "./assets/css/main.css";
 
 // apollo client
 const client = new ApolloClient({
-  uri: import.meta.env.VITE_STRAPI_URL,
-  // uri: "import.meta.env.VITE_LOCAL_URL",
+  // uri: import.meta.env.VITE_STRAPI_URL,
+  uri: import.meta.env.VITE_LOCAL_URL,
   cache: new InMemoryCache(),
 });
 
