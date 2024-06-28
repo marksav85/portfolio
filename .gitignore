@@ -34,7 +34,7 @@ public/images/project-images/*
 src/assets/sass
 
 # language csv
-src/languages/*.xlsx
+src/languages/
 
 #.env
 .env
