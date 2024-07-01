@@ -186,7 +186,6 @@ h2 {
 
 .carousel-control-prev,
 .carousel-control-next {
-  display: none;
   width: auto;
   position: absolute;
   top: 75%; /* Center the controls vertically */
@@ -199,20 +198,26 @@ h2 {
 
 .carousel-control-prev:hover,
 .carousel-control-next:hover {
-  background-color: rgba(
-    0,
-    0,
-    0,
-    0.7
-  ); /* Adjust the background color on hover */
+  filter: invert(1) sepia(1) saturate(5000%) hue-rotate(-50deg);
+  /* Adjust the background color to red on hover */
 }
 
 .carousel-control-prev {
   left: 0; /* Position the left control to the left side */
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .carousel-control-next {
   right: 0; /* Position the right control to the right side */
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.carousel-control-next-icon {
+  filter: invert(1) grayscale(100);
+}
+
+.carousel-control-prev-icon {
+  filter: invert(1) grayscale(100);
 }
 
 @media (min-width: 1800px) {

@@ -13,7 +13,7 @@ export function ImageCarousel({
 }: ImageCarouselProps) {
   return (
     // Bootstrap Carousel component to display project images
-    <Carousel data-bs-theme="dark">
+    <Carousel data-bs-theme="dark" controls={false}>
       {/* First image */}
       <Carousel.Item>
         <div className="carousel-image-container">
