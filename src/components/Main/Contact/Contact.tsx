@@ -10,7 +10,7 @@ export const Contact: React.FC = () => {
 
   // Construct URLs for developer and full resumes
   const resumeDevUrl = language?.contact?.ResumeDeveloperLink;
-  const resumeFullUrl = language?.contact?.ResumeFullLink;
+  // const resumeFullUrl = language?.contact?.ResumeFullLink;
 
   return (
     <>
@@ -81,12 +81,12 @@ export const Contact: React.FC = () => {
                   {language?.contact?.ResumeDeveloperText}
                 </a>
               </li>
-              <li>
-                {/* Full resume */}
+              {/* <li>
+                
                 <h3 className="icon solid fa-download">
                   <span className="label">Download</span>
                 </h3>
-                {/* Display link to download full resume */}
+                
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
@@ -96,7 +96,7 @@ export const Contact: React.FC = () => {
                 >
                   {language?.contact?.ResumeFullText}
                 </a>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>
