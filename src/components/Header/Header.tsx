@@ -39,9 +39,9 @@ export const Header = () => {
           <button onClick={handleLanguageChange}>
             {/* Display language navigation button */}
             {
-              language?.header?.Button === "EN" ? (
+              language?.header?.Button === "DE" ? (
                 <GB title="English" className="flags" />
-              ) : language?.header?.Button === "DE" ? (
+              ) : language?.header?.Button === "EN" ? (
                 <DE title="German" className="flags" />
               ) : (
                 "DE"
