@@ -10,8 +10,8 @@ export const MainView: React.FC = () => {
     <div id="main">
       <Profile />
       <Work />
-      <Contact />
       <References />
+      <Contact />
     </div>
   );
 };
