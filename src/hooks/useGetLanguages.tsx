@@ -482,7 +482,9 @@ export const useGetLanguages = () => {
     data: queryData, // Fetched data from the GraphQL query
     loading: queryLoading, // Loading state from the GraphQL query
     error: queryError, // Error state from the GraphQL query
-  } = useQuery(GET_LANGUAGES);
+  } = useQuery(GET_LANGUAGES, {
+    fetchPolicy: "cache-and-network",
+  });
 
   useEffect(() => {
     // Update state when the query data changes
