@@ -3,25 +3,10 @@ import { MainView } from "./components/Main/MainView";
 import { Footer } from "./components/Main/Footer/Footer";
 import { useGetLanguages } from "./hooks/useGetLanguages";
 import { useState } from "react";
-import ClipLoader from "react-spinners/ClipLoader";
 import "./index.css";
 
 function App() {
-  const { loading, error } = useGetLanguages();
-  const [color, setColor] = useState("blue");
-
-  if (loading) {
-    return (
-      <div className="loader-container">
-        <ClipLoader
-          color={color}
-          size={150}
-          aria-label="Loading Spinner"
-          data-testid="loader"
-        />
-      </div>
-    );
-  }
+  const { error } = useGetLanguages();
 
   if (error) {
     return (
