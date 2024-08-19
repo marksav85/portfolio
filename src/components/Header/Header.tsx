@@ -72,7 +72,7 @@ export const Header = () => {
                             key={childIndex}
                             style={
                               child.bold
-                                ? { fontWeight: "400", color: "#fff" }
+                                ? { fontWeight: "400", color: "#FFC0CB" }
                                 : undefined
                             }
                           >
