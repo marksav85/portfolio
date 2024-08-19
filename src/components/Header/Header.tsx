@@ -3,7 +3,12 @@ import React from "react";
 import { GB } from "country-flag-icons/react/3x2";
 import { DE } from "country-flag-icons/react/3x2";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
+import {
+  faXTwitter,
+  faGithub,
+  faLinkedin,
+} from "@fortawesome/free-brands-svg-icons";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
 // Import language-related context and custom hook
 import { useLanguage } from "../../context/LanguageContext";
@@ -105,36 +110,36 @@ export const Header = () => {
               <li>
                 <a
                   href="https://github.com/marksav85"
-                  className="icon brands fa-github"
+                  className="icon brands"
                   aria-label="Link to GitHub"
                 >
-                  <span className="label">Github</span>
+                  <FontAwesomeIcon className="react-icon" icon={faGithub} />
                 </a>
               </li>
               <li>
                 <a
                   href="https://linkedin.com/in/mark-saville"
-                  className="icon brands fa-linkedin"
+                  className="icon brands"
                   aria-label="Link to Linkedin"
                 >
-                  <span className="label">Linkedin</span>
+                  <FontAwesomeIcon className="react-icon" icon={faLinkedin} />
                 </a>
               </li>
               <li>
                 <a
                   href="mailto:mark.saville@outlook.com"
-                  className="icon solid fa-envelope"
+                  className="icon solid"
                   aria-label="Send an email"
                 >
-                  <span className="label">Email</span>
+                  <FontAwesomeIcon className="react-icon" icon={faEnvelope} />
                 </a>
               </li>
             </ul>
-            <ul className="copyright">
+            {/* <ul className="copyright">
               <li>
-                {/* Design: <a href="https://html5up.net">HTML5 UP</a> */}
+                Design: <a href="https://html5up.net">HTML5 UP</a>
               </li>
-            </ul>
+            </ul> */}
           </div>
         </footer>
       </header>

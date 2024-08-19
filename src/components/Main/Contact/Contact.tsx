@@ -1,3 +1,10 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import {
+  faEnvelope,
+  faMobileScreen,
+  faDownload,
+} from "@fortawesome/free-solid-svg-icons";
 // Import language-related context and custom hook
 import useLanguageContent from "../../../hooks/useLanguageContent";
 
@@ -26,8 +33,8 @@ export const Contact: React.FC = () => {
             <ul className="labeled-icons">
               <li>
                 {/* Linkedin */}
-                <h3 className="icon brands fa-linkedin">
-                  <span className="label">Linkedin Address</span>
+                <h3 className="icon brands">
+                  <FontAwesomeIcon className="react-icon" icon={faLinkedin} />
                 </h3>
                 {/* Display Linkedin link */}
                 <a
@@ -39,19 +46,19 @@ export const Contact: React.FC = () => {
               </li>
               <li>
                 {/* Phone */}
-                <h3
-                  className="icon solid fa-mobile-alt"
-                  aria-label="My telephone number"
-                >
-                  <span className="label">Phone</span>
+                <h3 className="icon solid" aria-label="My telephone number">
+                  <FontAwesomeIcon
+                    className="react-icon"
+                    icon={faMobileScreen}
+                  />
                 </h3>
                 {/* Display telephone number */}
                 {language?.contact?.Telephone}
               </li>
               <li>
                 {/* Email */}
-                <h3 className="icon solid fa-envelope">
-                  <span className="label">Email</span>
+                <h3 className="icon solid">
+                  <FontAwesomeIcon className="react-icon" icon={faEnvelope} />
                 </h3>
                 {/* Display email address */}
                 <a
@@ -66,11 +73,10 @@ export const Contact: React.FC = () => {
             {/* List of resume download links */}
             <ul className="labeled-icons">
               <li>
-                {/* Developer resume */}
-                <h3 className="icon solid fa-download">
-                  <span className="label">Download</span>
+                <h3 className="icon solid">
+                  <FontAwesomeIcon icon={faDownload} />
                 </h3>
-                {/* Display link to download developer resume */}
+
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
