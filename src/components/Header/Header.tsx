@@ -40,7 +40,7 @@ export const Header = () => {
   const { handleLanguageChange } = useLanguage();
   // Getting language content using custom hook
   const language = useLanguageContent() as Language;
-  const { loading, error } = useGetLanguages();
+  const { loading } = useGetLanguages();
 
   return (
     <>
@@ -76,7 +76,7 @@ export const Header = () => {
           <div>
             {/* Displaying header text */}
             {loading ? (
-              <Skeleton count={3} />
+              <Skeleton count={10} />
             ) : (
               Array.isArray(language?.header?.Text) && (
                 <h1>
