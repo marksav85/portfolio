@@ -29,6 +29,7 @@ image-storage
 # images in dev mode
 public/images/aboutme-icons/*
 public/images/project-images/*
+public/images/og
 
 #unused files
 src/assets/sass
