@@ -71,7 +71,7 @@ export const Contact: React.FC = () => {
             </ul>
 
             {/* List of resume download links */}
-            <ul className="labeled-icons">
+            {/* <ul className="labeled-icons">
               <li>
                 <h3 className="icon solid">
                   <FontAwesomeIcon icon={faDownload} />
@@ -87,7 +87,7 @@ export const Contact: React.FC = () => {
                   {language?.contact?.ResumeDeveloperText}
                 </a>
               </li>
-              {/* <li>
+              <li>
                 
                 <h3 className="icon solid fa-download">
                   <span className="label">Download</span>
@@ -102,8 +102,8 @@ export const Contact: React.FC = () => {
                 >
                   {language?.contact?.ResumeFullText}
                 </a>
-              </li> */}
-            </ul>
+              </li>
+            </ul> */}
           </div>
         </div>
       </section>
