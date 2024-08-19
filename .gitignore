@@ -33,6 +33,7 @@ public/images/og
 
 #unused files
 src/assets/sass
+src/assets/css/fontawesome-all.min.css
 
 # language csv
 src/languages/
