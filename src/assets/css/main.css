@@ -13,6 +13,7 @@
   font-size: 1em;
   font-weight: 400;
   cursor: pointer;
+  height: 50px;
 }
 
 .lang-toggle button {
@@ -2937,7 +2938,8 @@ input[type="button"]:disabled,
   justify-content: space-between;
   background-color: #1f1815;
   background-attachment: scroll, scroll;
-  background-image: url("images/overlay.png"), url("/images/header-bg.jpg");
+  background-image: url("images/overlay-min.png"),
+    url("/images/lg/header-lg.webp");
   background-position: center;
   background-repeat: repeat, no-repeat;
   background-size: cover;
@@ -3413,6 +3415,8 @@ body.is-touch .poptrox-popup .closer {
     background-position: top left, center center;
     background-size: auto, cover;
     left: auto;
+    background-image: url("images/overlay-min.png"),
+      url("/images/sm/header-sm.webp");
     padding: 2em;
     position: relative;
     text-align: center;
@@ -3434,7 +3438,8 @@ body.is-touch .poptrox-popup .closer {
   #footer {
     background-attachment: scroll;
     background-color: #1f1815;
-    background-image: url("images/overlay.png"), url("/images/header-bg.jpg");
+    background-image: url("images/overlay-min.png"),
+      url("/images/sm/header-sm.webp");
     background-position: bottom;
     background-repeat: repeat, no-repeat;
     background-size: auto, cover;

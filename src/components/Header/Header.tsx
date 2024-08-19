@@ -54,35 +54,38 @@ export const Header = () => {
         {/* Main Section */}
         <div className="inner">
           {/* Displaying headshot image */}
-          <a href="#" className="image avatar">
-            <img src="images/headshot.jpg" alt="headshot"></img>
-          </a>
-
-          {/* Displaying header text */}
-          {Array.isArray(language?.header?.Text) && ( // Type check that .map property is array or object
-            <>
-              {language.header?.Text && (
-                <h1>
-                  {language.header.Text.map((paragraph, index) => (
-                    <React.Fragment key={index}>
-                      {paragraph.children.map((child, childIndex) => (
-                        <span
-                          key={childIndex}
-                          style={
-                            child.bold
-                              ? { fontWeight: "400", color: "#fff" }
-                              : undefined
-                          }
-                        >
-                          {child.text}
-                        </span>
-                      ))}
-                    </React.Fragment>
-                  ))}
-                </h1>
-              )}
-            </>
-          )}
+          <div>
+            <a href="#" className="image avatar">
+              <img src="images/headshot.jpg" alt="headshot"></img>
+            </a>
+          </div>
+          <div>
+            {/* Displaying header text */}
+            {Array.isArray(language?.header?.Text) && ( // Type check that .map property is array or object
+              <>
+                {language.header?.Text && (
+                  <h1>
+                    {language.header.Text.map((paragraph, index) => (
+                      <React.Fragment key={index}>
+                        {paragraph.children.map((child, childIndex) => (
+                          <span
+                            key={childIndex}
+                            style={
+                              child.bold
+                                ? { fontWeight: "400", color: "#fff" }
+                                : undefined
+                            }
+                          >
+                            {child.text}
+                          </span>
+                        ))}
+                      </React.Fragment>
+                    ))}
+                  </h1>
+                )}
+              </>
+            )}
+          </div>
         </div>
 
         {/* Display footer links */}
