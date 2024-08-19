@@ -130,6 +130,7 @@ export const Header = () => {
                     aria-label="Link to GitHub"
                   >
                     <FontAwesomeIcon className="react-icon" icon={faGithub} />
+                    <span className="label">Github</span>
                   </a>
                 )}
               </li>
@@ -143,6 +144,7 @@ export const Header = () => {
                     aria-label="Link to Linkedin"
                   >
                     <FontAwesomeIcon className="react-icon" icon={faLinkedin} />
+                    <span className="label">Linkedin</span>
                   </a>
                 )}
               </li>
@@ -156,6 +158,7 @@ export const Header = () => {
                     aria-label="Send an email"
                   >
                     <FontAwesomeIcon className="react-icon" icon={faEnvelope} />
+                    <span className="label">Email</span>
                   </a>
                 )}
               </li>

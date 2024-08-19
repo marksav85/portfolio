@@ -1,5 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
+import {
+  faXTwitter,
+  faGithub,
+  faLinkedin,
+} from "@fortawesome/free-brands-svg-icons";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
 export const Footer = () => {
   return (
@@ -20,27 +25,30 @@ export const Footer = () => {
             <li>
               <a
                 href="https://github.com/marksav85"
-                className="icon brands fa-github"
+                className="icon brands"
                 aria-label="Link to GitHub"
               >
+                <FontAwesomeIcon className="react-icon" icon={faGithub} />
                 <span className="label">Github</span>
               </a>
             </li>
             <li>
               <a
                 href="https://linkedin.com/in/mark-saville"
-                className="icon brands fa-linkedin"
+                className="icon brands"
                 aria-label="Link to Linkedin"
               >
+                <FontAwesomeIcon className="react-icon" icon={faLinkedin} />
                 <span className="label">Linkedin</span>
               </a>
             </li>
             <li>
               <a
                 href="mailto:marksav85@gmail.com?subject=Test%20test&body=This%20is%20a%20test"
-                className="icon solid fa-envelope"
+                className="icon solid"
                 aria-label="Send an email"
               >
+                <FontAwesomeIcon className="react-icon" icon={faEnvelope} />
                 <span className="label">Email</span>
               </a>
             </li>
