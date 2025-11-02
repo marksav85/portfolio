@@ -38,8 +38,11 @@ src/assets/css/fontawesome-all.min.css
 # language csv
 src/languages/
 
-#.env
+#.env vars
+.env.development
+.env.production
 .env
+.env*
 
 # v4
 v4
