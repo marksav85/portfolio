@@ -49,9 +49,9 @@ export const SingleProject: React.FC<SingleProjectProps> = ({
   // const { baseUrl } = useLanguage();
 
   // Construct URL for the project image
-  const imageUrl =
-    language?.projects?.[`Project${projectNumber}`]?.Images?.data[0]?.attributes
-      ?.url;
+  const imageSet = language?.projects?.[`Project${projectNumber}`]?.Images;
+  const primaryImage = Array.isArray(imageSet) ? imageSet[0] : imageSet;
+  const imageUrl = primaryImage?.url ?? "";
 
   return (
     <article className="col-6 col-12-xsmall work-item">

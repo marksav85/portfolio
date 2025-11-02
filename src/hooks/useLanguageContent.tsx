@@ -15,66 +15,91 @@ const useLanguageContent = () => {
     return null;
   }
 
-  // Utility function to safely access localizations
-  const getLocalizationAttributes = (localizations: any) =>
-    localizations?.data?.[0]?.attributes || {};
+  const localeMap: Record<string, string> = {
+    german: "de",
+    english: "en",
+  };
+
+  const targetLocale = localeMap[selectedLanguage] ?? "en";
+
+  const selectLocalized = (entity: any): any => {
+    if (!entity) {
+      return entity;
+    }
+
+    if (Array.isArray(entity)) {
+      const directMatch = entity.find(
+        (item) => item?.locale === targetLocale
+      );
+
+      if (directMatch) {
+        return directMatch;
+      }
+
+      return selectLocalized(entity[0]);
+    }
+
+    if (entity.locale === targetLocale) {
+      return entity;
+    }
+
+    const localizedMatch = entity.localizations?.find(
+      (item: any) => item?.locale === targetLocale
+    );
+
+    return localizedMatch ?? entity;
+  };
+
+  const header = selectLocalized(data.header);
+  const profile = selectLocalized(data.profile);
+  const work = selectLocalized(data.work);
+  const projects = selectLocalized(data.projects);
+  const contact = selectLocalized(data.contact);
+  const reference = selectLocalized(data.reference);
+  const labelsEntry = selectLocalized(data.labels);
+  const referenceListEntry = selectLocalized(data.referenceLists);
+  const skillsTables = data.skillsTables ?? [];
 
   // Switch statement to determine the language content based on the selected language
   switch (selectedLanguage) {
     case "german":
       return {
-        header: getLocalizationAttributes(
-          data.header.data.attributes.localizations
-        ),
-        profile: getLocalizationAttributes(
-          data.profile.data.attributes.localizations
-        ),
-        skillsTables: data.skillsTables.data,
-        work: getLocalizationAttributes(
-          data.work.data.attributes.localizations
-        ),
-        labels: getLocalizationAttributes(
-          data.labels.data[0].attributes.localizations
-        ),
-        projects: getLocalizationAttributes(
-          data.projects.data[0].attributes.localizations
-        ),
-        contact: getLocalizationAttributes(
-          data.contact.data.attributes.localizations
-        ),
-        reference: getLocalizationAttributes(
-          data.reference.data.attributes.localizations
-        ),
-        referenceLists: getLocalizationAttributes(
-          data.referenceLists.data[0].attributes.localizations
-        ),
+        header,
+        profile,
+        skillsTables,
+        work,
+        labels: labelsEntry,
+        projects,
+        contact,
+        reference,
+        referenceLists: referenceListEntry,
       }; // German
     case "english":
       return (
         data && {
-          header: data.header.data.attributes,
-          profile: data.profile.data.attributes,
-          skillsTables: data.skillsTables.data,
-          work: data.work.data.attributes,
-          labels: data.labels.data[0].attributes,
-          projects: data.projects.data[0].attributes,
-          contact: data.contact.data.attributes,
-          reference: data.reference.data.attributes,
-          referenceLists: data.referenceLists.data[0].attributes,
+          header,
+          profile,
+          skillsTables,
+          work,
+          labels: labelsEntry,
+          projects,
+          contact,
+          reference,
+          referenceLists: referenceListEntry,
         }
       ); // English
     default:
       return (
         data && {
-          header: data.header.data.attributes,
-          profile: data.profile.data.attributes,
-          skillsTables: data.skillsTables.data,
-          work: data.work.data.attributes,
-          labels: data.labels.data[0].attributes,
-          projects: data.projects.data[0].attributes,
-          contact: data.contact.data.attributes,
-          reference: data.reference.data.attributes,
-          referenceLists: data.referenceLists.data[0].attributes,
+          header,
+          profile,
+          skillsTables,
+          work,
+          labels: labelsEntry,
+          projects,
+          contact,
+          reference,
+          referenceLists: referenceListEntry,
         }
       ); // Default to German if the language is not recognized
   }

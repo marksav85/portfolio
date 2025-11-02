@@ -24,23 +24,32 @@ export const About = () => {
           </thead>
           <tbody>
             {/* Map over skills tables data and render each skill */}
-            {language?.skillsTables?.map((skill: any, index: number) => (
-              <tr key={index}>
-                {/* Display technology name */}
-                <td>{skill.attributes.Column1}</td>
-                <td>
-                  {/* Display technology icon */}
-                  <img
-                    src={skill.attributes.Column2.data.attributes.url}
-                    alt={
-                      skill.attributes.Column2.data.attributes.alternativeText
-                    }
-                  />
-                </td>
-                {/* Display expertise level */}
-                <td>{`${skill.attributes.Column3}/5`}</td>
-              </tr>
-            ))}
+            {language?.skillsTables?.map((skill: any, index: number) => {
+              const columnMedia = skill.Column2;
+              const iconObject = Array.isArray(columnMedia)
+                ? columnMedia[0]
+                : columnMedia;
+              const iconSrc = iconObject?.url ?? "";
+              const iconAlt = iconObject?.alternativeText ?? "";
+
+              return (
+                <tr key={index}>
+                  {/* Display technology name */}
+                  <td>{skill.Column1}</td>
+                  <td>
+                    {/* Display technology icon */}
+                    {iconSrc && (
+                      <img
+                        src={iconSrc}
+                        alt={iconAlt}
+                      />
+                    )}
+                  </td>
+                  {/* Display expertise level */}
+                  <td>{`${skill.Column3}/5`}</td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>

@@ -21,21 +21,16 @@ export const ImageModal: React.FC<ImageModalProps> = ({
   // Base URL for resume links
   // const { baseUrl } = useLanguage();
 
-  // Construct URLs for project images
-  const image1Url =
-    language?.projects?.[`Project${projectNumber}`]?.Images?.data[0]?.attributes
-      ?.url;
-  const image2Url =
-    language?.projects?.[`Project${projectNumber}`]?.Images?.data[1]?.attributes
-      ?.url;
-  const image3Url =
-    language?.projects?.[`Project${projectNumber}`]?.Images?.data[2]?.attributes
-      ?.url;
+  const imageSet = language?.projects?.[`Project${projectNumber}`]?.Images;
+  const normalizedImages = Array.isArray(imageSet)
+    ? imageSet
+    : imageSet
+    ? [imageSet]
+    : [];
 
-  // Complete URLs for project images
-  const firstImage = image1Url;
-  const secondImage = image2Url;
-  const thirdImage = image3Url;
+  const firstImage = normalizedImages[0]?.url ?? "";
+  const secondImage = normalizedImages[1]?.url ?? "";
+  const thirdImage = normalizedImages[2]?.url ?? "";
 
   return (
     // Modal component to display project images

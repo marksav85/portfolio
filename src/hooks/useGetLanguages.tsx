@@ -1,20 +1,40 @@
 import { useState, useEffect } from "react";
 import { useQuery, gql } from "@apollo/client";
 
-// Interfaces for the fetched data
 interface ImageAttributes {
   name: string;
   alternativeText: string;
   url: string;
 }
 
-interface LocalizationAttributes<T> {
-  data: Array<{
-    attributes: T;
-  }>;
+interface LocalizationMeta {
+  locale?: string;
+  documentId?: string;
 }
 
-interface ProfileAttributes {
+type Localized<T> = T & LocalizationMeta & {
+  localizations?: Array<T & LocalizationMeta>;
+};
+
+interface RichTextChild {
+  text?: string;
+  bold?: boolean;
+  type?: string;
+}
+
+interface RichTextParagraph {
+  type: string;
+  children: RichTextChild[];
+}
+
+type MediaRelation = ImageAttributes | ImageAttributes[] | null | undefined;
+
+type HeaderContent = Localized<{
+  Button: string;
+  Text: RichTextParagraph[];
+}>;
+
+type ProfileContent = Localized<{
   Title: string;
   Text: string;
   skillsTitle: string;
@@ -22,155 +42,95 @@ interface ProfileAttributes {
   tableExpertise: string;
   buttonShow: string;
   buttonHide: string;
-  localizations?: LocalizationAttributes<ProfileAttributes>;
+}>;
+
+interface SkillsTableEntry {
+  Column1: string;
+  Column2: MediaRelation;
+  Column3: string;
 }
 
-interface ProjectData {
-  attributes: {
-    [key: string]: any;
-    localizations?: LocalizationAttributes<{ [key: string]: any }> | undefined;
+type WorkContent = Localized<{
+  Title: string;
+  Button: string;
+}>;
+
+type LabelsContent = Localized<{
+  Process: string;
+  Description: string;
+  Technologies: string;
+  Homepage: string;
+  Repository: string;
+  buttonShow: string;
+  buttonHide: string;
+}>;
+
+type ProjectEntry = {
+  Intro?: string;
+  Text?: string;
+  TextBlock?: RichTextParagraph[];
+  Title?: string;
+  Technologies?: string;
+  Repository?: string;
+  Homepage?: string;
+  hasHomepage?: boolean;
+  Images?: MediaRelation;
+};
+
+type ProjectSet = Localized<{
+  Project1?: ProjectEntry;
+  Project2?: ProjectEntry;
+  Project3?: ProjectEntry;
+  Project4?: ProjectEntry;
+  Project5?: ProjectEntry;
+  Project6?: ProjectEntry;
+  Project7?: ProjectEntry;
+  Project8?: ProjectEntry;
+  Project9?: ProjectEntry;
+  Project10?: ProjectEntry;
+}>;
+
+type ContactContent = Localized<{
+  Title: string;
+  Subtitle: string;
+  Linkedin: string;
+  Telephone: string;
+  Email: string;
+  ResumeFullText: string | null;
+  ResumeFullLink: string | null;
+  ResumeDeveloperText: string | null;
+  ResumeDeveloperLink: string | null;
+}>;
+
+type ReferenceContent = Localized<{
+  Title: string;
+}>;
+
+type ReferenceListContent = Localized<{
+  ReferenceList: {
+    Quote: RichTextParagraph[];
+    Text: string;
+    Link: string;
+    LinkText: string;
+    Image: ImageAttributes | ImageAttributes[] | null;
   };
-}
+}>;
 
 interface LanguageData {
-  header: {
-    data: {
-      attributes: {
-        Button: string;
-        Text: string;
-        localizations?: LocalizationAttributes<{
-          Button: string;
-          Text: string;
-        }>;
-      };
-    };
-  };
-  profile: {
-    data: {
-      attributes: ProfileAttributes;
-    };
-  };
-  skillsTables: {
-    data: {
-      attributes: {
-        Column1: string;
-        Column2: {
-          data: {
-            attributes: ImageAttributes;
-          }[];
-        };
-        Column3: string;
-      };
-    }[];
-  };
-  work: {
-    data: {
-      attributes: {
-        Title: string;
-        Button: string;
-        localizations?: LocalizationAttributes<{
-          Title: string;
-          Button: string;
-        }>;
-      };
-    };
-  };
-  labels: {
-    data: {
-      attributes: {
-        Process: string;
-        Description: string;
-        Technologies: string;
-        Homepage: string;
-        Repository: string;
-        buttonShow: string;
-        buttonHide: string;
-        localizations?: LocalizationAttributes<{
-          Process: string;
-          Description: string;
-          Technologies: string;
-          Homepage: string;
-          Repository: string;
-          buttonShow: string;
-          buttonHide: string;
-        }>;
-      };
-    }[];
-  };
-  projects: {
-    data: ProjectData[];
-  };
-  contact: {
-    data: {
-      attributes: {
-        Title: string;
-        Subtitle: string;
-        Linkedin: string;
-        Telephone: string;
-        Email: string;
-        ResumeFullText: string;
-        ResumeFullLink: string;
-        ResumeDeveloperText: string;
-        ResumeDeveloperLink: string;
-        localizations?: LocalizationAttributes<{
-          Title: string;
-          Subtitle: string;
-          Linkedin: string;
-          Telephone: string;
-          Email: string;
-          ResumeFullText: string;
-          ResumeFullLink: string;
-          ResumeDeveloperText: string;
-          ResumeDeveloperLink: string;
-        }>;
-      };
-    };
-  };
-  reference: {
-    data: {
-      attributes: {
-        Title: string;
-        localizations?: LocalizationAttributes<{ Title: string }>;
-      };
-    };
-  };
-  referenceLists: {
-    data: {
-      attributes: {
-        ReferenceList: {
-          Quote: string;
-          Text: string;
-          Link: string;
-          LinkText: string;
-          Image: {
-            data: {
-              attributes: ImageAttributes;
-            };
-          };
-        };
-        localizations?: LocalizationAttributes<{
-          ReferenceList: {
-            Quote: string;
-            Text: string;
-            Link: string;
-            LinkText: string;
-            Image: {
-              data: {
-                attributes: ImageAttributes;
-              };
-            };
-          };
-        }>;
-      };
-    }[];
-  };
+  header: HeaderContent;
+  profile: ProfileContent;
+  skillsTables: SkillsTableEntry[] | null;
+  work: WorkContent;
+  labels: LabelsContent[] | null;
+  projects: ProjectSet[] | null;
+  contact: ContactContent;
+  reference: ReferenceContent;
+  referenceLists: ReferenceListContent[] | null;
 }
 
 interface LanguageError {
   message: string;
 }
-
-// Define the project attributes to query
 
 const projectAttributes = `
   Intro
@@ -182,289 +142,223 @@ const projectAttributes = `
   Homepage
   hasHomepage
   Images {
-    data {
-      attributes {
+    name
+    alternativeText
+    url
+  }
+`;
+
+const GET_LANGUAGES = gql`
+  query GetLanguages {
+    header {
+      Button
+      Text
+      locale
+      documentId
+      localizations {
+        Button
+        Text
+        locale
+        documentId
+      }
+    }
+    profile {
+      Title
+      Text
+      skillsTitle
+      tableTech
+      tableExpertise
+      buttonShow
+      buttonHide
+      locale
+      documentId
+      localizations {
+        Title
+        Text
+        skillsTitle
+        tableTech
+        tableExpertise
+        buttonShow
+        buttonHide
+        locale
+        documentId
+      }
+    }
+    skillsTables(sort: "Column3:desc", pagination: { limit: 100 }) {
+      Column1
+      Column2 {
         name
         alternativeText
         url
       }
+      Column3
     }
-  }
-`;
-
-// Define the GraphQL query
-const GET_LANGUAGES = gql`
-  query GetLanguages {
-    # Query for HEADER data
-    header {
-      data {
-        attributes {
-          Button
-          Text
-          localizations {
-            data {
-              attributes {
-                Button
-                Text
-              }
-            }
-          }
-        }
-      }
-    }
-    # Query for PROFILE data
-    profile {
-      data {
-        attributes {
-          Title
-          Text
-          skillsTitle
-          tableTech
-          tableExpertise
-          buttonShow
-          buttonHide
-          localizations {
-            data {
-              attributes {
-                Title
-                Text
-                skillsTitle
-                tableTech
-                tableExpertise
-                buttonShow
-                buttonHide
-              }
-            }
-          }
-        }
-      }
-    }
-    # Query for SKILLS TABLE data
-    skillsTables(sort: "Column3:desc", pagination: { limit: 100 }) {
-      data {
-        attributes {
-          Column1
-          Column2 {
-            data {
-              attributes {
-                name
-                alternativeText
-                url
-              }
-            }
-          }
-          Column3
-        }
-      }
-    }
-    # Query for WORK data
     work {
-      data {
-        attributes {
-          Title
-          Button
-          localizations {
-            data {
-              attributes {
-                Title
-                Button
-              }
-            }
-          }
-        }
+      Title
+      Button
+      locale
+      documentId
+      localizations {
+        Title
+        Button
+        locale
+        documentId
       }
     }
-    #Query for LABELS data
     labels {
-      data {
-        attributes {
-          Process
-          Description
-          Technologies
-          Homepage
-          Repository
-          buttonShow
-          buttonHide
-          localizations {
-          data {
-            attributes {
-              Process
-              Description
-              Technologies
-              Homepage
-              Repository
-              buttonShow
-              buttonHide
-              }
-            }
-          }
-        }
+      Process
+      Description
+      Technologies
+      Homepage
+      Repository
+      buttonShow
+      buttonHide
+      locale
+      documentId
+      localizations {
+        Process
+        Description
+        Technologies
+        Homepage
+        Repository
+        buttonShow
+        buttonHide
+        locale
+        documentId
       }
     }
-
-    #Query for PROJECTS data
     projects {
-      data {
-        attributes {
-          Project1 {
-            ${projectAttributes}
-          }
-          Project2 {
-            ${projectAttributes}
-          }
-          Project3 {
-            ${projectAttributes}
-          }
-          Project4 {
-            ${projectAttributes}
-          }
-          Project5 {
-            ${projectAttributes}
-          }
-          Project6 {
-            ${projectAttributes}
-          }
-          Project7 {
-            ${projectAttributes}
-          }
-          Project8 {
-            ${projectAttributes}
-          }
-          Project9 {
-            ${projectAttributes}
-          }
-          Project10 {
-            ${projectAttributes}
-          }
-          localizations {
-            data {
-              attributes {
-                Project1 {
-                  ${projectAttributes}
-                }
-                Project2 {
-                  ${projectAttributes}
-                }
-                Project3 {
-                  ${projectAttributes}
-                }
-                Project4 {
-                  ${projectAttributes}
-                }
-                Project5 {
-                  ${projectAttributes}
-                }
-                Project6 {
-                  ${projectAttributes}
-                }
-                Project7 {
-                  ${projectAttributes}
-                }
-                Project8 {
-                  ${projectAttributes}
-                }
-                Project9 {
-                  ${projectAttributes}
-                }
-                Project10 {
-                  ${projectAttributes}
-                }     
-              }
-            }
-          }
+      Project1 {
+        ${projectAttributes}
+      }
+      Project2 {
+        ${projectAttributes}
+      }
+      Project3 {
+        ${projectAttributes}
+      }
+      Project4 {
+        ${projectAttributes}
+      }
+      Project5 {
+        ${projectAttributes}
+      }
+      Project6 {
+        ${projectAttributes}
+      }
+      Project7 {
+        ${projectAttributes}
+      }
+      Project8 {
+        ${projectAttributes}
+      }
+      Project9 {
+        ${projectAttributes}
+      }
+      Project10 {
+        ${projectAttributes}
+      }
+      locale
+      documentId
+      localizations {
+        Project1 {
+          ${projectAttributes}
         }
+        Project2 {
+          ${projectAttributes}
+        }
+        Project3 {
+          ${projectAttributes}
+        }
+        Project4 {
+          ${projectAttributes}
+        }
+        Project5 {
+          ${projectAttributes}
+        }
+        Project6 {
+          ${projectAttributes}
+        }
+        Project7 {
+          ${projectAttributes}
+        }
+        Project8 {
+          ${projectAttributes}
+        }
+        Project9 {
+          ${projectAttributes}
+        }
+        Project10 {
+          ${projectAttributes}
+        }
+        locale
+        documentId
       }
     }
-
-    # Query for CONTACTS data
     contact {
-      data {
-        attributes {
-          Title
-          Subtitle
-          Linkedin
-          Telephone
-          Email
-          ResumeFullText
-          ResumeFullLink 
-          ResumeDeveloperText
-          ResumeDeveloperLink 
-          localizations {
-            data {
-              attributes {
-                Title
-                Subtitle
-                Linkedin
-                Telephone
-                Email
-                ResumeFullText
-                ResumeFullLink 
-                ResumeDeveloperText
-                ResumeDeveloperLink 
-              }
-            }
-          }
-        }
+      Title
+      Subtitle
+      Linkedin
+      Telephone
+      Email
+      ResumeFullText
+      ResumeFullLink
+      ResumeDeveloperText
+      ResumeDeveloperLink
+      locale
+      documentId
+      localizations {
+        Title
+        Subtitle
+        Linkedin
+        Telephone
+        Email
+        ResumeFullText
+        ResumeFullLink
+        ResumeDeveloperText
+        ResumeDeveloperLink
+        locale
+        documentId
       }
     }
-
-    #Query for REFERENCE data
     reference {
-      data {
-        attributes {
-          Title
-          localizations {
-            data {
-              attributes {
-                Title
-              }
-            }
-          }
-        }
+      Title
+      locale
+      documentId
+      localizations {
+        Title
+        locale
+        documentId
       }
     }
-
-    # Query for REFERENCELIST data
     referenceLists {
-      data {
-        attributes {
-          ReferenceList {
-            Quote
-            Text
-            Link
-            LinkText
-            Image {
-              data {
-                attributes {
-                  name
-                  alternativeText
-                  url
-                }
-              }
-            }
-          }
-          localizations {
-            data {
-              attributes {
-                ReferenceList {
-                  Quote
-                  Text
-                  Link
-                  LinkText
-                  Image {
-                    data {
-                      attributes {
-                        name
-                        alternativeText
-                        url
-                      }
-                    }
-                  }
-                }
-              }
-            }
+      ReferenceList {
+        Quote
+        Text
+        Link
+        LinkText
+        Image {
+          name
+          alternativeText
+          url
+        }
+      }
+      locale
+      documentId
+      localizations {
+        ReferenceList {
+          Quote
+          Text
+          Link
+          LinkText
+          Image {
+            name
+            alternativeText
+            url
           }
         }
+        locale
+        documentId
       }
     }
   }

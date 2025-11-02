@@ -16,42 +16,50 @@ export default function SingleReference() {
         {/* Map over reference list items and render each reference */}
         {language &&
           Object.values(language?.referenceLists?.ReferenceList).map(
-            (reference: any, index: number) => (
-              <Carousel.Item key={index} className="carousel-item">
-                {/* Reference quote */}
-                <div>
-                  <blockquote>
-                    {/* Display reference quote */}
-                    &quot;{reference.Quote[0].children[0].text}&quot;
-                  </blockquote>
-                </div>
-                {/* Reference text */}
-                <div>
-                  {/* Display reference text */}
-                  <p>{reference.Text}</p>
-                </div>
-                {/* Reference image */}
-                <div className="reference-image-container">
-                  {/* Display reference image */}
-                  <img
-                    className="d-block img-fluid reference-image"
-                    src={reference.Image.data.attributes.url}
-                    alt={reference.Image.data.attributes.alternativeText}
-                  />
-                </div>
-                {/* Reference caption */}
-                <div className="reference-caption">
-                  {/* Display reference link */}
-                  <a
-                    href={reference.Link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {reference.LinkText}
-                  </a>
-                </div>
-              </Carousel.Item>
-            )
+            (reference: any, index: number) => {
+              const imageSource = Array.isArray(reference.Image)
+                ? reference.Image[0]
+                : reference.Image;
+
+              return (
+                <Carousel.Item key={index} className="carousel-item">
+                  {/* Reference quote */}
+                  <div>
+                    <blockquote>
+                      {/* Display reference quote */}
+                      &quot;{reference.Quote[0].children[0].text}&quot;
+                    </blockquote>
+                  </div>
+                  {/* Reference text */}
+                  <div>
+                    {/* Display reference text */}
+                    <p>{reference.Text}</p>
+                  </div>
+                  {/* Reference image */}
+                  <div className="reference-image-container">
+                    {/* Display reference image */}
+                    {imageSource?.url && (
+                      <img
+                        className="d-block img-fluid reference-image"
+                        src={imageSource.url}
+                        alt={imageSource.alternativeText ?? ""}
+                      />
+                    )}
+                  </div>
+                  {/* Reference caption */}
+                  <div className="reference-caption">
+                    {/* Display reference link */}
+                    <a
+                      href={reference.Link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {reference.LinkText}
+                    </a>
+                  </div>
+                </Carousel.Item>
+              );
+            }
           )}
       </Carousel>
     </>
