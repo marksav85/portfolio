@@ -98,7 +98,7 @@ export const SingleProject: React.FC<SingleProjectProps> = ({
                   <p>{paragraph.children[0].text}</p>
                   <br />
                 </div>
-              ) : null
+              ) : null,
           )}
 
           <br />
@@ -133,10 +133,10 @@ export const SingleProject: React.FC<SingleProjectProps> = ({
         </div>
 
         {/* Display project homepage */}
-        <div className="project-homepage">
+        {/* <div className="project-homepage">
           <p>
             {language?.labels?.Homepage}
-            {/* Display project homepage link or text */}
+            
             {language?.projects?.[`Project${projectNumber}`]?.hasHomepage ===
             false ? (
               <span>
@@ -150,20 +150,20 @@ export const SingleProject: React.FC<SingleProjectProps> = ({
               </a>
             )}
           </p>
-        </div>
+        </div> */}
 
         {/* Display project repository */}
-        <div className="project-repository">
+        {/* <div className="project-repository">
           <p>
             {language?.labels?.Repository}
-            {/* Display project repository link */}
+            
             <a
               href={language?.projects?.[`Project${projectNumber}`]?.Repository}
             >
               {language?.projects?.[`Project${projectNumber}`]?.Title}
             </a>
           </p>
-        </div>
+        </div> */}
       </div>
     </article>
   );

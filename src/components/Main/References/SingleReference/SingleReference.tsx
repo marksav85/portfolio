@@ -49,17 +49,18 @@ export default function SingleReference() {
                   {/* Reference caption */}
                   <div className="reference-caption">
                     {/* Display reference link */}
-                    <a
+                    {/* <a
                       href={reference.Link}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
                       {reference.LinkText}
-                    </a>
+                    </a> */}
+                    <p>{reference.LinkText}</p>
                   </div>
                 </Carousel.Item>
               );
-            }
+            },
           )}
       </Carousel>
     </>
