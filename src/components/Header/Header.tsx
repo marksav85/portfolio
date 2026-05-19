@@ -106,7 +106,7 @@ export const Header = () => {
         <footer id="footer" className="footer-top">
           <div className="inner">
             <ul className="icons">
-              <li>
+              {/* <li>
                 {loading ? (
                   <Skeleton width={24} height={24} circle={true} />
                 ) : (
@@ -119,7 +119,7 @@ export const Header = () => {
                     <span className="label">Twitter</span>
                   </a>
                 )}
-              </li>
+              </li> */}
               <li>
                 {loading ? (
                   <Skeleton width={24} height={24} circle={true} />
@@ -153,7 +153,7 @@ export const Header = () => {
                   <Skeleton width={24} height={24} circle={true} />
                 ) : (
                   <a
-                    href="mailto:mark.saville@outlook.com"
+                    href="mailto:contact@marksavilledesigns.com"
                     className="icon solid"
                     aria-label="Send an email"
                   >

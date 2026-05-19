@@ -44,17 +44,17 @@ export const Contact: React.FC = () => {
                   <span className="label">{language?.contact?.Linkedin}</span>
                 </a>
               </li>
-              <li>
-                {/* Phone */}
+              {/*  <li>
+               
                 <h3 className="icon solid" aria-label="My telephone number">
                   <FontAwesomeIcon
                     className="react-icon"
                     icon={faMobileScreen}
                   />
                 </h3>
-                {/* Display telephone number */}
+                
                 {language?.contact?.Telephone}
-              </li>
+              </li> */}
               <li>
                 {/* Email */}
                 <h3 className="icon solid">
@@ -62,7 +62,7 @@ export const Contact: React.FC = () => {
                 </h3>
                 {/* Display email address */}
                 <a
-                  href="mailto:mark.saville@outlook.com"
+                  href="mailto:contact@marksavilledesigns.com"
                   aria-label="Send an email"
                 >
                   {language?.contact?.Email}
