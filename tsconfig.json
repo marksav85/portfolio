@@ -14,7 +14,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
-    "types": ["vite-plugin-ssr/env"]
+    "types": ["vite/client"]
   },
   "include": ["src"],
   "exclude": ["node_modules", "**/*.js"]

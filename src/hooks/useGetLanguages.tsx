@@ -1,40 +1,25 @@
-import { useState, useEffect } from "react";
+import { useMemo } from "react";
 import { useQuery, gql } from "@apollo/client";
+import { useLanguage } from "../context/LanguageContext";
+
+interface Entity<T> { id: string; attributes: T }
+interface SingleResponse<T> { data: Entity<T> | null }
+interface CollectionResponse<T> { data: Entity<T>[] }
 
 interface ImageAttributes {
   name: string;
-  alternativeText: string;
+  alternativeText: string | null;
   url: string;
 }
+interface LocalizationMeta { id?: string; locale: string }
+interface RichTextChild { text: string; bold?: boolean; type: string }
+interface RichTextParagraph { type: string; children: RichTextChild[] }
 
-interface LocalizationMeta {
-  locale?: string;
-  documentId?: string;
-}
-
-type Localized<T> = T & LocalizationMeta & {
-  localizations?: Array<T & LocalizationMeta>;
-};
-
-interface RichTextChild {
-  text?: string;
-  bold?: boolean;
-  type?: string;
-}
-
-interface RichTextParagraph {
-  type: string;
-  children: RichTextChild[];
-}
-
-type MediaRelation = ImageAttributes | ImageAttributes[] | null | undefined;
-
-type HeaderContent = Localized<{
+interface HeaderContent extends LocalizationMeta {
   Button: string;
   Text: RichTextParagraph[];
-}>;
-
-type ProfileContent = Localized<{
+}
+interface ProfileContent extends LocalizationMeta {
   Title: string;
   Text: string;
   skillsTitle: string;
@@ -42,20 +27,15 @@ type ProfileContent = Localized<{
   tableExpertise: string;
   buttonShow: string;
   buttonHide: string;
-}>;
-
-interface SkillsTableEntry {
-  Column1: string;
-  Column2: MediaRelation;
-  Column3: string;
 }
-
-type WorkContent = Localized<{
-  Title: string;
-  Button: string;
-}>;
-
-type LabelsContent = Localized<{
+interface SkillsTableEntry {
+  id?: string;
+  Column1: string;
+  Column2: ImageAttributes | null;
+  Column3: number;
+}
+interface WorkContent extends LocalizationMeta { Title: string; Button: string }
+interface LabelsContent extends LocalizationMeta {
   Process: string;
   Description: string;
   Technologies: string;
@@ -63,34 +43,22 @@ type LabelsContent = Localized<{
   Repository: string;
   buttonShow: string;
   buttonHide: string;
-}>;
-
-type ProjectEntry = {
-  Intro?: string;
-  Text?: string;
-  TextBlock?: RichTextParagraph[];
-  Title?: string;
-  Technologies?: string;
-  Repository?: string;
-  Homepage?: string;
-  hasHomepage?: boolean;
-  Images?: MediaRelation;
-};
-
-type ProjectSet = Localized<{
-  Project1?: ProjectEntry;
-  Project2?: ProjectEntry;
-  Project3?: ProjectEntry;
-  Project4?: ProjectEntry;
-  Project5?: ProjectEntry;
-  Project6?: ProjectEntry;
-  Project7?: ProjectEntry;
-  Project8?: ProjectEntry;
-  Project9?: ProjectEntry;
-  Project10?: ProjectEntry;
-}>;
-
-type ContactContent = Localized<{
+}
+interface ProjectEntry {
+  id: string;
+  Intro: string | null;
+  Text: string | null;
+  TextBlock: RichTextParagraph[] | null;
+  Title: string | null;
+  Technologies: string | null;
+  Repository: string | null;
+  Homepage: string | null;
+  hasHomepage: boolean | null;
+  Images: ImageAttributes[];
+}
+type ProjectSet = LocalizationMeta &
+  Partial<Record<`Project${number}`, ProjectEntry | null>>;
+interface ContactContent extends LocalizationMeta {
   Title: string;
   Subtitle: string;
   Linkedin: string;
@@ -100,300 +68,171 @@ type ContactContent = Localized<{
   ResumeFullLink: string | null;
   ResumeDeveloperText: string | null;
   ResumeDeveloperLink: string | null;
-}>;
-
-type ReferenceContent = Localized<{
-  Title: string;
-}>;
-
-type ReferenceListContent = Localized<{
-  ReferenceList: {
-    Quote: RichTextParagraph[];
-    Text: string;
-    Link: string;
-    LinkText: string;
-    Image: ImageAttributes | ImageAttributes[] | null;
-  };
-}>;
-
-interface LanguageData {
-  header: HeaderContent;
-  profile: ProfileContent;
-  skillsTables: SkillsTableEntry[] | null;
-  work: WorkContent;
-  labels: LabelsContent[] | null;
-  projects: ProjectSet[] | null;
-  contact: ContactContent;
-  reference: ReferenceContent;
-  referenceLists: ReferenceListContent[] | null;
+}
+interface ReferenceContent extends LocalizationMeta { Title: string }
+interface ReferenceEntry {
+  id: string;
+  Quote: RichTextParagraph[];
+  Text: string;
+  Link: string;
+  LinkText: string;
+  Image: ImageAttributes | null;
+}
+interface ReferenceListContent extends LocalizationMeta {
+  ReferenceList: ReferenceEntry[];
+}
+interface LanguageContent {
+  header: HeaderContent | null;
+  profile: ProfileContent | null;
+  skillsTables: SkillsTableEntry[];
+  work: WorkContent | null;
+  labels: LabelsContent | null;
+  projects: ProjectSet | null;
+  contact: ContactContent | null;
+  reference: ReferenceContent | null;
+  referenceLists: ReferenceListContent;
 }
 
-interface LanguageError {
-  message: string;
+type RawProject = Omit<ProjectEntry, "Images"> & {
+  Images: CollectionResponse<ImageAttributes>;
+};
+type RawProjectSet = LocalizationMeta &
+  Partial<Record<`Project${number}`, RawProject | null>>;
+type RawSkill = Omit<SkillsTableEntry, "Column2"> & {
+  Column2: SingleResponse<ImageAttributes>;
+};
+type RawReference = Omit<ReferenceEntry, "Image"> & {
+  Image: SingleResponse<ImageAttributes>;
+};
+export interface RawLanguageData {
+  header: SingleResponse<HeaderContent>;
+  profile: SingleResponse<ProfileContent>;
+  skillsTables: CollectionResponse<RawSkill>;
+  work: SingleResponse<WorkContent>;
+  labels: CollectionResponse<LabelsContent>;
+  projects: CollectionResponse<RawProjectSet>;
+  contact: SingleResponse<ContactContent>;
+  reference: SingleResponse<ReferenceContent>;
+  referenceLists: CollectionResponse<LocalizationMeta & { ReferenceList: RawReference[] }>;
 }
 
-const projectAttributes = `
-  Intro
-  Text
-  TextBlock
-  Title
-  Technologies
-  Repository
-  Homepage
-  hasHomepage
-  Images {
-    name
-    alternativeText
-    url
-  }
-`;
+function unwrapEntity<T>(entity: Entity<T> | null): (T & { id: string }) | null {
+  return entity ? { ...entity.attributes, id: entity.id } : null;
+}
+function unwrapCollection<T>(response: CollectionResponse<T>): (T & { id: string })[] {
+  return response.data.map((entity) => ({ ...entity.attributes, id: entity.id }));
+}
 
-const GET_LANGUAGES = gql`
-  query GetLanguages {
-    header {
-      Button
-      Text
-      locale
-      documentId
-      localizations {
-        Button
-        Text
-        locale
-        documentId
+// Components stay flat; only entity and media response envelopes are unwrapped.
+export function adaptLanguageData(raw: RawLanguageData): LanguageContent {
+  const projectSet = unwrapEntity(raw.projects.data[0] ?? null);
+  let projects: ProjectSet | null = null;
+  if (projectSet) {
+    projects = { id: projectSet.id, locale: projectSet.locale };
+    for (let number = 1; number <= 10; number++) {
+      const key = `Project${number}` as const;
+      const component = projectSet[key];
+      if (component) {
+        projects[key] = { ...component, Images: unwrapCollection(component.Images) };
       }
     }
-    profile {
-      Title
-      Text
-      skillsTitle
-      tableTech
-      tableExpertise
-      buttonShow
-      buttonHide
-      locale
-      documentId
-      localizations {
-        Title
-        Text
-        skillsTitle
-        tableTech
-        tableExpertise
-        buttonShow
-        buttonHide
-        locale
-        documentId
-      }
+  }
+  const referenceList = unwrapEntity(raw.referenceLists.data[0] ?? null);
+  return {
+    header: unwrapEntity(raw.header.data),
+    profile: unwrapEntity(raw.profile.data),
+    work: unwrapEntity(raw.work.data),
+    contact: unwrapEntity(raw.contact.data),
+    reference: unwrapEntity(raw.reference.data),
+    labels: unwrapEntity(raw.labels.data[0] ?? null),
+    projects,
+    skillsTables: unwrapCollection(raw.skillsTables).map((skill) => ({
+      ...skill, Column2: unwrapEntity(skill.Column2.data),
+    })),
+    referenceLists: referenceList ? {
+      ...referenceList,
+      ReferenceList: referenceList.ReferenceList.map((reference) => ({
+        ...reference, Image: unwrapEntity(reference.Image.data),
+      })),
+    } : { locale: raw.header.data?.attributes.locale ?? "", ReferenceList: [] },
+  };
+}
+
+export const GET_LANGUAGES = gql`
+  fragment PortfolioImage on UploadFileEntity {
+    id
+    attributes { name alternativeText url }
+  }
+  fragment PortfolioProject on ComponentProjectsProject1 {
+    id
+    Intro Text TextBlock Title Technologies Repository Homepage hasHomepage
+    Images { data { ...PortfolioImage } }
+  }
+  query GetLanguages($locale: I18NLocaleCode!) {
+    header(locale: $locale) {
+      data { id attributes { Button Text locale } }
+    }
+    profile(locale: $locale) {
+      data { id attributes {
+        Title Text skillsTitle tableTech tableExpertise buttonShow buttonHide locale
+      } }
     }
     skillsTables(sort: "Column3:desc", pagination: { limit: 100 }) {
-      Column1
-      Column2 {
-        name
-        alternativeText
-        url
-      }
-      Column3
+      data { id attributes {
+        Column1 Column3 Column2 { data { ...PortfolioImage } }
+      } }
     }
-    work {
-      Title
-      Button
-      locale
-      documentId
-      localizations {
-        Title
-        Button
+    work(locale: $locale) {
+      data { id attributes { Title Button locale } }
+    }
+    labels(locale: $locale) {
+      data { id attributes {
+        Process Description Technologies Homepage Repository buttonShow buttonHide locale
+      } }
+    }
+    projects(locale: $locale) {
+      data { id attributes {
         locale
-        documentId
-      }
+        Project1 { ...PortfolioProject }
+        Project2 { ...PortfolioProject }
+        Project3 { ...PortfolioProject }
+        Project4 { ...PortfolioProject }
+        Project5 { ...PortfolioProject }
+        Project6 { ...PortfolioProject }
+        Project7 { ...PortfolioProject }
+        Project8 { ...PortfolioProject }
+        Project9 { ...PortfolioProject }
+        Project10 { ...PortfolioProject }
+      } }
     }
-    labels {
-      Process
-      Description
-      Technologies
-      Homepage
-      Repository
-      buttonShow
-      buttonHide
-      locale
-      documentId
-      localizations {
-        Process
-        Description
-        Technologies
-        Homepage
-        Repository
-        buttonShow
-        buttonHide
+    contact(locale: $locale) {
+      data { id attributes {
+        Title Subtitle Linkedin Telephone Email ResumeFullText ResumeFullLink
+        ResumeDeveloperText ResumeDeveloperLink locale
+      } }
+    }
+    reference(locale: $locale) {
+      data { id attributes { Title locale } }
+    }
+    referenceLists(locale: $locale) {
+      data { id attributes {
         locale
-        documentId
-      }
-    }
-    projects {
-      Project1 {
-        ${projectAttributes}
-      }
-      Project2 {
-        ${projectAttributes}
-      }
-      Project3 {
-        ${projectAttributes}
-      }
-      Project4 {
-        ${projectAttributes}
-      }
-      Project5 {
-        ${projectAttributes}
-      }
-      Project6 {
-        ${projectAttributes}
-      }
-      Project7 {
-        ${projectAttributes}
-      }
-      Project8 {
-        ${projectAttributes}
-      }
-      Project9 {
-        ${projectAttributes}
-      }
-      Project10 {
-        ${projectAttributes}
-      }
-      locale
-      documentId
-      localizations {
-        Project1 {
-          ${projectAttributes}
-        }
-        Project2 {
-          ${projectAttributes}
-        }
-        Project3 {
-          ${projectAttributes}
-        }
-        Project4 {
-          ${projectAttributes}
-        }
-        Project5 {
-          ${projectAttributes}
-        }
-        Project6 {
-          ${projectAttributes}
-        }
-        Project7 {
-          ${projectAttributes}
-        }
-        Project8 {
-          ${projectAttributes}
-        }
-        Project9 {
-          ${projectAttributes}
-        }
-        Project10 {
-          ${projectAttributes}
-        }
-        locale
-        documentId
-      }
-    }
-    contact {
-      Title
-      Subtitle
-      Linkedin
-      Telephone
-      Email
-      ResumeFullText
-      ResumeFullLink
-      ResumeDeveloperText
-      ResumeDeveloperLink
-      locale
-      documentId
-      localizations {
-        Title
-        Subtitle
-        Linkedin
-        Telephone
-        Email
-        ResumeFullText
-        ResumeFullLink
-        ResumeDeveloperText
-        ResumeDeveloperLink
-        locale
-        documentId
-      }
-    }
-    reference {
-      Title
-      locale
-      documentId
-      localizations {
-        Title
-        locale
-        documentId
-      }
-    }
-    referenceLists {
-      ReferenceList {
-        Quote
-        Text
-        Link
-        LinkText
-        Image {
-          name
-          alternativeText
-          url
-        }
-      }
-      locale
-      documentId
-      localizations {
         ReferenceList {
-          Quote
-          Text
-          Link
-          LinkText
-          Image {
-            name
-            alternativeText
-            url
-          }
+          id Quote Text Link LinkText
+          Image { data { ...PortfolioImage } }
         }
-        locale
-        documentId
-      }
+      } }
     }
   }
 `;
 
-// Custom hook to fetch languages using GraphQL query
 export const useGetLanguages = () => {
-  // State to store the fetched data
-  const [data, setData] = useState<LanguageData | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<LanguageError | null>(null);
-
-  // Use the useQuery hook from @apollo/client to fetch the data
-  const {
-    data: queryData, // Fetched data from the GraphQL query
-    loading: queryLoading, // Loading state from the GraphQL query
-    error: queryError, // Error state from the GraphQL query
-  } = useQuery(GET_LANGUAGES, {
+  const { selectedLanguage } = useLanguage();
+  const locale = selectedLanguage === "german" ? "de" : "en";
+  const { data: raw, loading, error } = useQuery<RawLanguageData>(GET_LANGUAGES, {
+    variables: { locale },
     fetchPolicy: "cache-and-network",
   });
-
-  useEffect(() => {
-    // Update state when the query data changes
-    if (queryData) {
-      setData(queryData); // Set the fetched data in the state
-      setLoading(false); // Set loading to false
-    }
-
-    // Update state if there's an error
-    if (queryError) {
-      setError(queryError); // Set the error in the state
-      setLoading(false); // Set loading to false
-    }
-  }, [queryData, queryError, queryLoading]); // Run the effect when query data or error changes
-
-  // Return the fetched data, loading state, and error
+  const data = useMemo(() => raw ? adaptLanguageData(raw) : null, [raw]);
   return { data, loading, error };
 };
