@@ -25,10 +25,7 @@ interface CollectionResponse<T> {
 // During the migration, support the existing environment values that still
 // end in /graphql. Once GraphQL is fully removed, the env values can simply
 // point to the Strapi server root.
-const STRAPI_URL = import.meta.env.VITE_STRAPI_URL.replace(
-  /\/graphql\/?$/,
-  "",
-).replace(/\/$/, "");
+const STRAPI_URL = import.meta.env.VITE_STRAPI_URL.replace(/\/$/, "");
 
 async function request<T>(path: string): Promise<T> {
   const response = await fetch(`${STRAPI_URL}${path}`);
