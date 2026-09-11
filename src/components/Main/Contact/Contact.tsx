@@ -1,10 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import {
-  faEnvelope,
-  faMobileScreen,
-  faDownload,
-} from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 // Import language-related context and custom hook
 import useLanguageContent from "../../../hooks/useLanguageContent";
 
@@ -16,7 +12,7 @@ export const Contact: React.FC = () => {
   // const { baseUrl } = useLanguage();
 
   // Construct URLs for developer and full resumes
-  const resumeDevUrl = language?.contact?.ResumeDeveloperLink;
+  //const resumeDevUrl = language?.contact?.ResumeDeveloperLink;
   // const resumeFullUrl = language?.contact?.ResumeFullLink;
 
   return (

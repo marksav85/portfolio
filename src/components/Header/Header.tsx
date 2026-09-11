@@ -3,11 +3,7 @@ import React from "react";
 import { GB } from "country-flag-icons/react/3x2";
 import { DE } from "country-flag-icons/react/3x2";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faXTwitter,
-  faGithub,
-  faLinkedin,
-} from "@fortawesome/free-brands-svg-icons";
+import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 // Import Skeleton loader
 import Skeleton from "react-loading-skeleton";
