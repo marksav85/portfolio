@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 
 // Define types for the context value
 interface LanguageContextType {
@@ -40,6 +40,10 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({
 
   // Array of available languages
   const availableLanguages = ["german", "english"];
+
+  useEffect(() => {
+    document.documentElement.lang = selectedLanguage === "german" ? "de" : "en";
+  }, [selectedLanguage]);
 
   // Function to handle language changes
   const handleLanguageChange = () => {
