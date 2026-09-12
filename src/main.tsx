@@ -4,6 +4,9 @@ import App from "./App.jsx";
 import { LanguageProvider } from "./context/LanguageContext";
 import { PortfolioContentProvider } from "./context/PortfolioContentContext";
 
+import "react-loading-skeleton/dist/skeleton.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./index.css";
 import "./assets/css/main.css";
 
 const rootElement = document.getElementById("root");

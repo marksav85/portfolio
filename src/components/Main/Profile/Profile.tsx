@@ -2,7 +2,6 @@ import { useState } from "react";
 import { About } from "./About/About";
 // Import Skeleton loader
 import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css"; // Optional: to include default skeleton styles
 
 // Import language-related context and custom hook
 import { useGetLanguages } from "../../../hooks/useGetLanguages";

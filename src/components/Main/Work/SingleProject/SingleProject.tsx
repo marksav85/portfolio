@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { ImageModal } from "../ImageModal/ImageModal";
-import "bootstrap/dist/css/bootstrap.min.css";
 // Import language-related context and custom hook
 import useLanguageContent from "../../../../hooks/useLanguageContent";
 import type { RichTextParagraph } from "../../../../types/portfolio";

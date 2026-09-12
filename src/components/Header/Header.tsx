@@ -7,7 +7,6 @@ import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 // Import Skeleton loader
 import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css"; // Optional: to include default skeleton styles
 
 // Import language-related context and custom hook
 import { useGetLanguages } from "../../hooks/useGetLanguages";
