@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 
 import App from "./App.jsx";
 import { LanguageProvider } from "./context/LanguageContext";
+import { PortfolioContentProvider } from "./context/PortfolioContentContext";
 
 import "./assets/css/main.css";
 
@@ -14,6 +15,8 @@ if (!rootElement) {
 
 ReactDOM.createRoot(rootElement).render(
   <LanguageProvider>
-    <App />
+    <PortfolioContentProvider>
+      <App />
+    </PortfolioContentProvider>
   </LanguageProvider>,
 );

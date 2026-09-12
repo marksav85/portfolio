@@ -1,6 +1,6 @@
 import { useGetLanguages } from "./useGetLanguages";
 
-// The query selects the active locale and adapts Strapi's response envelopes.
+// Return the active locale's shared portfolio content.
 const useLanguageContent = () => useGetLanguages().data;
 
 export default useLanguageContent;
