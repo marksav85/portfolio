@@ -10,6 +10,9 @@ import { fetchPortfolioContent } from "../api/strapi";
 import type { LanguageContent, PortfolioLocale } from "../types/portfolio";
 import { useLanguage } from "./LanguageContext";
 
+const isAbortError = (error: unknown) =>
+  error instanceof Error && error.name === "AbortError";
+
 interface PortfolioContentContextValue {
   data: LanguageContent | null;
   loading: boolean;
@@ -70,14 +73,14 @@ export const PortfolioContentProvider: React.FC<
         setLoading(true);
         setError(null);
 
-        const content = await fetchPortfolioContent(locale);
+        const content = await fetchPortfolioContent(locale, controller.signal);
 
         if (!controller.signal.aborted) {
           cacheRef.current[locale] = content;
           setData(content);
         }
       } catch (err) {
-        if (!controller.signal.aborted) {
+        if (!controller.signal.aborted && !isAbortError(err)) {
           setError(
             err instanceof Error
               ? err

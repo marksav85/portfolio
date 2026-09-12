@@ -27,8 +27,8 @@ interface CollectionResponse<T> {
 // point to the Strapi server root.
 const STRAPI_URL = import.meta.env.VITE_STRAPI_URL.replace(/\/$/, "");
 
-async function request<T>(path: string): Promise<T> {
-  const response = await fetch(`${STRAPI_URL}${path}`);
+async function request<T>(path: string, signal?: AbortSignal): Promise<T> {
+  const response = await fetch(`${STRAPI_URL}${path}`, { signal });
 
   if (!response.ok) {
     throw new Error(
@@ -44,9 +44,11 @@ const localeParam = (locale: PortfolioLocale) =>
 
 export async function getHeader(
   locale: PortfolioLocale,
+  signal?: AbortSignal,
 ): Promise<HeaderContent | null> {
   const response = await request<SingleResponse<HeaderContent>>(
     `/api/header?${localeParam(locale)}`,
+    signal,
   );
 
   return response.data;
@@ -54,17 +56,22 @@ export async function getHeader(
 
 export async function getProfile(
   locale: PortfolioLocale,
+  signal?: AbortSignal,
 ): Promise<ProfileContent | null> {
   const response = await request<SingleResponse<ProfileContent>>(
     `/api/profile?${localeParam(locale)}`,
+    signal,
   );
 
   return response.data;
 }
 
-export async function getSkillsTables(): Promise<SkillsTableEntry[]> {
+export async function getSkillsTables(
+  signal?: AbortSignal,
+): Promise<SkillsTableEntry[]> {
   const response = await request<CollectionResponse<SkillsTableEntry>>(
     "/api/skills-tables?sort=Column3:desc&pagination[limit]=100&populate=Column2",
+    signal,
   );
 
   return response.data;
@@ -72,9 +79,11 @@ export async function getSkillsTables(): Promise<SkillsTableEntry[]> {
 
 export async function getWork(
   locale: PortfolioLocale,
+  signal?: AbortSignal,
 ): Promise<WorkContent | null> {
   const response = await request<SingleResponse<WorkContent>>(
     `/api/work?${localeParam(locale)}`,
+    signal,
   );
 
   return response.data;
@@ -82,9 +91,11 @@ export async function getWork(
 
 export async function getLabels(
   locale: PortfolioLocale,
+  signal?: AbortSignal,
 ): Promise<LabelsContent | null> {
   const response = await request<CollectionResponse<LabelsContent>>(
     `/api/labels?${localeParam(locale)}`,
+    signal,
   );
 
   return response.data[0] ?? null;
@@ -99,9 +110,11 @@ function getProjectsPopulateQuery(): string {
 
 export async function getProjects(
   locale: PortfolioLocale,
+  signal?: AbortSignal,
 ): Promise<ProjectSet | null> {
   const response = await request<CollectionResponse<ProjectSet>>(
     `/api/projects?${localeParam(locale)}&${getProjectsPopulateQuery()}`,
+    signal,
   );
 
   return response.data[0] ?? null;
@@ -109,9 +122,11 @@ export async function getProjects(
 
 export async function getContact(
   locale: PortfolioLocale,
+  signal?: AbortSignal,
 ): Promise<ContactContent | null> {
   const response = await request<SingleResponse<ContactContent>>(
     `/api/contact?${localeParam(locale)}`,
+    signal,
   );
 
   return response.data;
@@ -119,9 +134,11 @@ export async function getContact(
 
 export async function getReference(
   locale: PortfolioLocale,
+  signal?: AbortSignal,
 ): Promise<ReferenceContent | null> {
   const response = await request<SingleResponse<ReferenceContent>>(
     `/api/reference?${localeParam(locale)}`,
+    signal,
   );
 
   return response.data;
@@ -129,9 +146,11 @@ export async function getReference(
 
 export async function getReferenceLists(
   locale: PortfolioLocale,
+  signal?: AbortSignal,
 ): Promise<ReferenceListContent> {
   const response = await request<CollectionResponse<ReferenceListContent>>(
     `/api/reference-lists?${localeParam(locale)}&populate[ReferenceList][populate]=Image`,
+    signal,
   );
 
   return (
@@ -144,6 +163,7 @@ export async function getReferenceLists(
 
 export async function fetchPortfolioContent(
   locale: PortfolioLocale,
+  signal?: AbortSignal,
 ): Promise<LanguageContent> {
   const [
     header,
@@ -156,15 +176,15 @@ export async function fetchPortfolioContent(
     reference,
     referenceLists,
   ] = await Promise.all([
-    getHeader(locale),
-    getProfile(locale),
-    getSkillsTables(),
-    getWork(locale),
-    getLabels(locale),
-    getProjects(locale),
-    getContact(locale),
-    getReference(locale),
-    getReferenceLists(locale),
+    getHeader(locale, signal),
+    getProfile(locale, signal),
+    getSkillsTables(signal),
+    getWork(locale, signal),
+    getLabels(locale, signal),
+    getProjects(locale, signal),
+    getContact(locale, signal),
+    getReference(locale, signal),
+    getReferenceLists(locale, signal),
   ]);
 
   return {
