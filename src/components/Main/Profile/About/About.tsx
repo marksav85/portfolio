@@ -26,6 +26,11 @@ export const About = () => {
             {/* Map over skills tables data and render each skill */}
             {language?.skillsTables?.map((skill, index) => {
               const icon = skill.Column2;
+              const hasDimensions =
+                typeof icon?.width === "number" &&
+                icon.width > 0 &&
+                typeof icon.height === "number" &&
+                icon.height > 0;
 
               return (
                 <tr key={index}>
@@ -37,6 +42,10 @@ export const About = () => {
                       <img
                         src={icon.url}
                         alt={icon.alternativeText ?? ""}
+                        width={hasDimensions ? (icon.width ?? undefined) : undefined}
+                        height={hasDimensions ? (icon.height ?? undefined) : undefined}
+                        loading="lazy"
+                        decoding="async"
                       />
                     )}
                   </td>

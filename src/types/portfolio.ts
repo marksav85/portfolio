@@ -5,6 +5,8 @@ export interface ImageAttributes {
   name: string;
   alternativeText: string | null;
   url: string;
+  width?: number | null;
+  height?: number | null;
 }
 
 export interface LocalizationMeta {

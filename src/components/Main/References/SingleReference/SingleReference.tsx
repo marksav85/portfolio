@@ -21,6 +21,11 @@ export default function SingleReference() {
         {/* Map over reference list items and render each reference */}
         {language?.referenceLists.ReferenceList.map((reference) => {
           const imageSource = reference.Image;
+          const hasImageDimensions =
+            typeof imageSource?.width === "number" &&
+            imageSource.width > 0 &&
+            typeof imageSource.height === "number" &&
+            imageSource.height > 0;
 
           return (
             <Carousel.Item key={reference.id} className="carousel-item">
@@ -44,6 +49,10 @@ export default function SingleReference() {
                     className="d-block img-fluid reference-image"
                     src={imageSource.url}
                     alt={imageSource.alternativeText ?? ""}
+                    width={hasImageDimensions ? (imageSource.width ?? undefined) : undefined}
+                    height={hasImageDimensions ? (imageSource.height ?? undefined) : undefined}
+                    loading="lazy"
+                    decoding="async"
                   />
                 )}
               </div>

@@ -47,7 +47,12 @@ export const Header = () => {
               {isInitialLoading ? (
                 <Skeleton circle={true} height={150} width={150} />
               ) : (
-                <img src="images/headshot.jpg" alt="headshot"></img>
+                <img
+                  src="images/headshot.jpg"
+                  alt="headshot"
+                  width={150}
+                  height={150}
+                />
               )}
             </a>
           </div>

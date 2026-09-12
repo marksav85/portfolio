@@ -36,6 +36,11 @@ export const SingleProject: React.FC<SingleProjectProps> = ({ projectNumber }) =
   const project = language?.projects?.[`Project${projectNumber}`];
   const images = project?.Images ?? [];
   const primaryImage = images[0];
+  const hasPrimaryImageDimensions =
+    typeof primaryImage?.width === "number" &&
+    primaryImage.width > 0 &&
+    typeof primaryImage.height === "number" &&
+    primaryImage.height > 0;
 
   return (
     <article className="col-6 col-12-xsmall work-item">
@@ -52,6 +57,10 @@ export const SingleProject: React.FC<SingleProjectProps> = ({ projectNumber }) =
               src={primaryImage.url}
               alt={primaryImage.alternativeText ?? `${project?.Title ?? "Project"} cover image`}
               className="carousel-fulls"
+              width={hasPrimaryImageDimensions ? (primaryImage.width ?? undefined) : undefined}
+              height={hasPrimaryImageDimensions ? (primaryImage.height ?? undefined) : undefined}
+              loading="lazy"
+              decoding="async"
             />
           </button>
 

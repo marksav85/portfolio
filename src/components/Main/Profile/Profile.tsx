@@ -26,7 +26,7 @@ export const Profile: React.FC = () => {
         {/* Profile title */}
         <header className="major">
           {isInitialLoading ? (
-            <Skeleton width={200} height={100} />
+            <Skeleton width={200} height={48} />
           ) : (
             <h2>{language?.profile?.Title}</h2>
           )}
