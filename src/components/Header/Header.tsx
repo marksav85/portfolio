@@ -13,29 +13,12 @@ import "react-loading-skeleton/dist/skeleton.css"; // Optional: to include defau
 import { useGetLanguages } from "../../hooks/useGetLanguages";
 import { useLanguage } from "../../context/LanguageContext";
 
-// TypeScript interfaces
-interface Child {
-  bold: boolean;
-  text: string;
-}
-
-interface Paragraph {
-  children: Child[];
-}
-
-interface Language {
-  header: {
-    Button: string;
-    Text: Paragraph[];
-  };
-}
-
 export const Header = () => {
   // Accessing language change handler from context
   const { handleLanguageChange } = useLanguage();
   // Read the shared content and loading state together.
   const { data, loading } = useGetLanguages();
-  const language = data as Language;
+  const language = data;
   const isInitialLoading = loading && data === null;
 
   return (

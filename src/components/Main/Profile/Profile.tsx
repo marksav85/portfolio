@@ -7,16 +7,9 @@ import "react-loading-skeleton/dist/skeleton.css"; // Optional: to include defau
 // Import language-related context and custom hook
 import { useGetLanguages } from "../../../hooks/useGetLanguages";
 
-// TypeScript interface for About section visibilty toggle
-interface toggleVisibility {
-  initialVisibility?: boolean; // Initial visibility of the "About" section
-}
-
-export const Profile: React.FC<toggleVisibility> = ({
-  initialVisibility = false,
-}) => {
+export const Profile: React.FC = () => {
   // State to manage visibility of the "About" section
-  const [isVisible, setIsVisible] = useState<boolean>(initialVisibility);
+  const [isVisible, setIsVisible] = useState(false);
 
   // Function to toggle visibility of the "About" section
   const toggleVisibility: () => void = () => {

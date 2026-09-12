@@ -3,29 +3,16 @@ import { ImageModal } from "../ImageModal/ImageModal";
 import "bootstrap/dist/css/bootstrap.min.css";
 // Import language-related context and custom hook
 import useLanguageContent from "../../../../hooks/useLanguageContent";
+import type { RichTextParagraph } from "../../../../types/portfolio";
 
 // Define the props interface
 interface SingleProjectProps {
-  initialVisibility?: boolean;
   projectNumber: number;
-  paragraphs?: Paragraph[]; // Optional prop for paragraphs
 }
 
-interface ParagraphChild {
-  type: string;
-  text: string;
-}
-
-interface Paragraph {
-  children: ParagraphChild[];
-}
-
-export const SingleProject: React.FC<SingleProjectProps> = ({
-  initialVisibility = false,
-  projectNumber,
-}) => {
+export const SingleProject: React.FC<SingleProjectProps> = ({ projectNumber }) => {
   // State to manage visibility of additional projects
-  const [isVisible, setIsVisible] = useState<boolean>(initialVisibility);
+  const [isVisible, setIsVisible] = useState(false);
 
   // Function to toggle visibility of additional projects
   const toggleVisibility: () => void = () => {
@@ -97,7 +84,7 @@ export const SingleProject: React.FC<SingleProjectProps> = ({
           {/* Display project description text */}
           {language?.projects?.[`Project${projectNumber}`]?.TextBlock?.map(
             // TextBlock is an array of paragraphs
-            (paragraph: Paragraph, index: number) =>
+            (paragraph: RichTextParagraph, index: number) =>
               // Check if paragraph has children and type is 'text'
               paragraph.children && paragraph.children[0]?.type === "text" ? (
                 // Render the text content
