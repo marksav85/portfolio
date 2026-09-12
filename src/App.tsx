@@ -5,9 +5,9 @@ import { useGetLanguages } from "./hooks/useGetLanguages";
 import "./index.css";
 
 function App() {
-  const { error } = useGetLanguages();
+  const { data, error } = useGetLanguages();
 
-  if (error) {
+  if (error && !data) {
     return (
       <div className="error-container">
         <div className="error-message">

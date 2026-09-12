@@ -37,6 +37,7 @@ export const Header = () => {
   // Getting language content using custom hook
   const language = useLanguageContent() as Language;
   const { loading } = useGetLanguages();
+  const isInitialLoading = loading && !language;
 
   return (
     <>
@@ -44,7 +45,7 @@ export const Header = () => {
         <div className="lang-toggle">
           <button onClick={handleLanguageChange}>
             {/* Display skeleton or language button */}
-            {loading ? (
+            {isInitialLoading ? (
               <Skeleton width={40} height={28} />
             ) : language?.header?.Button === "DE" ? (
               <GB title="English" className="flags" />
@@ -62,7 +63,7 @@ export const Header = () => {
           {/* Displaying headshot image */}
           <div>
             <a href="#" className="image avatar">
-              {loading ? (
+              {isInitialLoading ? (
                 <Skeleton circle={true} height={150} width={150} />
               ) : (
                 <img src="images/headshot.jpg" alt="headshot"></img>
@@ -71,7 +72,7 @@ export const Header = () => {
           </div>
           <div>
             {/* Displaying header text */}
-            {loading ? (
+            {isInitialLoading ? (
               <Skeleton count={10} />
             ) : (
               Array.isArray(language?.header?.Text) && (
@@ -103,7 +104,7 @@ export const Header = () => {
           <div className="inner">
             <ul className="icons">
               {/* <li>
-                {loading ? (
+                {isInitialLoading ? (
                   <Skeleton width={24} height={24} circle={true} />
                 ) : (
                   <a
@@ -117,7 +118,7 @@ export const Header = () => {
                 )}
               </li> */}
               <li>
-                {loading ? (
+                {isInitialLoading ? (
                   <Skeleton width={24} height={24} circle={true} />
                 ) : (
                   <a
@@ -131,7 +132,7 @@ export const Header = () => {
                 )}
               </li>
               <li>
-                {loading ? (
+                {isInitialLoading ? (
                   <Skeleton width={24} height={24} circle={true} />
                 ) : (
                   <a
@@ -145,7 +146,7 @@ export const Header = () => {
                 )}
               </li>
               <li>
-                {loading ? (
+                {isInitialLoading ? (
                   <Skeleton width={24} height={24} circle={true} />
                 ) : (
                   <a

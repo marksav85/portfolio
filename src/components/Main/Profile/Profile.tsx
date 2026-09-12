@@ -28,6 +28,7 @@ export const Profile: React.FC<toggleVisibility> = ({
   const language = useLanguageContent();
   // Use custom hook to fetch loading state
   const { loading } = useGetLanguages();
+  const isInitialLoading = loading && !language;
 
   return (
     <>
@@ -35,7 +36,7 @@ export const Profile: React.FC<toggleVisibility> = ({
       <section id="one">
         {/* Profile title */}
         <header className="major">
-          {loading ? (
+          {isInitialLoading ? (
             <Skeleton width={200} height={100} />
           ) : (
             <h2>{language?.profile?.Title}</h2>
@@ -43,12 +44,14 @@ export const Profile: React.FC<toggleVisibility> = ({
         </header>
 
         {/* Profile text */}
-        <p>{loading ? <Skeleton count={10} /> : language?.profile?.Text}</p>
+        <p>
+          {isInitialLoading ? <Skeleton count={10} /> : language?.profile?.Text}
+        </p>
 
         {/* Button to toggle visibility of "About" section */}
         <ul className="actions">
           <li>
-            {loading ? (
+            {isInitialLoading ? (
               <Skeleton width={100} height={50} />
             ) : (
               <button onClick={toggleVisibility} className="button">
