@@ -1,6 +1,6 @@
-import { useGetLanguages } from "./useGetLanguages";
+import { usePortfolioContent } from "../context/PortfolioContentContext";
 
 // Return the active locale's shared portfolio content.
-const useLanguageContent = () => useGetLanguages().data;
+const useLanguageContent = () => usePortfolioContent().data;
 
 export default useLanguageContent;

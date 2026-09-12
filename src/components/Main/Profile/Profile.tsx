@@ -6,7 +6,6 @@ import "react-loading-skeleton/dist/skeleton.css"; // Optional: to include defau
 
 // Import language-related context and custom hook
 import { useGetLanguages } from "../../../hooks/useGetLanguages";
-import useLanguageContent from "../../../hooks/useLanguageContent";
 
 // TypeScript interface for About section visibilty toggle
 interface toggleVisibility {
@@ -24,11 +23,9 @@ export const Profile: React.FC<toggleVisibility> = ({
     setIsVisible((prevVisibility) => !prevVisibility);
   };
 
-  // Use language-related context and custom hook to access language content
-  const language = useLanguageContent();
-  // Use custom hook to fetch loading state
-  const { loading } = useGetLanguages();
-  const isInitialLoading = loading && !language;
+  // Read the shared content and loading state together.
+  const { data: language, loading } = useGetLanguages();
+  const isInitialLoading = loading && language === null;
 
   return (
     <>
