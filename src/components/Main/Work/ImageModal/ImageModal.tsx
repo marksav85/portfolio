@@ -18,7 +18,7 @@ export const ImageModal: React.FC<ImageModalProps> = ({
 }) => {
   return (
     // Modal component to display project images
-    <Modal show={show} onHide={onHide} centered keyboard={false} id="modal-box">
+    <Modal show={show} onHide={onHide} centered id="modal-box">
       <Modal.Header closeButton>
         {/* Display project title in modal header */}
         <Modal.Title>

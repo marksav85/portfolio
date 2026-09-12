@@ -7,11 +7,11 @@ import References from "./References/References";
 // Define the functional component with an explicit return type
 export const MainView: React.FC = () => {
   return (
-    <div id="main">
+    <main id="main">
       <Profile />
       <Work />
       <References />
       <Contact />
-    </div>
+    </main>
   );
 };

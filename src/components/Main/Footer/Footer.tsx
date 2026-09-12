@@ -36,10 +36,10 @@ export const Footer = () => {
               <a
                 href="https://linkedin.com/in/mark-saville"
                 className="icon brands"
-                aria-label="Link to Linkedin"
+                aria-label="Link to LinkedIn"
               >
                 <FontAwesomeIcon className="react-icon" icon={faLinkedin} />
-                <span className="label">Linkedin</span>
+                <span className="label">LinkedIn</span>
               </a>
             </li>
             <li>

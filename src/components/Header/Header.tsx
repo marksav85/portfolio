@@ -14,17 +14,21 @@ import { useLanguage } from "../../context/LanguageContext";
 
 export const Header = () => {
   // Accessing language change handler from context
-  const { handleLanguageChange } = useLanguage();
+  const { handleLanguageChange, selectedLanguage } = useLanguage();
   // Read the shared content and loading state together.
   const { data, loading } = useGetLanguages();
   const language = data;
   const isInitialLoading = loading && data === null;
+  const targetLanguage = selectedLanguage === "german" ? "English" : "German";
 
   return (
     <>
       <header id="header">
         <div className="lang-toggle">
-          <button onClick={handleLanguageChange}>
+          <button
+            onClick={handleLanguageChange}
+            aria-label={`Switch language to ${targetLanguage}`}
+          >
             {/* Display skeleton or language button */}
             {isInitialLoading ? (
               <Skeleton width={40} height={28} />
@@ -43,18 +47,18 @@ export const Header = () => {
         <div className="inner">
           {/* Displaying headshot image */}
           <div>
-            <a href="#" className="image avatar">
+            <span className="image avatar">
               {isInitialLoading ? (
                 <Skeleton circle={true} height={150} width={150} />
               ) : (
                 <img
                   src="images/headshot.jpg"
-                  alt="headshot"
+                  alt="Profile portrait"
                   width={150}
                   height={150}
                 />
               )}
-            </a>
+            </span>
           </div>
           <div>
             {/* Displaying header text */}
@@ -86,7 +90,11 @@ export const Header = () => {
         </div>
 
         {/* Display footer links */}
-        <footer id="footer" className="footer-top">
+        <nav
+          id="header-social-links"
+          className="footer-top"
+          aria-label="Social links"
+        >
           <div className="inner">
             <ul className="icons">
               {/* <li>
@@ -124,10 +132,10 @@ export const Header = () => {
                   <a
                     href="https://linkedin.com/in/mark-saville"
                     className="icon brands"
-                    aria-label="Link to Linkedin"
+                    aria-label="Link to LinkedIn"
                   >
                     <FontAwesomeIcon className="react-icon" icon={faLinkedin} />
-                    <span className="label">Linkedin</span>
+                    <span className="label">LinkedIn</span>
                   </a>
                 )}
               </li>
@@ -147,7 +155,7 @@ export const Header = () => {
               </li>
             </ul>
           </div>
-        </footer>
+        </nav>
       </header>
     </>
   );

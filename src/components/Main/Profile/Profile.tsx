@@ -43,7 +43,11 @@ export const Profile: React.FC = () => {
             {isInitialLoading ? (
               <Skeleton width={100} height={50} />
             ) : (
-              <button onClick={toggleVisibility} className="button">
+              <button
+                onClick={toggleVisibility}
+                className="button"
+                aria-expanded={isVisible}
+              >
                 {isVisible
                   ? language?.profile?.buttonHide
                   : language?.profile?.buttonShow}

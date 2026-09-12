@@ -29,13 +29,13 @@ export const Contact: React.FC = () => {
             <ul className="labeled-icons">
               <li>
                 {/* Linkedin */}
-                <h3 className="icon brands">
+                <span className="icon brands contact-icon">
                   <FontAwesomeIcon className="react-icon" icon={faLinkedin} />
-                </h3>
+                </span>
                 {/* Display Linkedin link */}
                 <a
                   href="https://linkedin.com/in/mark-saville"
-                  aria-label="Link to Linedkin"
+                  aria-label="Link to LinkedIn"
                 >
                   <span className="label">{language?.contact?.Linkedin}</span>
                 </a>
@@ -53,9 +53,9 @@ export const Contact: React.FC = () => {
               </li> */}
               <li>
                 {/* Email */}
-                <h3 className="icon solid">
+                <span className="icon solid contact-icon">
                   <FontAwesomeIcon className="react-icon" icon={faEnvelope} />
-                </h3>
+                </span>
                 {/* Display email address */}
                 <a
                   href="mailto:contact@marksavilledesigns.com"

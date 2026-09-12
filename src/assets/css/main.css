@@ -146,7 +146,8 @@ h2 {
   border-radius: 0.35em;
 }
 
-#footer .react-icon {
+#footer .react-icon,
+.footer-top .react-icon {
   height: 1.5em;
 }
 
@@ -2408,6 +2409,11 @@ input[type="radio"] + label:before {
   opacity: 1;
 }
 
+.image.thumb:focus-visible {
+  outline: solid 3px #265f51;
+  outline-offset: 4px;
+}
+
 .image img {
   border-radius: 0.35em;
   display: block;
@@ -2543,9 +2549,11 @@ ul.labeled-icons li a {
   color: inherit;
 }
 
-ul.labeled-icons li h3 {
+ul.labeled-icons li .contact-icon {
   color: #b2b2b2;
+  display: block;
   left: 0;
+  margin: 0;
   position: absolute;
   text-align: center;
   top: 0;
@@ -2967,11 +2975,13 @@ input[type="button"]:disabled,
 
 /* Footer */
 
-#footer .icons {
+#footer .icons,
+.footer-top .icons {
   margin: 1em 0 0 0;
 }
 
-#footer .icons a {
+#footer .icons a,
+.footer-top .icons a {
   color: rgba(255, 255, 255, 0.8);
 }
 
@@ -3211,7 +3221,7 @@ input[type="button"]:disabled,
     padding-left: 2em;
   }
 
-  ul.labeled-icons li h3 {
+  ul.labeled-icons li .contact-icon {
     line-height: 1.75em;
   }
 

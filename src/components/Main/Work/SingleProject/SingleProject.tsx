@@ -24,7 +24,6 @@ export const SingleProject: React.FC<SingleProjectProps> = ({ projectNumber }) =
   // Style for the project image
   const imageStyle = {
     cursor: "pointer", // Set cursor style to pointer
-    outline: "0px", // Remove outline on focus
   };
 
   // State to manage visibility of image modal
@@ -51,6 +50,7 @@ export const SingleProject: React.FC<SingleProjectProps> = ({ projectNumber }) =
             onClick={() => setModalShow(true)}
             className="image fit thumb"
             style={imageStyle}
+            aria-label={`View images for ${project?.Title ?? "this project"}`}
           >
             {/* Display project image */}
             <img
@@ -113,6 +113,7 @@ export const SingleProject: React.FC<SingleProjectProps> = ({ projectNumber }) =
         className="button"
         style={{ marginBottom: "20px" }}
         onClick={toggleVisibility}
+        aria-expanded={isVisible}
       >
         {/* Display button text based on visibility state */}
         {isVisible

@@ -59,7 +59,11 @@ export const Work: React.FC = () => {
             {/* Button to toggle visibility of additional projects */}
             <ul className="actions add-projects">
               <li>
-                <button onClick={toggleVisibility} className="button">
+                <button
+                  onClick={toggleVisibility}
+                  className="button"
+                  aria-expanded={isVisible}
+                >
                   {language?.work?.Button}
                 </button>
               </li>
