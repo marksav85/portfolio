@@ -24,13 +24,8 @@ export const About = () => {
           </thead>
           <tbody>
             {/* Map over skills tables data and render each skill */}
-            {language?.skillsTables?.map((skill: any, index: number) => {
-              const columnMedia = skill.Column2;
-              const iconObject = Array.isArray(columnMedia)
-                ? columnMedia[0]
-                : columnMedia;
-              const iconSrc = iconObject?.url ?? "";
-              const iconAlt = iconObject?.alternativeText ?? "";
+            {language?.skillsTables?.map((skill, index) => {
+              const icon = skill.Column2;
 
               return (
                 <tr key={index}>
@@ -38,10 +33,10 @@ export const About = () => {
                   <td>{skill.Column1}</td>
                   <td>
                     {/* Display technology icon */}
-                    {iconSrc && (
+                    {icon && (
                       <img
-                        src={iconSrc}
-                        alt={iconAlt}
+                        src={icon.url}
+                        alt={icon.alternativeText ?? ""}
                       />
                     )}
                   </td>

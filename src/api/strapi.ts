@@ -1,10 +1,12 @@
 import type {
   ContactContent,
   HeaderContent,
+  ImageAttributes,
   LabelsContent,
   LanguageContent,
   PortfolioLocale,
   ProfileContent,
+  ProjectEntry,
   ProjectSet,
   ReferenceContent,
   ReferenceListContent,
@@ -21,6 +23,39 @@ interface CollectionResponse<T> {
   data: T[];
   meta?: unknown;
 }
+
+type ImageValue = ImageAttributes | ImageAttributes[] | null | undefined;
+
+const normalizeImageList = (value: ImageValue): ImageAttributes[] => {
+  const images = Array.isArray(value) ? value : value ? [value] : [];
+
+  return images.filter((image) => Boolean(image?.url));
+};
+
+const normalizeImage = (value: ImageValue): ImageAttributes | null =>
+  normalizeImageList(value)[0] ?? null;
+
+const normalizeProjects = (projects: ProjectSet | null): ProjectSet | null => {
+  if (!projects) {
+    return null;
+  }
+
+  const normalizedProjects = { ...projects };
+
+  for (let index = 1; index <= 10; index += 1) {
+    const key = `Project${index}` as `Project${number}`;
+    const project = projects[key];
+
+    if (project) {
+      normalizedProjects[key] = {
+        ...project,
+        Images: normalizeImageList(project.Images),
+      } satisfies ProjectEntry;
+    }
+  }
+
+  return normalizedProjects;
+};
 
 // During the migration, support the existing environment values that still
 // end in /graphql. Once GraphQL is fully removed, the env values can simply
@@ -74,7 +109,10 @@ export async function getSkillsTables(
     signal,
   );
 
-  return response.data;
+  return response.data.map((skill) => ({
+    ...skill,
+    Column2: normalizeImage(skill.Column2),
+  }));
 }
 
 export async function getWork(
@@ -117,7 +155,7 @@ export async function getProjects(
     signal,
   );
 
-  return response.data[0] ?? null;
+  return normalizeProjects(response.data[0] ?? null);
 }
 
 export async function getContact(
@@ -153,12 +191,18 @@ export async function getReferenceLists(
     signal,
   );
 
-  return (
-    response.data[0] ?? {
-      locale,
-      ReferenceList: [],
-    }
-  );
+  const referenceLists = response.data[0] ?? {
+    locale,
+    ReferenceList: [],
+  };
+
+  return {
+    ...referenceLists,
+    ReferenceList: referenceLists.ReferenceList.map((reference) => ({
+      ...reference,
+      Image: normalizeImage(reference.Image),
+    })),
+  };
 }
 
 export async function fetchPortfolioContent(

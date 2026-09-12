@@ -14,15 +14,11 @@ export default function SingleReference() {
       {/* Carousel to display reference items */}
       <Carousel indicators={false}>
         {/* Map over reference list items and render each reference */}
-        {language &&
-          Object.values(language?.referenceLists?.ReferenceList).map(
-            (reference: any, index: number) => {
-              const imageSource = Array.isArray(reference.Image)
-                ? reference.Image[0]
-                : reference.Image;
+        {language?.referenceLists.ReferenceList.map((reference) => {
+          const imageSource = reference.Image;
 
-              return (
-                <Carousel.Item key={index} className="carousel-item">
+          return (
+            <Carousel.Item key={reference.id} className="carousel-item">
                   {/* Reference quote */}
                   <div>
                     <blockquote>
@@ -58,10 +54,9 @@ export default function SingleReference() {
                     </a> */}
                     <p>{reference.LinkText}</p>
                   </div>
-                </Carousel.Item>
-              );
-            },
-          )}
+            </Carousel.Item>
+          );
+        })}
       </Carousel>
     </>
   );

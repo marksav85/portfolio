@@ -3,7 +3,6 @@ import { ImageModal } from "../ImageModal/ImageModal";
 import "bootstrap/dist/css/bootstrap.min.css";
 // Import language-related context and custom hook
 import useLanguageContent from "../../../../hooks/useLanguageContent";
-import type { ImageAttributes } from "../../../../types/portfolio";
 
 // Define the props interface
 interface SingleProjectProps {
@@ -20,16 +19,6 @@ interface ParagraphChild {
 interface Paragraph {
   children: ParagraphChild[];
 }
-
-const normalizeProjectImages = (
-  images: ImageAttributes[] | ImageAttributes | null | undefined,
-): ImageAttributes[] => {
-  if (Array.isArray(images)) {
-    return images.filter((image) => Boolean(image?.url));
-  }
-
-  return images?.url ? [images] : [];
-};
 
 export const SingleProject: React.FC<SingleProjectProps> = ({
   initialVisibility = false,
@@ -59,7 +48,7 @@ export const SingleProject: React.FC<SingleProjectProps> = ({
   // const { baseUrl } = useLanguage();
 
   const project = language?.projects?.[`Project${projectNumber}`];
-  const images = normalizeProjectImages(project?.Images);
+  const images = project?.Images ?? [];
   const primaryImage = images[0];
 
   return (
