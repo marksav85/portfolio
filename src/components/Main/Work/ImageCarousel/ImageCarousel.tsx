@@ -1,63 +1,30 @@
 import Carousel from "react-bootstrap/Carousel";
+import type { ImageAttributes } from "../../../../types/portfolio";
 
 interface ImageCarouselProps {
-  firstImage: string;
-  secondImage: string;
-  thirdImage: string;
+  images: ImageAttributes[];
 }
 
-export function ImageCarousel({
-  firstImage,
-  secondImage,
-  thirdImage,
-}: ImageCarouselProps) {
+export function ImageCarousel({ images }: ImageCarouselProps) {
+  if (!images.length) {
+    return null;
+  }
+
   return (
     // Bootstrap Carousel component to display project images
     <Carousel data-bs-theme="dark" controls={false}>
-      {/* First image */}
-      <Carousel.Item>
-        <div className="carousel-image-container">
-          {/* Display first image */}
-          <img
-            src={firstImage}
-            alt="Modal Image"
-            className="img-fluid carousel-thumbs"
-            loading="lazy"
-          />
-        </div>
-        {/* Caption for first image */}
-        <Carousel.Caption></Carousel.Caption>
-      </Carousel.Item>
-
-      {/* Second image */}
-      <Carousel.Item>
-        <div className="carousel-image-container">
-          {/* Display second image */}
-          <img
-            src={secondImage}
-            alt="Modal Image"
-            className="img-fluid carousel-thumbs"
-            loading="lazy"
-          />
-        </div>
-        {/* Caption for second image */}
-        <Carousel.Caption></Carousel.Caption>
-      </Carousel.Item>
-
-      {/* Third image */}
-      <Carousel.Item>
-        <div className="carousel-image-container">
-          {/* Display third image */}
-          <img
-            src={thirdImage}
-            alt="Modal Image"
-            className="img-fluid carousel-thumbs"
-            loading="lazy"
-          />
-        </div>
-        {/* Caption for third image */}
-        <Carousel.Caption></Carousel.Caption>
-      </Carousel.Item>
+      {images.map((image, index) => (
+        <Carousel.Item key={image.id ?? image.url}>
+          <div className="carousel-image-container">
+            <img
+              src={image.url}
+              alt={image.alternativeText ?? `Project image ${index + 1}`}
+              className="img-fluid carousel-thumbs"
+              loading="lazy"
+            />
+          </div>
+        </Carousel.Item>
+      ))}
     </Carousel>
   );
 }

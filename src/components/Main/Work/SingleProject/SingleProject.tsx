@@ -3,6 +3,7 @@ import { ImageModal } from "../ImageModal/ImageModal";
 import "bootstrap/dist/css/bootstrap.min.css";
 // Import language-related context and custom hook
 import useLanguageContent from "../../../../hooks/useLanguageContent";
+import type { ImageAttributes } from "../../../../types/portfolio";
 
 // Define the props interface
 interface SingleProjectProps {
@@ -19,6 +20,16 @@ interface ParagraphChild {
 interface Paragraph {
   children: ParagraphChild[];
 }
+
+const normalizeProjectImages = (
+  images: ImageAttributes[] | ImageAttributes | null | undefined,
+): ImageAttributes[] => {
+  if (Array.isArray(images)) {
+    return images.filter((image) => Boolean(image?.url));
+  }
+
+  return images?.url ? [images] : [];
+};
 
 export const SingleProject: React.FC<SingleProjectProps> = ({
   initialVisibility = false,
@@ -47,37 +58,45 @@ export const SingleProject: React.FC<SingleProjectProps> = ({
   // Base URL for resume links
   // const { baseUrl } = useLanguage();
 
-  // Construct URL for the project image
-  const imageSet = language?.projects?.[`Project${projectNumber}`]?.Images;
-  const primaryImage = Array.isArray(imageSet) ? imageSet[0] : imageSet;
-  const imageUrl = primaryImage?.url ?? "";
+  const project = language?.projects?.[`Project${projectNumber}`];
+  const images = normalizeProjectImages(project?.Images);
+  const primaryImage = images[0];
 
   return (
     <article className="col-6 col-12-xsmall work-item">
-      {/* Button to show image modal */}
-      <button
-        onClick={() => setModalShow(true)}
-        className="image fit thumb"
-        style={imageStyle}
-      >
-        {/* Display project image */}
-        <img src={imageUrl} alt="cover image" className="carousel-fulls"></img>
-      </button>
+      {primaryImage && (
+        <>
+          {/* Button to show image modal */}
+          <button
+            onClick={() => setModalShow(true)}
+            className="image fit thumb"
+            style={imageStyle}
+          >
+            {/* Display project image */}
+            <img
+              src={primaryImage.url}
+              alt={primaryImage.alternativeText ?? `${project?.Title ?? "Project"} cover image`}
+              className="carousel-fulls"
+            />
+          </button>
 
-      {/* Modal for displaying project images */}
-      <ImageModal
-        projectNumber={projectNumber}
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-      />
+          {/* Modal for displaying project images */}
+          <ImageModal
+            title={project?.Title}
+            images={images}
+            show={modalShow}
+            onHide={() => setModalShow(false)}
+          />
+        </>
+      )}
 
       <div className="project-intro">
         {/* Display project title */}
-        <h2>{language?.projects?.[`Project${projectNumber}`]?.Title}</h2>
+        <h2>{project?.Title}</h2>
 
         <div className="project-intro-text">
           {/* Display project introduction */}
-          <p>{language?.projects?.[`Project${projectNumber}`]?.Intro}</p>
+          <p>{project?.Intro}</p>
         </div>
       </div>
       <br />
