@@ -1,14 +1,13 @@
 // Import language-related context and custom hook
 import useLanguageContent from "../../../../hooks/useLanguageContent";
 
-export const About = () => {
+export const Skills = () => {
   // Use language-related context and custom hook
   const language = useLanguageContent();
-  // const { baseUrl } = useLanguage();
 
   return (
     <>
-      <div className="skills-table-container">
+      <div id="profile-skills" className="skills-table-container">
         {/* Display skills title */}
         <h2>{language?.profile?.skillsTitle}</h2>
         {/* Skills table */}
@@ -24,8 +23,10 @@ export const About = () => {
           </thead>
           <tbody>
             {/* Map over skills tables data and render each skill */}
-            {language?.skillsTables?.map((skill, index) => {
+            {language?.skillsTables?.map((skill) => {
+              const technology = skill.Column1;
               const icon = skill.Column2;
+              const area = skill.Column3;
               const hasDimensions =
                 typeof icon?.width === "number" &&
                 icon.width > 0 &&
@@ -33,9 +34,9 @@ export const About = () => {
                 icon.height > 0;
 
               return (
-                <tr key={index}>
+                <tr key={skill.id ?? technology}>
                   {/* Display technology name */}
-                  <td>{skill.Column1}</td>
+                  <td>{technology}</td>
                   <td>
                     {/* Display technology icon */}
                     {icon && (
@@ -49,8 +50,8 @@ export const About = () => {
                       />
                     )}
                   </td>
-                  {/* Display expertise level */}
-                  <td>{`${skill.Column3}/5`}</td>
+                  {/* Display technology area */}
+                  <td>{area}</td>
                 </tr>
               );
             })}

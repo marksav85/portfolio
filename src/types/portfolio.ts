@@ -44,7 +44,7 @@ export interface SkillsTableEntry {
   id?: EntityId;
   Column1: string;
   Column2: ImageAttributes | null;
-  Column3: number;
+  Column3: string | number;
 }
 
 export interface WorkContent extends LocalizationMeta {

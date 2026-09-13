@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { About } from "./About/About";
+import { Skills } from "./Skills/Skills";
 // Import Skeleton loader
 import Skeleton from "react-loading-skeleton";
 
@@ -8,13 +8,13 @@ import { useGetLanguages } from "../../../hooks/useGetLanguages";
 import { useLanguage } from "../../../context/LanguageContext";
 
 export const Profile: React.FC = () => {
-  // State to manage visibility of the "About" section
-  const [isVisible, setIsVisible] = useState(false);
+  // State to manage visibility of the Skills section
+  const [isSkillsVisible, setIsSkillsVisible] = useState(false);
   const { handleLanguageChange, selectedLanguage } = useLanguage();
 
-  // Function to toggle visibility of the "About" section
-  const toggleVisibility: () => void = () => {
-    setIsVisible((prevVisibility) => !prevVisibility);
+  // Function to toggle visibility of the Skills section
+  const toggleSkillsVisibility: () => void = () => {
+    setIsSkillsVisible((previousVisibility) => !previousVisibility);
   };
 
   // Read the shared content and loading state together.
@@ -86,11 +86,12 @@ export const Profile: React.FC = () => {
                 <Skeleton width={100} height={50} />
               ) : (
                 <button
-                  onClick={toggleVisibility}
+                  onClick={toggleSkillsVisibility}
                   className="button"
-                  aria-expanded={isVisible}
+                  aria-controls="profile-skills"
+                  aria-expanded={isSkillsVisible}
                 >
-                  {isVisible
+                  {isSkillsVisible
                     ? language?.profile?.buttonHide
                     : language?.profile?.buttonShow}
                 </button>
@@ -99,7 +100,7 @@ export const Profile: React.FC = () => {
           </ul>
         </div>
 
-        {isVisible && <About />}
+        {isSkillsVisible && <Skills />}
       </section>
     </>
   );

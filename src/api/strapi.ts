@@ -102,7 +102,7 @@ export async function getSkillsTables(
   signal?: AbortSignal,
 ): Promise<SkillsTableEntry[]> {
   const response = await request<CollectionResponse<SkillsTableEntry>>(
-    "/api/skills-tables?sort=Column3:desc&pagination[limit]=100&populate=Column2",
+    "/api/skills-tables?pagination[limit]=100&populate=Column2",
     signal,
   );
 
