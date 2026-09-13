@@ -1,7 +1,5 @@
 import React from "react";
-// Import flags and icons
-import { GB } from "country-flag-icons/react/3x2";
-import { DE } from "country-flag-icons/react/3x2";
+// Import icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
@@ -10,56 +8,18 @@ import Skeleton from "react-loading-skeleton";
 
 // Import language-related context and custom hook
 import { useGetLanguages } from "../../hooks/useGetLanguages";
-import { useLanguage } from "../../context/LanguageContext";
 
 export const Header = () => {
-  // Accessing language change handler from context
-  const { handleLanguageChange, selectedLanguage } = useLanguage();
   // Read the shared content and loading state together.
   const { data, loading } = useGetLanguages();
   const language = data;
   const isInitialLoading = loading && data === null;
-  const targetLanguage = selectedLanguage === "german" ? "English" : "German";
 
   return (
     <>
       <header id="header">
-        <div className="lang-toggle">
-          <button
-            onClick={handleLanguageChange}
-            aria-label={`Switch language to ${targetLanguage}`}
-          >
-            {/* Display skeleton or language button */}
-            {isInitialLoading ? (
-              <Skeleton width={40} height={28} />
-            ) : language?.header?.Button === "DE" ? (
-              <GB title="English" className="flags" />
-            ) : language?.header?.Button === "EN" ? (
-              <DE title="German" className="flags" />
-            ) : (
-              "DE"
-            )}
-          </button>
-        </div>
-        <br />
-
         {/* Main Section */}
         <div className="inner">
-          {/* Displaying headshot image */}
-          <div>
-            <span className="image avatar">
-              {isInitialLoading ? (
-                <Skeleton circle={true} height={150} width={150} />
-              ) : (
-                <img
-                  src="images/headshot.jpg"
-                  alt="Profile portrait"
-                  width={150}
-                  height={150}
-                />
-              )}
-            </span>
-          </div>
           <div>
             {/* Displaying header text */}
             {isInitialLoading ? (
