@@ -35,7 +35,7 @@ export interface ProfileContent extends LocalizationMeta {
   Text: string;
   skillsTitle: string;
   tableTech: string;
-  tableExpertise: string;
+  tableArea: string;
   buttonShow: string;
   buttonHide: string;
 }
@@ -44,7 +44,7 @@ export interface SkillsTableEntry {
   id?: EntityId;
   Column1: string;
   Column2: ImageAttributes | null;
-  Column3: string | number;
+  Column3: string;
 }
 
 export interface WorkContent extends LocalizationMeta {

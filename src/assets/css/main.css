@@ -30,6 +30,10 @@
   vertical-align: middle;
 }
 
+.skills-table td:last-child {
+  font-size: 0.9em;
+}
+
 .skills-table td {
   vertical-align: middle;
 }

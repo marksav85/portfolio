@@ -14,11 +14,9 @@ export const Skills = () => {
         <table className="skills-table">
           <thead>
             <tr>
-              <th>{language?.profile?.tableTech}</th>{" "}
-              {/* Display table column header for technology */}
-              <th></th> {/* Empty column */}
-              <th>{language?.profile?.tableExpertise}</th>{" "}
-              {/* Display table column header for expertise */}
+              <th>{language?.profile?.tableTech}</th>
+              <th></th>
+              <th>{language?.profile?.tableArea}</th>
             </tr>
           </thead>
           <tbody>
@@ -27,11 +25,6 @@ export const Skills = () => {
               const technology = skill.Column1;
               const icon = skill.Column2;
               const area = skill.Column3;
-              const hasDimensions =
-                typeof icon?.width === "number" &&
-                icon.width > 0 &&
-                typeof icon.height === "number" &&
-                icon.height > 0;
 
               return (
                 <tr key={skill.id ?? technology}>
@@ -43,8 +36,8 @@ export const Skills = () => {
                       <img
                         src={icon.url}
                         alt={icon.alternativeText ?? ""}
-                        width={hasDimensions ? (icon.width ?? undefined) : undefined}
-                        height={hasDimensions ? (icon.height ?? undefined) : undefined}
+                        width={48}
+                        height={48}
                         loading="lazy"
                         decoding="async"
                       />
