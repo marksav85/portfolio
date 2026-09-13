@@ -61,6 +61,11 @@ h2 {
   height: 400px;
   margin: 50px auto;
   text-align: center;
+  padding-top: 2em;
+}
+
+.carousel-item {
+  min-height: 32em;
 }
 
 .carousel-indicators {
@@ -101,8 +106,36 @@ h2 {
 
 /* REFERENCES */
 
+.references-carousel {
+  position: relative;
+}
+
+.references-carousel__viewport {
+  overflow: hidden;
+}
+
+.references-carousel__container {
+  align-items: stretch;
+  display: flex;
+}
+
+.references-carousel__slide {
+  display: flex;
+  flex: 0 0 100%;
+  min-width: 0;
+}
+
 .reference-image-container {
   position: relative;
+}
+
+.reference-content {
+  align-content: start;
+  display: grid;
+  flex: 1;
+  grid-template-rows: minmax(6.5em, auto) minmax(7.25em, auto) 250px minmax(3em, auto);
+  min-height: 32em;
+  text-align: center;
 }
 
 .reference-image {
@@ -131,46 +164,52 @@ h2 {
   text-align: center;
 }
 
-/* Custom styles for Bootstrap Carousel controls and items */
+.references-carousel__button {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  color: #595959;
+  cursor: pointer;
+  font-size: 2em;
+  line-height: 1;
+  padding: 0.25em;
+  position: absolute;
+  top: 60%;
+  transform: translateY(-50%);
+}
+
+.references-carousel__button:hover {
+  color: #265f51;
+}
+
+.references-carousel__button:focus-visible {
+  outline: 2px solid #265f51;
+  outline-offset: 3px;
+}
+
+.references-carousel__button--previous {
+  left: 0;
+}
+
+.references-carousel__button--next {
+  right: 0;
+}
+
+@media (max-width: 480px) {
+  .reference-content {
+    grid-template-rows: minmax(6.5em, auto) minmax(7.25em, auto) 150px minmax(3em, auto);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .references-carousel__container {
+    scroll-behavior: auto;
+  }
+}
+
 .carousel-item {
   text-align: center;
   position: relative;
-}
-
-.carousel-control-prev,
-.carousel-control-next {
-  width: auto;
-  position: absolute;
-  top: 75%; /* Center the controls vertically */
-  transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
-  color: black;
-  border: none;
-  border-radius: 5px;
-}
-
-.carousel-control-prev:hover,
-.carousel-control-next:hover {
-  filter: invert(1) sepia(1) saturate(5000%) hue-rotate(-50deg);
-  /* Adjust the background color to red on hover */
-}
-
-.carousel-control-prev {
-  left: 0; /* Position the left control to the left side */
-  background-color: rgba(0, 0, 0, 0);
-}
-
-.carousel-control-next {
-  right: 0; /* Position the right control to the right side */
-  background-color: rgba(0, 0, 0, 0);
-}
-
-.carousel-control-next-icon {
-  filter: invert(1) grayscale(100);
-}
-
-.carousel-control-prev-icon {
-  filter: invert(1) grayscale(100);
 }
 
 @media (min-width: 1800px) {
