@@ -54,10 +54,16 @@ export const Profile: React.FC = () => {
         <div className="profile-intro">
           <img
             className="profile-intro-image"
-            src="/images/profile/profile-photo.webp"
+            src="/images/profile/profile-photo-640x800.webp"
+            srcSet="
+    /images/profile/profile-photo-640x800.webp 640w,
+    /images/profile/profile-photo-960x1200.webp 960w
+  "
+            sizes="(min-width: 1200px) 480px, 320px"
             alt="Profile portrait"
-            width={960}
-            height={1200}
+            width={640}
+            height={800}
+            fetchPriority="high"
           />
 
           <div className="profile-intro-heading">
