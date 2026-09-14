@@ -5,6 +5,24 @@ export const Skills = () => {
   // Use language-related context and custom hook
   const language = useLanguageContent();
 
+  // Sort column 3
+  const areaOrder: Record<string, number> = {
+    Frontend: 1,
+    "Backend & CMS": 2,
+    "Data & Platforms": 3,
+  };
+
+  const sortedSkills = [...(language?.skillsTables ?? [])].sort((a, b) => {
+    const areaDifference =
+      (areaOrder[a.Column3] ?? 99) - (areaOrder[b.Column3] ?? 99);
+
+    if (areaDifference !== 0) {
+      return areaDifference;
+    }
+
+    return a.Column1.localeCompare(b.Column1);
+  });
+
   return (
     <>
       <div id="profile-skills" className="skills-table-container">
@@ -21,7 +39,7 @@ export const Skills = () => {
           </thead>
           <tbody>
             {/* Map over skills tables data and render each skill */}
-            {language?.skillsTables?.map((skill) => {
+            {sortedSkills.map((skill) => {
               const technology = skill.Column1;
               const icon = skill.Column2;
               const area = skill.Column3;
