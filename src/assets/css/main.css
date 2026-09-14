@@ -133,7 +133,10 @@ h2 {
   align-content: start;
   display: grid;
   flex: 1;
-  grid-template-rows: minmax(6.5em, auto) minmax(7.25em, auto) 250px minmax(3em, auto);
+  grid-template-rows: minmax(6.5em, auto) minmax(7.25em, auto) 250px minmax(
+      3em,
+      auto
+    );
   min-height: 32em;
   text-align: center;
 }
@@ -197,7 +200,10 @@ h2 {
 
 @media (max-width: 480px) {
   .reference-content {
-    grid-template-rows: minmax(6.5em, auto) minmax(7.25em, auto) 150px minmax(3em, auto);
+    grid-template-rows: minmax(6.5em, auto) minmax(7.25em, auto) 150px minmax(
+        3em,
+        auto
+      );
   }
 }
 

@@ -1,19 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 // Import language-related context and custom hook
 import useLanguageContent from "../../../hooks/useLanguageContent";
 
 export const Contact: React.FC = () => {
   // Use language-related context and custom hook to access language content
   const language = useLanguageContent();
-
-  // Base URL for resume links
-  // const { baseUrl } = useLanguage();
-
-  // Construct URLs for developer and full resumes
-  //const resumeDevUrl = language?.contact?.ResumeDeveloperLink;
-  // const resumeFullUrl = language?.contact?.ResumeFullLink;
 
   return (
     <>
@@ -40,66 +33,19 @@ export const Contact: React.FC = () => {
                   <span className="label">{language?.contact?.Linkedin}</span>
                 </a>
               </li>
-              {/*  <li>
-               
-                <h3 className="icon solid" aria-label="My telephone number">
-                  <FontAwesomeIcon
-                    className="react-icon"
-                    icon={faMobileScreen}
-                  />
-                </h3>
-                
-                {language?.contact?.Telephone}
-              </li> */}
               <li>
-                {/* Email */}
                 <span className="icon solid contact-icon">
-                  <FontAwesomeIcon className="react-icon" icon={faEnvelope} />
+                  <FontAwesomeIcon className="react-icon" icon={faGlobe} />
                 </span>
-                {/* Display email address */}
+
                 <a
-                  href="mailto:contact@marksavilledesigns.com"
-                  aria-label="Send an email"
+                  href="https://marksavilledesigns.com"
+                  aria-label="Visit Mark Saville Designs website"
                 >
                   {language?.contact?.Email}
                 </a>
               </li>
             </ul>
-
-            {/* List of resume download links */}
-            {/* <ul className="labeled-icons">
-              <li>
-                <h3 className="icon solid">
-                  <FontAwesomeIcon icon={faDownload} />
-                </h3>
-
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href={resumeDevUrl}
-                  aria-label={language?.contact?.ResumeDeveloperText}
-                  download
-                >
-                  {language?.contact?.ResumeDeveloperText}
-                </a>
-              </li>
-              <li>
-                
-                <h3 className="icon solid fa-download">
-                  <span className="label">Download</span>
-                </h3>
-                
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href={resumeFullUrl}
-                  aria-label={language?.contact?.ResumeFullText}
-                  download
-                >
-                  {language?.contact?.ResumeFullText}
-                </a>
-              </li>
-            </ul> */}
           </div>
         </div>
       </section>

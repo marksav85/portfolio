@@ -2,7 +2,7 @@ import React from "react";
 // Import icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 // Import Skeleton loader
 import Skeleton from "react-loading-skeleton";
 
@@ -57,20 +57,6 @@ export const Header = () => {
         >
           <div className="inner">
             <ul className="icons">
-              {/* <li>
-                {isInitialLoading ? (
-                  <Skeleton width={24} height={24} circle={true} />
-                ) : (
-                  <a
-                    href="https://twitter.com/marksav85"
-                    className="icon brands"
-                    aria-label="Link to Twitter"
-                  >
-                    <FontAwesomeIcon className="react-icon" icon={faXTwitter} />
-                    <span className="label">Twitter</span>
-                  </a>
-                )}
-              </li> */}
               <li>
                 {isInitialLoading ? (
                   <Skeleton width={24} height={24} circle={true} />
@@ -104,12 +90,12 @@ export const Header = () => {
                   <Skeleton width={24} height={24} circle={true} />
                 ) : (
                   <a
-                    href="mailto:contact@marksavilledesigns.com"
+                    href="https://marksavilledesigns.com"
                     className="icon solid"
-                    aria-label="Send an email"
+                    aria-label="Visit Mark Saville Designs website"
                   >
-                    <FontAwesomeIcon className="react-icon" icon={faEnvelope} />
-                    <span className="label">Email</span>
+                    <FontAwesomeIcon className="react-icon" icon={faGlobe} />
+                    <span className="label">Website</span>
                   </a>
                 )}
               </li>

@@ -1,10 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faXTwitter,
-  faGithub,
-  faLinkedin,
-} from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 
 export const Footer = () => {
   return (
@@ -12,16 +8,6 @@ export const Footer = () => {
       <footer id="footer" className="footer-bottom">
         <div className="inner">
           <ul className="icons">
-            <li>
-              <a
-                href="https://twitter.com/marksav85"
-                className="icon brands"
-                aria-label="Link to Twitter"
-              >
-                <FontAwesomeIcon className="react-icon" icon={faXTwitter} />
-                <span className="label">Twitter</span>
-              </a>
-            </li>
             <li>
               <a
                 href="https://github.com/marksav85"
@@ -44,12 +30,12 @@ export const Footer = () => {
             </li>
             <li>
               <a
-                href="mailto:marksav85@gmail.com?subject=Test%20test&body=This%20is%20a%20test"
+                href="www.marksavilledesigns.com"
                 className="icon solid"
                 aria-label="Send an email"
               >
-                <FontAwesomeIcon className="react-icon" icon={faEnvelope} />
-                <span className="label">Email</span>
+                <FontAwesomeIcon className="react-icon" icon={faGlobe} />
+                <span className="label">Website</span>
               </a>
             </li>
           </ul>
