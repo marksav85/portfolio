@@ -57,8 +57,6 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({
     setSelectedLanguage(availableLanguages[nextIndex]);
   };
 
-  // const baseUrl = "https://strapi-ai51.onrender.com/";
-
   // Provide the language-related values through the LanguageContext.Provider
   return (
     <LanguageContext.Provider

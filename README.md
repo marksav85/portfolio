@@ -54,7 +54,11 @@ Portfolio content is loaded from Strapi through REST using `VITE_STRAPI_URL`. Ge
 
 The production frontend is deployed with Cloudflare Pages at [marksavilledesigns.com](https://marksavilledesigns.com). Build it with `npm run build`; the output directory is `dist/`.
 
-The production Strapi backend is a separate project at [portfolio-strapi-wsn7.onrender.com](https://portfolio-strapi-wsn7.onrender.com).
+The production Strapi backend is hosted at [portfolio-strapi-api.marksavilledesigns.com](https://portfolio-strapi-api.marksavilledesigns.com).
+
+For Cloudflare Pages production deployments, set `VITE_STRAPI_URL` to
+`https://portfolio-strapi-api.marksavilledesigns.com`. Vite injects this value at
+build time, so redeploy after changing the Pages environment variable.
 
 ## Project Structure
 
