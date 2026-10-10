@@ -48,42 +48,147 @@ h2 {
 
 /* IMAGE MODAL AND CAROUSEL COMPONENT */
 
-#modal-box {
-  max-width: 800px;
-  height: 500px;
-  margin: 50px auto;
-  text-align: center;
-}
-
-.carousel-image-container {
-  position: relative;
-  max-width: 600px;
-  height: 400px;
-  margin: 50px auto;
-  text-align: center;
-  padding-top: 2em;
-}
-
-.carousel-item {
-  min-height: 32em;
-}
-
-.carousel-indicators {
-  position: absolute;
-  bottom: 0;
-}
-
-.carousel-fulls {
-  width: 500px;
+/* Keep the existing card height; crop thumbnails without distorting them. */
+.work-item .carousel-fulls {
+  width: 100%;
   height: 250px;
+  object-fit: cover;
 }
 
-.carousel-thumbs {
+.project-image-modal .project-image-dialog {
+  width: calc(100% - 2rem);
+  max-width: none;
+  margin: 1rem auto;
+  min-height: calc(100% - 2rem);
+}
+
+.project-image-modal .modal-content {
+  height: calc(100vh - 2rem);
+  height: calc(100dvh - 2rem);
+}
+
+.project-image-modal .modal-header {
+  flex-shrink: 0;
+  gap: 1rem;
+}
+
+.project-image-modal .modal-title {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.project-image-original {
+  flex-shrink: 0;
+  color: #595959;
+  padding: 0.25rem;
+  border: 0;
+  line-height: 1;
+}
+
+.project-image-original:hover {
+  color: #265f51;
+}
+
+.project-image-original:focus-visible {
+  outline: 2px solid #265f51;
+  outline-offset: 3px;
+}
+
+.project-image-modal .modal-header .btn-close {
+  margin-left: 0;
+}
+
+.project-image-modal .modal-body {
+  flex: 1;
+  min-height: 0;
+  padding: 0.5rem;
+}
+
+.project-carousel,
+.project-carousel .carousel-inner,
+.project-carousel .carousel-item {
+  height: 100%;
+}
+
+.project-carousel {
+  padding-bottom: 2rem;
+}
+
+.project-carousel .carousel-item.active {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-carousel .carousel-image-container {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  align-items: center;
+  justify-content: center;
+  padding: 0 3rem;
+}
+
+.project-carousel .carousel-thumbs {
+  display: block;
   width: 100%;
   height: 100%;
-  max-width: 100%;
-  display: block;
-  margin: 0 auto;
+  object-fit: contain;
+}
+
+.project-image-actions {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem 1rem;
+  padding: 0.5rem 3rem;
+  text-align: center;
+}
+
+.project-carousel .carousel-control-prev,
+.project-carousel .carousel-control-next {
+  width: 3rem;
+  bottom: 6rem;
+}
+
+.project-carousel .carousel-indicators {
+  margin-bottom: 0;
+}
+
+.project-carousel:focus-visible,
+.project-carousel a:focus-visible,
+.project-carousel button:focus-visible {
+  outline: 2px solid #265f51;
+  outline-offset: -2px;
+}
+
+@media (max-width: 480px) {
+  .project-image-modal .project-image-dialog {
+    width: calc(100% - 1rem);
+    margin: 0.5rem auto;
+    min-height: calc(100% - 1rem);
+  }
+
+  .project-image-modal .modal-content {
+    height: calc(100vh - 1rem);
+    height: calc(100dvh - 1rem);
+  }
+
+  .project-carousel .carousel-image-container {
+    padding: 0 2rem;
+  }
+
+  .project-carousel .carousel-control-prev,
+  .project-carousel .carousel-control-next {
+    width: 2rem;
+  }
+
+  .project-image-actions {
+    padding: 0.5rem 0;
+    font-size: 0.85em;
+  }
 }
 
 /* WORK COMPONENT */
@@ -3377,20 +3482,6 @@ input[type="button"]:disabled,
     padding: 2.25em 0 0 0;
   }
 
-  #modal-box {
-    max-width: 600px;
-    height: 400px;
-    margin: 40px;
-  }
-
-  .carousel-fulls {
-    width: 500px;
-    height: 250px;
-  }
-
-  .carousel-thumbs {
-    height: 400px;
-  }
 }
 
 /* XSmall */
@@ -3416,18 +3507,4 @@ input[type="button"]:disabled,
     padding-left: 0;
   }
 
-  #modal-box {
-    max-width: 400px;
-    height: 350px;
-    margin: 20px;
-  }
-
-  .carousel-fulls {
-    width: 400px;
-    height: 250px;
-  }
-
-  .carousel-thumbs {
-    height: 350px;
-  }
 }

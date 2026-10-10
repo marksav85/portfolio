@@ -3,16 +3,29 @@ import type { ImageAttributes } from "../../../../types/portfolio";
 
 interface ImageCarouselProps {
   images: ImageAttributes[];
+  activeIndex: number;
+  onSelect: (index: number) => void;
 }
 
-export function ImageCarousel({ images }: ImageCarouselProps) {
+export function ImageCarousel({ images, activeIndex, onSelect }: ImageCarouselProps) {
   if (!images.length) {
     return null;
   }
 
   return (
     // Bootstrap Carousel component to display project images
-    <Carousel data-bs-theme="dark" controls={false}>
+    <Carousel
+      className="project-carousel"
+      data-bs-theme="dark"
+      controls={images.length > 1}
+      indicators={images.length > 1}
+      interval={null}
+      activeIndex={activeIndex}
+      onSelect={onSelect}
+      slide={false}
+      tabIndex={0}
+      aria-label="Project images. Use left and right arrow keys to navigate."
+    >
       {images.map((image, index) => {
         const hasDimensions =
           typeof image.width === "number" &&
@@ -32,6 +45,9 @@ export function ImageCarousel({ images }: ImageCarouselProps) {
                 loading="lazy"
                 decoding="async"
               />
+            </div>
+            <div className="project-image-actions">
+              <span aria-live="polite">Image {index + 1} of {images.length}</span>
             </div>
           </Carousel.Item>
         );
