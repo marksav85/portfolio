@@ -42,8 +42,7 @@ const normalizeProjects = (projects: ProjectSet | null): ProjectSet | null => {
 
   const normalizedProjects = { ...projects };
 
-  for (let index = 1; index <= 10; index += 1) {
-    const key = `Project${index}` as `Project${number}`;
+  for (const key of getProjectKeys(projects)) {
     const project = projects[key];
 
     if (project) {
@@ -136,19 +135,36 @@ export async function getLabels(
   return response.data[0] ?? null;
 }
 
-function getProjectsPopulateQuery(): string {
-  return Array.from(
-    { length: 10 },
-    (_, index) => `populate[Project${index + 1}][populate]=Images`,
-  ).join("&");
-}
+const getProjectKeys = (projects: ProjectSet): `Project${number}`[] =>
+  Object.keys(projects).filter(
+    (key): key is `Project${number}` => /^Project\d+$/.test(key),
+  );
 
 export async function getProjects(
   locale: PortfolioLocale,
   signal?: AbortSignal,
 ): Promise<ProjectSet | null> {
+  // Discover populated project components before requesting their nested media.
+  const discovery = await request<CollectionResponse<ProjectSet>>(
+    `/api/projects?${localeParam(locale)}&populate=*`,
+    signal,
+  );
+  const projects = discovery.data[0];
+
+  if (!projects) {
+    return null;
+  }
+
+  const populateQuery = getProjectKeys(projects)
+    .map((key) => `populate[${key}][populate]=Images`)
+    .join("&");
+
+  if (!populateQuery) {
+    return normalizeProjects(projects);
+  }
+
   const response = await request<CollectionResponse<ProjectSet>>(
-    `/api/projects?${localeParam(locale)}&${getProjectsPopulateQuery()}`,
+    `/api/projects?${localeParam(locale)}&${populateQuery}`,
     signal,
   );
 

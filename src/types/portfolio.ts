@@ -17,6 +17,10 @@ export interface LocalizationMeta {
 export interface RichTextChild {
   text: string;
   bold?: boolean;
+  italic?: boolean;
+  underline?: boolean;
+  strikethrough?: boolean;
+  code?: boolean;
   type: string;
 }
 

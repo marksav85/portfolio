@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Fragment, useState, type ReactNode } from "react";
 import { ImageModal } from "../ImageModal/ImageModal";
 // Import language-related context and custom hook
 import useLanguageContent from "../../../../hooks/useLanguageContent";
@@ -91,16 +91,25 @@ export const SingleProject: React.FC<SingleProjectProps> = ({ projectNumber }) =
           <h4>{language?.labels?.Process}</h4>
           {/* Display project description text */}
           {language?.projects?.[`Project${projectNumber}`]?.TextBlock?.map(
-            // TextBlock is an array of paragraphs
-            (paragraph: RichTextParagraph, index: number) =>
-              // Check if paragraph has children and type is 'text'
-              paragraph.children && paragraph.children[0]?.type === "text" ? (
-                // Render the text content
-                <div key={index}>
-                  <p>{paragraph.children[0].text}</p>
-                  <br />
-                </div>
-              ) : null,
+            (paragraph: RichTextParagraph, index: number) => (
+              <div key={index}>
+                <p>
+                  {paragraph.children?.map((child, childIndex) => {
+                    if (child.type !== "text") return null;
+
+                    let content: ReactNode = child.text;
+                    if (child.bold) content = <strong>{content}</strong>;
+                    if (child.italic) content = <em>{content}</em>;
+                    if (child.underline) content = <u>{content}</u>;
+                    if (child.strikethrough) content = <s>{content}</s>;
+                    if (child.code) content = <code>{content}</code>;
+
+                    return <Fragment key={childIndex}>{content}</Fragment>;
+                  })}
+                </p>
+                <br />
+              </div>
+            ),
           )}
 
           <br />
@@ -135,25 +144,17 @@ export const SingleProject: React.FC<SingleProjectProps> = ({ projectNumber }) =
           </p>
         </div>
 
-        {/* Display project homepage */}
-        {/* <div className="project-homepage">
-          <p>
-            {language?.labels?.Homepage}
-            
-            {language?.projects?.[`Project${projectNumber}`]?.hasHomepage ===
-            false ? (
-              <span>
-                {language?.projects?.[`Project${projectNumber}`]?.Homepage}
-              </span>
-            ) : (
-              <a
-                href={language?.projects?.[`Project${projectNumber}`]?.Homepage}
-              >
-                {language?.projects?.[`Project${projectNumber}`]?.Title}
-              </a>
-            )}
-          </p>
-        </div> */}
+        {projectNumber === 11 && project?.hasHomepage !== false &&
+          project?.Homepage && /^https?:\/\//i.test(project.Homepage) && (
+            <div className="project-homepage">
+              <p>
+                {language?.labels?.Homepage}
+                <a href={project.Homepage} target="_blank" rel="noopener noreferrer">
+                  {project.Title}
+                </a>
+              </p>
+            </div>
+          )}
 
         {/* Display project repository */}
         {/* <div className="project-repository">
