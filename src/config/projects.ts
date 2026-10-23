@@ -9,7 +9,7 @@ export const projectPresentation: ProjectPresentation = {
   preferredOrder: [
     "language-coach", "movie-api", "myflix-react", "meet-app", "chat-app",
     "myflix-angular", "pokedex-app", "tripcast", "golden-crane-restaurant",
-    "bikeshare-app", "patagonia-2025",
+    "bikeshare-app", "patagonia-2025", "ec-wedding",
   ],
   initialVisibleCount: 6,
   // When nonempty, these projects lead the initial group in this exact order.

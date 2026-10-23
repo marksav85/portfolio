@@ -64,16 +64,18 @@ test('legacy adapter preserves numeric order and old link policy',()=>{
  assert.equal(result[0].hasHomepage,false);assert.equal(result[0].hasRepository,false);assert.equal(result[1].hasHomepage,true);
 });
 
-test('approved production order yields six initial cards and five additional cards',()=>{
+test('approved production order yields six initial cards and six additional cards',()=>{
  const configModule=new Module(require('node:path').resolve('src/config/projects.ts'),module);
  configModule._compile(ts.transpileModule(fs.readFileSync('src/config/projects.ts','utf8').replaceAll('import.meta.env','({})'),{
   compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2020},
  }).outputText,configModule.id);
  const {projectPresentation,projectLinks}=configModule.exports;
- const slugs=['language-coach','movie-api','myflix-react','meet-app','chat-app','myflix-angular','pokedex-app','tripcast','golden-crane-restaurant','bikeshare-app','patagonia-2025'];
+ const slugs=['language-coach','movie-api','myflix-react','meet-app','chat-app','myflix-angular','pokedex-app','tripcast','golden-crane-restaurant','bikeshare-app','patagonia-2025','ec-wedding'];
  const groups=groupProjects([...slugs].reverse().map(slug=>project(slug)),projectPresentation);
  assert.deepEqual(groups.primary.map(p=>p.slug),slugs.slice(0,6));
  assert.deepEqual(groups.additional.map(p=>p.slug),slugs.slice(6));
+ assert.equal(groups.primary.length,6);assert.equal(groups.additional.length,6);
+ assert.equal(groups.additional.at(-1).slug,"ec-wedding");
  assert(projectLinkUrls(project('p',{hasHomepage:true,Homepage:'https://example.com'}),projectLinks).homepage);
  assert.equal(projectLinkUrls(project('p',{hasHomepage:false,Homepage:'https://example.com'}),projectLinks).homepage,null);
 });
