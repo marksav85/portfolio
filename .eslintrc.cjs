@@ -7,7 +7,7 @@ module.exports = {
     "plugin:@typescript-eslint/recommended", // Updated to TypeScript
     "plugin:react-hooks/recommended",
   ],
-  ignorePatterns: ["dist", ".eslintrc.cjs"],
+  ignorePatterns: ["dist", ".eslintrc.cjs", "playbook/**"],
   parser: "@typescript-eslint/parser", // Change parser to TypeScript parser
   parserOptions: {
     ecmaVersion: 2020,
