@@ -76,7 +76,16 @@ export interface ProjectEntry {
   Repository: string | null;
   Homepage: string | null;
   hasHomepage: boolean | null;
+  hasRepository?: boolean | null;
   Images: ImageAttributes[];
+}
+
+export interface PortfolioProject extends ProjectEntry {
+  documentId: string;
+  slug: string;
+  name: string;
+  locale: string;
+  legacy?: boolean;
 }
 
 export type ProjectSet = LocalizationMeta & {
@@ -119,7 +128,7 @@ export interface LanguageContent {
   skillsTables: SkillsTableEntry[];
   work: WorkContent | null;
   labels: LabelsContent | null;
-  projects: ProjectSet | null;
+  projects: PortfolioProject[];
   contact: ContactContent | null;
   reference: ReferenceContent | null;
   referenceLists: ReferenceListContent;

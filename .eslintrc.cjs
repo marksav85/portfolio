@@ -23,6 +23,8 @@ module.exports = {
   },
   plugins: ["react", "@typescript-eslint"], // Add @typescript-eslint plugin
   rules: {
+    // React supports fetchPriority; the installed lint plugin predates it.
+    "react/no-unknown-property": ["error", { ignore: ["fetchPriority"] }],
     "react/prop-types": "off", // Disable prop-types check since TypeScript handles types
     "@typescript-eslint/explicit-module-boundary-types": "off", // Allow implicit return types
     "@typescript-eslint/no-explicit-any": "off", // Allow usage of 'any' type

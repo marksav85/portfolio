@@ -74,3 +74,64 @@ build time, so redeploy after changing the Pages environment variable.
 ## Notes
 
 Portfolio content is managed through the separate Strapi project. Visual redesign and CMS restructuring are outside the scope of this interim frontend refresh.
+
+## Portfolio Projects transition (Stage 2)
+
+The frontend supports the new `/api/portfolio-projects` collection and retains the
+legacy `/api/projects` adapter. Set `VITE_PROJECT_SOURCE=collection` at build time
+to opt in. The default remains `legacy` as an explicit rollback-safe build setting.
+There is no automatic fallback after a collection request fails. Legacy selection
+emits a console warning; `#two[data-project-source]` identifies the selected source.
+Invalid source configuration fails explicitly.
+
+Edit `src/config/projects.ts` to configure:
+
+- `preferredOrder`: reviewed slugs in display order; unlisted published entries
+  follow in API slug order, with no hardcoded project limit.
+- `initialVisibleCount`: initially six; changing it requires only this config.
+- `featuredSlugs`: optional slugs that lead the initial group, ahead of preferred
+  order. The configured visible count still controls the group size. Missing slugs
+  are ignored. Remaining projects stay behind the existing expansion control.
+- `projectLinks`: migrated homepage flags are now honored directly
+  (`homepageFlagsReviewed=true`). The legacy adapter retains its former policy.
+  Current migrated flags remain false/null; no links are enabled by this change.
+
+Repository links require `hasRepository === true`; homepage links require
+`hasHomepage === true`. Both URLs must be
+valid absolute HTTP(S) URLs without embedded credentials. The legacy adapter
+preserves its old homepage behavior and hides repositories. No project-number
+conditions remain in card rendering.
+
+Collection requests explicitly select published EN/DE entries, populate nested
+Images and traverse all result pages. The adapter preserves media order and skips
+missing media, rejects duplicate slugs/document identities, and excludes draft or
+wrong-locale responses. The existing provider still owns locale caching, request
+cancellation and error reporting. Cards, galleries, modal and CSS are retained.
+
+Offline validation (Node 22.13 recommended):
+
+```sh
+node tests/projects.test.cjs
+npx --no-install tsc --noEmit
+npm run lint
+npm run build
+git diff --check
+```
+
+The fixture tests do not contact Strapi or production. Verify real API permissions,
+media and EN/DE visual output against the isolated migrated restore before cutover.
+The installed lint plugin predates React's existing `fetchPriority` attribute;
+the lint configuration now recognizes that attribute without dependency changes.
+
+Backend migration and public collection access are complete. Before frontend
+cutover, set Cloudflare Pages production build variables to:
+
+```text
+VITE_PROJECT_SOURCE=collection
+VITE_STRAPI_URL=https://portfolio-strapi-api.marksavilledesigns.com
+```
+
+Then build/deploy this reviewed frontend revision after separate authorization.
+Use `VITE_PROJECT_SOURCE=legacy` and rebuild to roll back the data source. No
+runtime API error silently switches sources. The preferred order contains the
+approved eleven migration slugs; the first six remain initially visible.

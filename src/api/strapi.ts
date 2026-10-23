@@ -1,3 +1,5 @@
+import { projectSource } from "../config/projects";
+import { fetchProjectCollection, legacyProjectsToArray } from "./projects";
 import type {
   ContactContent,
   HeaderContent,
@@ -140,13 +142,13 @@ const getProjectKeys = (projects: ProjectSet): `Project${number}`[] =>
     (key): key is `Project${number}` => /^Project\d+$/.test(key),
   );
 
-export async function getProjects(
+export async function getLegacyProjects(
   locale: PortfolioLocale,
   signal?: AbortSignal,
 ): Promise<ProjectSet | null> {
   // Discover populated project components before requesting their nested media.
   const discovery = await request<CollectionResponse<ProjectSet>>(
-    `/api/projects?${localeParam(locale)}&populate=*`,
+    `/api/projects?${localeParam(locale)}&status=published&populate=*`,
     signal,
   );
   const projects = discovery.data[0];
@@ -164,11 +166,21 @@ export async function getProjects(
   }
 
   const response = await request<CollectionResponse<ProjectSet>>(
-    `/api/projects?${localeParam(locale)}&${populateQuery}`,
+    `/api/projects?${localeParam(locale)}&status=published&${populateQuery}`,
     signal,
   );
 
   return normalizeProjects(response.data[0] ?? null);
+}
+
+let legacyReported = false;
+export async function getProjects(locale: PortfolioLocale, signal?: AbortSignal) {
+  if (projectSource === "collection") return fetchProjectCollection(locale, request, signal);
+  if (!legacyReported) {
+    console.warn("[portfolio] Project source: legacy (VITE_PROJECT_SOURCE). No automatic fallback is enabled.");
+    legacyReported = true;
+  }
+  return legacyProjectsToArray(await getLegacyProjects(locale, signal));
 }
 
 export async function getContact(

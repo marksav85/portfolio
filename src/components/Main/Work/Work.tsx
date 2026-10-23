@@ -2,26 +2,8 @@ import { useState } from "react";
 import { SingleProject } from "./SingleProject/SingleProject";
 // Import language-related context and custom hook
 import useLanguageContent from "../../../hooks/useLanguageContent";
-import type { ProjectSet } from "../../../types/portfolio";
-
-const projectKeyPattern = /^Project(\d+)$/;
-
-const getProjectNumbers = (projects: ProjectSet | null | undefined) => {
-  if (!projects) {
-    return [];
-  }
-
-  return Object.keys(projects)
-    .flatMap((key) => {
-      const match = projectKeyPattern.exec(key);
-      const projectNumber = match ? Number(match[1]) : NaN;
-
-      return Number.isSafeInteger(projectNumber) && projects[`Project${projectNumber}`]
-        ? [projectNumber]
-        : [];
-    })
-    .sort((first, second) => first - second);
-};
+import { projectPresentation, projectSource } from "../../../config/projects";
+import { groupProjects } from "../../../api/projects";
 
 export const Work: React.FC = () => {
   // State to manage visibility of additional projects
@@ -35,21 +17,20 @@ export const Work: React.FC = () => {
   // Getting language content using custom hook
   const language = useLanguageContent();
 
-  const projectNumbers = getProjectNumbers(language?.projects);
-  const primaryProjects = projectNumbers.slice(0, 6);
-  const additionalProjects = projectNumbers.slice(6);
+  const { primary: primaryProjects, additional: additionalProjects } =
+    groupProjects(language?.projects ?? [], projectPresentation);
 
   return (
     <>
-      <section id="two">
+      <section id="two" data-project-source={projectSource}>
         {/* Display work title */}
         <h2>{language?.work?.Title}</h2>
         <div className="row">
           {/* Map over projects and render each project */}
-          {primaryProjects.map((projectNumber) => (
+          {primaryProjects.map((project) => (
             <SingleProject
-              key={`Project${projectNumber}`}
-              projectNumber={projectNumber}
+              key={project.slug}
+              project={project}
             />
           ))}
         </div>
@@ -71,10 +52,10 @@ export const Work: React.FC = () => {
             <div className="row">
               {/* Render additional projects if isVisible is true */}
               {isVisible &&
-                additionalProjects.map((projectNumber) => (
+                additionalProjects.map((project) => (
                   <SingleProject
-                    key={`Project${projectNumber}`}
-                    projectNumber={projectNumber}
+                    key={project.slug}
+                    project={project}
                   />
                 ))}
             </div>

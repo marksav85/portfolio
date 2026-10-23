@@ -2,14 +2,16 @@ import { Fragment, useState, type ReactNode } from "react";
 import { ImageModal } from "../ImageModal/ImageModal";
 // Import language-related context and custom hook
 import useLanguageContent from "../../../../hooks/useLanguageContent";
-import type { RichTextParagraph } from "../../../../types/portfolio";
+import { projectLinkUrls } from "../../../../api/projects";
+import { projectLinks } from "../../../../config/projects";
+import type { PortfolioProject, RichTextParagraph } from "../../../../types/portfolio";
 
 // Define the props interface
 interface SingleProjectProps {
-  projectNumber: number;
+  project: PortfolioProject;
 }
 
-export const SingleProject: React.FC<SingleProjectProps> = ({ projectNumber }) => {
+export const SingleProject: React.FC<SingleProjectProps> = ({ project }) => {
   // State to manage visibility of additional projects
   const [isVisible, setIsVisible] = useState(false);
 
@@ -32,7 +34,7 @@ export const SingleProject: React.FC<SingleProjectProps> = ({ projectNumber }) =
   // Base URL for resume links
   // const { baseUrl } = useLanguage();
 
-  const project = language?.projects?.[`Project${projectNumber}`];
+  const links = projectLinkUrls(project, projectLinks);
   const images = project?.Images ?? [];
   const primaryImage = images[0];
   const hasPrimaryImageDimensions =
@@ -90,7 +92,7 @@ export const SingleProject: React.FC<SingleProjectProps> = ({ projectNumber }) =
         <div className="project-description">
           <h4>{language?.labels?.Process}</h4>
           {/* Display project description text */}
-          {language?.projects?.[`Project${projectNumber}`]?.TextBlock?.map(
+          {project.TextBlock?.map(
             (paragraph: RichTextParagraph, index: number) => (
               <div key={index}>
                 <p>
@@ -139,35 +141,24 @@ export const SingleProject: React.FC<SingleProjectProps> = ({ projectNumber }) =
           <p>
             {language?.labels?.Technologies}
             <span style={{ fontWeight: "bold" }}>
-              {language?.projects?.[`Project${projectNumber}`]?.Technologies}
+              {project.Technologies}
             </span>
           </p>
         </div>
 
-        {projectNumber === 11 && project?.hasHomepage !== false &&
-          project?.Homepage && /^https?:\/\//i.test(project.Homepage) && (
-            <div className="project-homepage">
-              <p>
-                {language?.labels?.Homepage}
-                <a href={project.Homepage} target="_blank" rel="noopener noreferrer">
-                  {project.Title}
-                </a>
-              </p>
-            </div>
-          )}
-
-        {/* Display project repository */}
-        {/* <div className="project-repository">
-          <p>
+        {links.homepage && (
+          <div className="project-homepage"><p>
+            {language?.labels?.Homepage}
+            <a href={links.homepage} target="_blank" rel="noopener noreferrer">{project.Title}</a>
+          </p></div>
+        )}
+        {links.repository && (
+          <div className="project-repository"><p>
             {language?.labels?.Repository}
-            
-            <a
-              href={language?.projects?.[`Project${projectNumber}`]?.Repository}
-            >
-              {language?.projects?.[`Project${projectNumber}`]?.Title}
-            </a>
-          </p>
-        </div> */}
+            <a href={links.repository} target="_blank" rel="noopener noreferrer">{project.Title}</a>
+          </p></div>
+        )}
+
       </div>
     </article>
   );
