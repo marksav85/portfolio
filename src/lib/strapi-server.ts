@@ -65,3 +65,7 @@ export async function siteOrigin() {
     return undefined;
   }
 }
+
+export async function isStaging() {
+  return (await serverConfig()).DEPLOYMENT_ENV === 'staging';
+}

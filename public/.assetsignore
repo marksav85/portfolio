@@ -1,0 +1,5 @@
+# Retained local reference material; genuine project media comes from Strapi.
+/images/project-screens/
+/images/header/original/
+/images/header/candidates/
+/images/profile/legacy/

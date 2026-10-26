@@ -11,6 +11,27 @@
       "simple": { "limit": 3, "period": 60 },
     },
   ],
+  "env": {
+    "staging": {
+      "name": "portfolio-frontend-staging",
+      "workers_dev": true,
+      "preview_urls": false,
+      "routes": [],
+      "vars": {
+        "DEPLOYMENT_ENV": "staging",
+        "PORTFOLIO_FIXTURES": "false",
+        "SITE_URL": "https://portfolio-frontend-staging.marksav85.workers.dev",
+        "CONTACT_ALLOWED_ORIGIN": "https://portfolio-frontend-staging.marksav85.workers.dev",
+      },
+      "ratelimits": [
+        {
+          "name": "CONTACT_RATE_LIMITER",
+          "namespace_id": "2026102602",
+          "simple": { "limit": 3, "period": 60 },
+        },
+      ],
+    },
+  },
   "assets": {
     "directory": "dist/client",
     "html_handling": "none",

@@ -1,5 +1,6 @@
 declare module 'cloudflare:workers' {
   export const env: {
+    DEPLOYMENT_ENV?: string;
     STRAPI_URL?: string;
     STRAPI_API_TOKEN?: string;
     PORTFOLIO_FIXTURES?: string;

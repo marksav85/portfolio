@@ -50,11 +50,14 @@ These names are read from server-side Cloudflare Worker bindings. Do not prefix 
 | `STRAPI_URL`             | Base URL of the Strapi REST service; required for genuine content.                            |
 | `STRAPI_API_TOKEN`       | Optional server token if the configured CMS permissions require it.                           |
 | `PORTFOLIO_FIXTURES`     | Explicit synthetic preview mode when exactly `true`; omit or use `false` for genuine content. |
+| `DEPLOYMENT_ENV`         | Set to `staging` only for staging noindex metadata and response headers.                      |
 | `SITE_URL`               | Optional public canonical origin for canonical and alternate-language metadata.               |
 | `RESEND_API_KEY`         | Private sending credential; required for contact delivery.                                    |
 | `CONTACT_FROM`           | Authorized sender on a verified Resend domain.                                                |
 | `CONTACT_TO`             | Fixed contact recipient.                                                                      |
 | `CONTACT_ALLOWED_ORIGIN` | Optional exact accepted origin; defaults to the request URL origin.                           |
+
+Reference-only screenshots and original artwork are kept outside the public asset tree, with `public/.assetsignore` guarding against accidental uploads; application branding, fonts and fixture assets remain available.
 
 The native `CONTACT_RATE_LIMITER` binding is declared in `wrangler.jsonc`, not an environment string. Do not add a competing root `.dev.vars`: it would mask existing `.env` bindings. Build output includes private local bindings for preview and must stay untracked.
 
