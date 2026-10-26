@@ -96,7 +96,7 @@ export interface ContactContent extends LocalizationMeta {
   Title: string;
   Subtitle: string;
   Linkedin: string;
-  Telephone: string;
+  Telephone: string | null;
   Email: string;
   ResumeFullText: string | null;
   ResumeFullLink: string | null;
@@ -104,34 +104,4 @@ export interface ContactContent extends LocalizationMeta {
   ResumeDeveloperLink: string | null;
 }
 
-export interface ReferenceContent extends LocalizationMeta {
-  Title: string;
-}
-
-export interface ReferenceEntry {
-  id: EntityId;
-  Quote: RichTextParagraph[];
-  Text: string;
-  Link: string;
-  LinkText: string;
-  Image: ImageAttributes | null;
-}
-
-export interface ReferenceListContent extends LocalizationMeta {
-  id?: EntityId;
-  ReferenceList: ReferenceEntry[];
-}
-
-export interface LanguageContent {
-  header: HeaderContent | null;
-  profile: ProfileContent | null;
-  skillsTables: SkillsTableEntry[];
-  work: WorkContent | null;
-  labels: LabelsContent | null;
-  projects: PortfolioProject[];
-  contact: ContactContent | null;
-  reference: ReferenceContent | null;
-  referenceLists: ReferenceListContent;
-}
-
-export type PortfolioLocale = "en" | "de";
+export type PortfolioLocale = 'en' | 'de';
