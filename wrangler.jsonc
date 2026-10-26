@@ -12,6 +12,25 @@
     },
   ],
   "env": {
+    "production": {
+      "name": "portfolio-frontend-production",
+      "workers_dev": true,
+      "preview_urls": false,
+      "routes": [],
+      "vars": {
+        "DEPLOYMENT_ENV": "staging",
+        "PORTFOLIO_FIXTURES": "false",
+        "SITE_URL": "https://portfolio.marksavilledesigns.com",
+        "CONTACT_ALLOWED_ORIGIN": "https://portfolio-frontend-production.marksav85.workers.dev",
+      },
+      "ratelimits": [
+        {
+          "name": "CONTACT_RATE_LIMITER",
+          "namespace_id": "2026102601",
+          "simple": { "limit": 3, "period": 60 },
+        },
+      ],
+    },
     "staging": {
       "name": "portfolio-frontend-staging",
       "workers_dev": true,
