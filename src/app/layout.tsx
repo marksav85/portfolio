@@ -5,7 +5,7 @@ import './globals.css';
 export const metadata: Metadata = {
   title: 'Mark Saville — Full-Stack Web Developer',
   description: 'Mark Saville — Web development, projects and technical skills.',
-  icons: { icon: '/logo-set--blue/favicon.ico', apple: '/logo-set--blue/apple-touch-icon.png' },
+  icons: { icon: '/favicons/favicon.ico', apple: '/favicons/apple-touch-icon.png' },
 };
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const locale = parseLocale((await headers()).get('x-portfolio-locale'));
