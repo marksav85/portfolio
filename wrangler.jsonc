@@ -23,7 +23,7 @@
       "preview_urls": false,
       "routes": [{ "pattern": "portfolio.marksavilledesigns.com", "custom_domain": true }],
       "vars": {
-        "DEPLOYMENT_ENV": "staging",
+        "DEPLOYMENT_ENV": "production",
         "PORTFOLIO_FIXTURES": "false",
         "SITE_URL": "https://portfolio.marksavilledesigns.com",
         "CONTACT_ALLOWED_ORIGIN": "https://portfolio.marksavilledesigns.com",

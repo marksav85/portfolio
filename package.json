@@ -45,7 +45,7 @@
     "start": "wrangler dev --config dist/server/wrangler.json --ip 127.0.0.1 --persist-to node_modules/.cache/worker-state",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src tests vite.config.ts next.config.ts",
-    "test": "node tests/projects.test.cjs && node tests/content.test.cjs && node tests/contact.test.cjs",
+    "test": "node tests/projects.test.cjs && node tests/content.test.cjs && node tests/contact.test.cjs && node tests/indexing.test.cjs",
     "test:browser": "node tests/project-layout.test.cjs && node tests/contact-browser.test.cjs",
     "format:check": "prettier --check \"src/{app,api,components,config,lib,types}/**/*.{ts,tsx,css}\" src/middleware.ts src/env.d.ts tests/*.cjs *.config.* package.json tsconfig.json",
     "test:contact-worker": "node tests/contact-worker.test.cjs",
