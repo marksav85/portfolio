@@ -14,14 +14,19 @@
   "env": {
     "production": {
       "name": "portfolio-frontend-production",
+      "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+      "observability": {
+        "enabled": false,
+        "logs": { "enabled": true, "invocation_logs": true },
+      },
       "workers_dev": true,
       "preview_urls": false,
-      "routes": [],
+      "routes": [{ "pattern": "portfolio.marksavilledesigns.com", "custom_domain": true }],
       "vars": {
         "DEPLOYMENT_ENV": "staging",
         "PORTFOLIO_FIXTURES": "false",
         "SITE_URL": "https://portfolio.marksavilledesigns.com",
-        "CONTACT_ALLOWED_ORIGIN": "https://portfolio-frontend-production.marksav85.workers.dev",
+        "CONTACT_ALLOWED_ORIGIN": "https://portfolio.marksavilledesigns.com",
       },
       "ratelimits": [
         {
