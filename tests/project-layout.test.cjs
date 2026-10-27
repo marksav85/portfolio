@@ -44,6 +44,24 @@ test('Workers fixture homepage and gallery: responsive EN/DE, keyboard, reveal, 
         await trigger.click();
         const dialog = page.getByRole('dialog');
         await dialog.waitFor();
+        if (width >= 768) {
+          const details = dialog.getByRole('region', {
+            name: await dialog.locator('.modal-title').innerText(),
+            exact: true,
+          });
+          assert(await details.evaluate((el) => el.scrollHeight > el.clientHeight));
+          for (let i = 0; i < 20; i++) {
+            if (await details.evaluate((el) => el === document.activeElement)) break;
+            await page.keyboard.press('Tab');
+          }
+          assert(await details.evaluate((el) => el === document.activeElement));
+          await page.keyboard.press('PageDown');
+          await page.waitForFunction(() => document.querySelector('.modal-copy').scrollTop > 0);
+          const audit = await new AxeBuilder({ page })
+            .withRules(['scrollable-region-focusable'])
+            .analyze();
+          assert.deepEqual(audit.violations, []);
+        }
         assert.equal(
           await dialog.locator('.image-counter').innerText(),
           locale === 'en' ? 'Image 1 of 3' : 'Bild 1 von 3',

@@ -121,7 +121,7 @@ export function ProjectDialog({
               <div className="no-cover">{m.noImages}</div>
             )}
           </section>
-          <section className="modal-copy">
+          <section className="modal-copy" tabIndex={0} aria-label={project.Title || project.name}>
             <div>
               <DialogTitle className="modal-title">{project.Title || project.name}</DialogTitle>
               <DialogDescription className="muted modal-description">
