@@ -2,6 +2,7 @@ import { createStrapi, sectionResult } from '@/api/strapi';
 import type { PortfolioLocale } from '@/types/portfolio';
 import { resolveMedia } from '@/api/media';
 import { fixtureContent } from '@/lib/fixtures';
+import { publicSeoOrigin } from '@/lib/seo';
 
 // Imported only by server routes. Credentials never cross the client boundary.
 async function serverConfig() {
@@ -68,4 +69,9 @@ export async function siteOrigin() {
 
 export async function isStaging() {
   return (await serverConfig()).DEPLOYMENT_ENV === 'staging';
+}
+
+export async function publicSiteOrigin() {
+  const env = await serverConfig();
+  return publicSeoOrigin(env.SITE_URL, env.DEPLOYMENT_ENV);
 }

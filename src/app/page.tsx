@@ -1,8 +1,9 @@
-import { loadPortfolio, siteOrigin, isStaging } from '@/lib/strapi-server';
+import { loadPortfolio, siteOrigin, isStaging, publicSiteOrigin } from '@/lib/strapi-server';
 import { Portfolio } from '@/components/portfolio';
 import type { Metadata } from 'next';
 import { headers } from 'next/headers';
 import { parseLocale } from '@/lib/locale';
+import { localePaths, seoContent, socialMetadata } from '@/lib/seo';
 export async function generateMetadata({
   searchParams,
 }: {
@@ -14,16 +15,15 @@ export async function generateMetadata({
     ...((await isStaging()) || (await headers()).get('x-portfolio-noindex') !== 'false'
       ? { robots: { index: false, follow: false } }
       : {}),
-    title:
-      locale === 'de'
-        ? 'Mark Saville — Webentwicklung & Projekte'
-        : 'Mark Saville — Web Development & Projects',
+    title: seoContent[locale].title,
+    description: seoContent[locale].description,
+    ...socialMetadata(locale, await publicSiteOrigin()),
     ...(origin
       ? {
           metadataBase: origin,
           alternates: {
-            canonical: locale === 'en' ? '/?lang=en' : '/',
-            languages: { de: '/', en: '/?lang=en', 'x-default': '/' },
+            canonical: localePaths[locale],
+            languages: localePaths,
           },
         }
       : {}),
