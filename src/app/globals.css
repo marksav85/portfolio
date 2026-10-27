@@ -298,14 +298,11 @@ button:disabled {
   letter-spacing: 0.04em;
 }
 .brand-mark {
-  display: grid;
-  place-items: center;
-  background: var(--color-primary-container);
-  color: white;
-  border-radius: var(--radius);
+  display: block;
+  object-fit: contain;
+  flex-shrink: 0;
   width: 40px;
   height: 40px;
-  font: 600 0.8rem var(--font-mono);
 }
 .desktop-nav {
   display: flex;

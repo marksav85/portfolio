@@ -157,7 +157,14 @@ export function Portfolio({ data, locale }: { data: PortfolioData; locale: Portf
       <header className="site-header">
         <div className="container header-row">
           <a className="brand" href={localeHref(locale)}>
-            <span className="brand-mark">MS</span>
+            <img
+              className="brand-mark"
+              src="/images/branding/brand-logo.webp"
+              width={40}
+              height={40}
+              alt=""
+              decoding="async"
+            />
             <span>
               <strong>Mark Saville</strong>
               <small>{m.role}</small>
