@@ -602,8 +602,15 @@ button:disabled {
 }
 .form-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
+}
+.form-row > label {
+  grid-row: span 3;
+  grid-template-rows: subgrid;
+}
+.contact-field-error {
+  min-height: 1lh;
 }
 label {
   display: grid;

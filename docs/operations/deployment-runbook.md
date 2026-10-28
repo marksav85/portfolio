@@ -255,6 +255,38 @@ Review the current `package.json` before executing commands if scripts have chan
 
 ## 7\. Deployment Procedure
 
+### Automatic production deployment — Workers Builds
+
+Cloudflare Workers Builds is connected to the existing `portfolio-frontend-production` Worker. Every push to `main` in GitHub repository `marksav85/portfolio` triggers an automatic production build and deployment. Treat a push to `main` as a production release and complete the pre-deployment checks below before pushing.
+
+| Setting           | Value                          |
+| ----------------- | ------------------------------ |
+| Root directory    | `/`                            |
+| Production branch | `main`                         |
+| Preview builds    | Disabled                       |
+| Build variable    | `NODE_VERSION=24`              |
+| Build variable    | `SKIP_DEPENDENCY_INSTALL=true` |
+
+Build command:
+
+```sh
+npm ci && CLOUDFLARE_ENV=production CLOUDFLARE_LOAD_DEV_VARS_FROM_DOT_ENV=false npm run build
+```
+
+Deploy command:
+
+```sh
+npx wrangler deploy --config dist/server/wrangler.json --keep-vars
+```
+
+Dependency installation is explicit through `npm ci`. The build selects production and generates flattened configuration; do not add an environment selector to the deploy command. Runtime secrets remain on the Worker and must not be copied into build variables. The existing variable, secret and binding preservation rules below apply.
+
+Monitor the production Worker's **Deployments → View build history** for build/deploy logs and its active deployment/version for the result. Confirm the Git commit and run the production verification checklist after a successful deployment. The `portfolio-frontend-staging` Worker remains separately managed; this integration does not deploy staging.
+
+If a build fails, inspect the failed installation, build or deployment step and verify the active production version before taking action. Correct the cause and push a reviewed fix, or retry the failed build after confirming its source commit and current build settings. Do not assume a failed build changed the active deployment.
+
+For a production regression, pause automatic builds before restoring a verified known-good Worker version using section 9. Preserve the Custom Domain, runtime secrets and bindings. Keep automatic builds paused until `main` is corrected or reverted through a reviewed commit, so a later push cannot immediately overwrite the recovery. Resume only when the intended source and target are confirmed. The manual procedures below remain available for recovery.
+
 ### 7.1 Pre-deployment checks
 
 Before any production deployment:

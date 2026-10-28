@@ -64,17 +64,16 @@ export function ContactForm({ locale }: { locale: PortfolioLocale }) {
     };
     return (
       <label htmlFor={props.id}>
-        {m[key]}
+        <span>{m[key]}</span>
         {key === 'message' ? (
           <textarea {...props} rows={5} />
         ) : (
           <input {...props} type={key === 'email' ? 'email' : 'text'} autoComplete={key} />
         )}
-        {errors[key] && (
-          <span id={`contact-${key}-error`}>
-            {errors[key] === 'invalid' && key === 'email' ? m.invalidEmail : m[errors[key]]}
-          </span>
-        )}
+        <span className="contact-field-error" id={`contact-${key}-error`}>
+          {errors[key] &&
+            (errors[key] === 'invalid' && key === 'email' ? m.invalidEmail : m[errors[key]])}
+        </span>
       </label>
     );
   }
