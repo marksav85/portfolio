@@ -179,7 +179,7 @@ test('legacy adapter preserves numeric order and old link policy', () => {
   assert.equal(result[1].hasHomepage, true);
 });
 
-test('approved production order yields six initial cards and six additional cards', () => {
+test('approved production order yields eight initial cards and four additional cards', () => {
   const configModule = new Module(require('node:path').resolve('src/config/projects.ts'), module);
   configModule._compile(
     ts.transpileModule(
@@ -192,18 +192,18 @@ test('approved production order yields six initial cards and six additional card
   );
   const { projectPresentation, projectLinks } = configModule.exports;
   const slugs = [
+    'tripcast',
     'language-coach',
     'movie-api',
-    'myflix-react',
     'meet-app',
-    'chat-app',
+    'patagonia-2025',
+    'myflix-react',
+    'golden-crane-restaurant',
+    'ec-wedding',
     'myflix-angular',
     'pokedex-app',
-    'tripcast',
-    'golden-crane-restaurant',
+    'chat-app',
     'bikeshare-app',
-    'patagonia-2025',
-    'ec-wedding',
   ];
   const groups = groupProjects(
     [...slugs].reverse().map((slug) => project(slug)),
@@ -211,15 +211,15 @@ test('approved production order yields six initial cards and six additional card
   );
   assert.deepEqual(
     groups.primary.map((p) => p.slug),
-    slugs.slice(0, 6),
+    slugs.slice(0, 8),
   );
   assert.deepEqual(
     groups.additional.map((p) => p.slug),
-    slugs.slice(6),
+    slugs.slice(8),
   );
-  assert.equal(groups.primary.length, 6);
-  assert.equal(groups.additional.length, 6);
-  assert.equal(groups.additional.at(-1).slug, 'ec-wedding');
+  assert.equal(groups.primary.length, 8);
+  assert.equal(groups.additional.length, 4);
+  assert.equal(groups.additional.at(-1).slug, 'bikeshare-app');
   assert(
     projectLinkUrls(
       project('p', { hasHomepage: true, Homepage: 'https://example.com' }),
@@ -259,4 +259,51 @@ test('localized rich text and image metadata pass through the adapter unchanged'
   assert.equal(result.Text, 'Legacy text');
   assert.deepEqual(result.Images, images);
   assert.equal(result.Title, 'Öffentlich');
+});
+
+test('project type labels normalize allowlisted machine, English and German values', () => {
+  const localeModule = new Module(require('node:path').resolve('src/lib/locale.ts'), module);
+  localeModule._compile(
+    ts.transpileModule(fs.readFileSync(localeModule.id, 'utf8'), {
+      compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
+    }).outputText,
+    localeModule.id,
+  );
+  const { projectTypeLabel } = localeModule.exports;
+  const values = ['client', 'personal', 'business', 'backend', 'data-analysis'];
+  assert.deepEqual(
+    values.map((v) => projectTypeLabel(v, 'en')),
+    [
+      'Client project',
+      'Personal project',
+      'Business website',
+      'Backend project',
+      'Data analysis project',
+    ],
+  );
+  assert.deepEqual(
+    values.map((v) => projectTypeLabel(v, 'de')),
+    [
+      'Kundenprojekt',
+      'Persönliches Projekt',
+      'Unternehmenswebsite',
+      'Backend-Projekt',
+      'Datenanalyse-Projekt',
+    ],
+  );
+  const aliases = {
+    personal: ['personal', 'Personal Project', 'Eigenprojekt'],
+    client: ['client', 'Client Project', 'Kundenprojekt'],
+    backend: ['backend', 'Backend Project', 'Backend-Projekt'],
+    business: ['business', 'Business Website', 'Unternehmenswebsite'],
+    'data-analysis': ['data-analysis', 'Data Analysis', 'Datenanalyse'],
+  };
+  for (const locale of ['en', 'de'])
+    for (const [key, values] of Object.entries(aliases))
+      for (const value of values)
+        for (const variant of [value, value.toUpperCase(), `  ${value.toLowerCase()}\n`])
+          assert.equal(projectTypeLabel(variant, locale), projectTypeLabel(key, locale));
+  for (const locale of ['en', 'de'])
+    for (const value of [null, undefined, '', ' ', 'Legacy text', '__proto__', 'constructor'])
+      assert.equal(projectTypeLabel(value, locale), null);
 });

@@ -47,6 +47,14 @@ export const messages = {
     website: 'Website',
     repository: 'Repository',
     showMore: 'Weitere Projekte anzeigen',
+    showLess: 'Weniger anzeigen',
+    projectTypes: {
+      client: 'Kundenprojekt',
+      personal: 'Persönliches Projekt',
+      business: 'Unternehmenswebsite',
+      backend: 'Backend-Projekt',
+      'data-analysis': 'Datenanalyse-Projekt',
+    },
     showSkills: 'Fähigkeiten anzeigen',
     hideSkills: 'Fähigkeiten ausblenden',
     skip: 'Zum Inhalt springen',
@@ -98,6 +106,14 @@ export const messages = {
     website: 'Live Website',
     repository: 'Repository',
     showMore: 'Show more projects',
+    showLess: 'Show Less',
+    projectTypes: {
+      client: 'Client project',
+      personal: 'Personal project',
+      business: 'Business website',
+      backend: 'Backend project',
+      'data-analysis': 'Data analysis project',
+    },
     showSkills: 'Show skills',
     hideSkills: 'Hide skills',
     skip: 'Skip to content',
@@ -109,3 +125,19 @@ export const messages = {
     missingDetails: 'No process details are available for this project.',
   },
 } as const;
+
+const projectTypeAliases = {
+  personal: ['personal', 'personal project', 'eigenprojekt'],
+  client: ['client', 'client project', 'kundenprojekt'],
+  backend: ['backend', 'backend project', 'backend-projekt'],
+  business: ['business', 'business website', 'unternehmenswebsite'],
+  'data-analysis': ['data-analysis', 'data analysis', 'datenanalyse'],
+} satisfies Record<keyof typeof messages.en.projectTypes, readonly string[]>;
+
+export function projectTypeLabel(value: string | null | undefined, locale: PortfolioLocale) {
+  const normalized = value?.trim().toLowerCase();
+  const key = (Object.keys(projectTypeAliases) as (keyof typeof projectTypeAliases)[]).find((key) =>
+    projectTypeAliases[key].includes(normalized ?? ''),
+  );
+  return key ? messages[locale].projectTypes[key] : null;
+}

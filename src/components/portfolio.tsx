@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import type { ReactNode } from 'react';
 import type { PortfolioData } from '@/lib/strapi-server';
 import type {
@@ -9,7 +9,7 @@ import type {
   ImageAttributes,
   PortfolioProject,
 } from '@/types/portfolio';
-import { messages, localeHref } from '@/lib/locale';
+import { messages, localeHref, projectTypeLabel } from '@/lib/locale';
 import { groupProjects, projectLinkUrls } from '@/api/projects';
 import { sortSkills } from '@/api/strapi';
 import { projectPresentation, projectLinks } from '@/config/projects';
@@ -108,6 +108,15 @@ export function Portfolio({ data, locale }: { data: PortfolioData; locale: Portf
   const m = messages[locale];
   const [menu, setMenu] = useState(false);
   const [more, setMore] = useState(false);
+  const revealButton = useRef<HTMLButtonElement>(null);
+  const collapsing = useRef(false);
+  useLayoutEffect(() => {
+    if (!collapsing.current) return;
+    collapsing.current = false;
+    const button = revealButton.current;
+    button?.focus({ preventScroll: true });
+    button?.scrollIntoView({ block: 'nearest', behavior: 'instant' });
+  }, [more]);
   const [skillsOpen, setSkillsOpen] = useState(true);
   const [selection, setSelection] = useState<{
     project: PortfolioProject;
@@ -257,7 +266,7 @@ export function Portfolio({ data, locale }: { data: PortfolioData; locale: Portf
         <Section id="work" eyebrow={m.portfolio} title={work?.Title || m.work}>
           {notice(data.work.ok)}
           {notice(data.projects.ok, projects.length === 0)}
-          <div className="project-grid">
+          <div className="project-grid" id="project-grid">
             {visible.map((project) => (
               <article key={project.slug} className="project-card panel">
                 {project.Images[0] ? (
@@ -273,6 +282,11 @@ export function Portfolio({ data, locale }: { data: PortfolioData; locale: Portf
                 )}
                 <div className="project-body">
                   <h3>{project.Title}</h3>
+                  {projectTypeLabel(project.Text, locale) && (
+                    <p className="project-type mono muted">
+                      {projectTypeLabel(project.Text, locale)}
+                    </p>
+                  )}
                   {project.Intro && <p className="muted project-intro">{project.Intro}</p>}
                   {project.Images.length > 0 && (
                     <div className="thumbnail-row">
@@ -304,14 +318,20 @@ export function Portfolio({ data, locale }: { data: PortfolioData; locale: Portf
               </article>
             ))}
           </div>
-          {!more && groups.additional.length > 0 && (
+          {groups.additional.length > 0 && (
             <div className="reveal">
               <button
                 className="button secondary mono"
-                aria-expanded={false}
-                onClick={() => setMore(true)}
+                ref={revealButton}
+                aria-expanded={more}
+                aria-controls="project-grid"
+                onClick={() => {
+                  collapsing.current = more;
+                  setMore(!more);
+                }}
               >
-                {work?.Button || m.showMore} ({groups.additional.length}) ↓
+                {more ? m.showLess : `${work?.Button || m.showMore} (${groups.additional.length})`}{' '}
+                {more ? '↑' : '↓'}
               </button>
             </div>
           )}

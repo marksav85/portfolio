@@ -26,7 +26,7 @@ test('Workers fixture homepage and gallery: responsive EN/DE, keyboard, reveal, 
         await page.goto(base + (locale === 'en' ? '/?lang=en' : '/'));
         await page.waitForSelector('.project-card');
         assert.equal(await page.locator('html').getAttribute('lang'), locale);
-        assert.equal(await page.locator('.project-card').count(), 6);
+        assert.equal(await page.locator('.project-card').count(), 8);
         assert.equal(
           await page.locator('body').evaluate((el) => el.scrollWidth <= innerWidth),
           true,
@@ -34,7 +34,25 @@ test('Workers fixture homepage and gallery: responsive EN/DE, keyboard, reveal, 
         );
         assert.equal(await page.locator('button[type=submit]').isDisabled(), false);
         await page.locator('.reveal button').click();
+        assert.equal(await page.locator('.project-card').count(), 12);
+        const reveal = page.locator('.reveal button');
+        assert.equal(await reveal.getAttribute('aria-expanded'), 'true');
+        assert(
+          (await reveal.innerText()).includes(locale === 'en' ? 'Show Less' : 'Weniger anzeigen'),
+        );
+        await reveal.click();
         assert.equal(await page.locator('.project-card').count(), 8);
+        assert(await reveal.evaluate((el) => el === document.activeElement));
+        const position = await reveal.boundingBox();
+        assert(position.y >= 0 && position.y + position.height <= 950);
+        assert.equal(await reveal.getAttribute('aria-expanded'), 'false');
+        assert.equal(await page.locator('.project-type').count(), 5);
+        assert.equal(
+          await page.locator('.project-type').first().innerText(),
+          locale === 'en' ? 'Client project' : 'Kundenprojekt',
+        );
+        await page.keyboard.press('Enter');
+        assert.equal(await page.locator('.project-card').count(), 12);
         await page.locator('.disclosure').click();
         assert.equal(await page.locator('#skills-content').isVisible(), false);
         await page.locator('.disclosure').click();

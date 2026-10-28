@@ -5,22 +5,22 @@ export interface ProjectPresentation {
 }
 
 export const projectPresentation: ProjectPresentation = {
-  // Preserve the former Project1–Project11 order; future unlisted entries follow.
+  // Approved presentation order, shared by both locales; unlisted entries follow.
   preferredOrder: [
+    'tripcast',
     'language-coach',
     'movie-api',
-    'myflix-react',
     'meet-app',
-    'chat-app',
+    'patagonia-2025',
+    'myflix-react',
+    'golden-crane-restaurant',
+    'ec-wedding',
     'myflix-angular',
     'pokedex-app',
-    'tripcast',
-    'golden-crane-restaurant',
+    'chat-app',
     'bikeshare-app',
-    'patagonia-2025',
-    'ec-wedding',
   ],
-  initialVisibleCount: 6,
+  initialVisibleCount: 8,
   // When nonempty, these projects lead the initial group in this exact order.
   featuredSlugs: [],
 };

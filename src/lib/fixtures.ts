@@ -9,7 +9,7 @@ export function fixtureContent(locale: PortfolioLocale) {
     '/images/fixtures/image-2.svg',
     '/images/fixtures/image-3.svg',
   ];
-  const projects: PortfolioProject[] = Array.from({ length: 8 }, (_, i) => ({
+  const projects: PortfolioProject[] = Array.from({ length: 12 }, (_, i) => ({
     id: i + 1,
     documentId: `fixture-${i + 1}`,
     slug: `fixture-${i + 1}`,
@@ -19,7 +19,7 @@ export function fixtureContent(locale: PortfolioLocale) {
     Intro: de
       ? 'Gekennzeichnete Entwicklungsdaten zur Prüfung von Layout, langen Beschreibungen und bestehenden Inhaltsverträgen.'
       : 'Labelled development data for verifying layout, long descriptions and the existing content contracts.',
-    Text: null,
+    Text: ['client', 'personal', 'business', 'backend', 'data-analysis', 'Legacy text'][i] ?? null,
     Technologies: 'TypeScript · React · Strapi REST',
     hasHomepage: false,
     hasRepository: false,
