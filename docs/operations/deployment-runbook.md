@@ -677,10 +677,6 @@ Reusable architectural and implementation patterns belong in the MSD Projects Pl
 
 At the time of the October 2026 modernization:
 
-- Complete deployment and verification of the gallery keyboard-accessibility improvement.
-
-- Ensure GitHub `main` matches the approved production source after finalization.
-
 - Review suitable legal notice and privacy information for the contact form.
 
 - Retain documented staging and rollback arrangements.
