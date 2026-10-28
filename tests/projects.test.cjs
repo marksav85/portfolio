@@ -179,7 +179,7 @@ test('legacy adapter preserves numeric order and old link policy', () => {
   assert.equal(result[1].hasHomepage, true);
 });
 
-test('approved production order yields eight initial cards and four additional cards', () => {
+test('approved production order yields eight initial cards and five additional cards', () => {
   const configModule = new Module(require('node:path').resolve('src/config/projects.ts'), module);
   configModule._compile(
     ts.transpileModule(
@@ -194,12 +194,13 @@ test('approved production order yields eight initial cards and four additional c
   const slugs = [
     'tripcast',
     'language-coach',
+    'mark-saville-designs',
     'movie-api',
     'meet-app',
     'patagonia-2025',
     'myflix-react',
-    'golden-crane-restaurant',
     'ec-wedding',
+    'golden-crane-restaurant',
     'myflix-angular',
     'pokedex-app',
     'chat-app',
@@ -218,8 +219,23 @@ test('approved production order yields eight initial cards and four additional c
     slugs.slice(8),
   );
   assert.equal(groups.primary.length, 8);
-  assert.equal(groups.additional.length, 4);
+  assert.equal(groups.additional.length, 5);
   assert.equal(groups.additional.at(-1).slug, 'bikeshare-app');
+  for (const locale of ['en', 'de']) {
+    const localized = groupProjects(
+      [...slugs].reverse().map((slug) => project(slug, { locale })),
+      projectPresentation,
+    );
+    const all = [...localized.primary, ...localized.additional];
+    assert.deepEqual(
+      all.map((p) => p.slug),
+      slugs,
+    );
+    assert.equal(new Set(all.map((p) => p.slug)).size, 13);
+    assert.equal(localized.primary[2].slug, 'mark-saville-designs');
+    assert.equal(localized.primary[7].slug, 'ec-wedding');
+    assert.equal(localized.additional[0].slug, 'golden-crane-restaurant');
+  }
   assert(
     projectLinkUrls(
       project('p', { hasHomepage: true, Homepage: 'https://example.com' }),

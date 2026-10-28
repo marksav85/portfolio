@@ -9,7 +9,7 @@ export function fixtureContent(locale: PortfolioLocale) {
     '/images/fixtures/image-2.svg',
     '/images/fixtures/image-3.svg',
   ];
-  const projects: PortfolioProject[] = Array.from({ length: 12 }, (_, i) => ({
+  const projects: PortfolioProject[] = Array.from({ length: 13 }, (_, i) => ({
     id: i + 1,
     documentId: `fixture-${i + 1}`,
     slug: `fixture-${i + 1}`,

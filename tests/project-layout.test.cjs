@@ -34,7 +34,7 @@ test('Workers fixture homepage and gallery: responsive EN/DE, keyboard, reveal, 
         );
         assert.equal(await page.locator('button[type=submit]').isDisabled(), false);
         await page.locator('.reveal button').click();
-        assert.equal(await page.locator('.project-card').count(), 12);
+        assert.equal(await page.locator('.project-card').count(), 13);
         const reveal = page.locator('.reveal button');
         assert.equal(await reveal.getAttribute('aria-expanded'), 'true');
         assert(
@@ -52,7 +52,7 @@ test('Workers fixture homepage and gallery: responsive EN/DE, keyboard, reveal, 
           locale === 'en' ? 'Client project' : 'Kundenprojekt',
         );
         await page.keyboard.press('Enter');
-        assert.equal(await page.locator('.project-card').count(), 12);
+        assert.equal(await page.locator('.project-card').count(), 13);
         await page.locator('.disclosure').click();
         assert.equal(await page.locator('#skills-content').isVisible(), false);
         await page.locator('.disclosure').click();
