@@ -1,4 +1,4 @@
-import { createStrapi, sectionResult } from '@/api/strapi';
+import { createStrapi, readStrapiResponse, sectionResult } from '@/api/strapi';
 import type { PortfolioLocale } from '@/types/portfolio';
 import { resolveMedia } from '@/api/media';
 import { fixtureContent } from '@/lib/fixtures';
@@ -22,18 +22,17 @@ export async function loadPortfolio(locale: PortfolioLocale) {
       signal: AbortSignal.timeout(10000),
       headers: env.STRAPI_API_TOKEN ? { Authorization: `Bearer ${env.STRAPI_API_TOKEN}` } : {},
     });
-    if (!response.ok) throw new Error('Strapi unavailable');
-    return response.json() as Promise<T>;
+    return readStrapiResponse<T>(response);
   };
   const api = createStrapi(request);
   const [header, profile, work, projects, skills, labels, contact] = await Promise.all([
-    sectionResult(() => api.header(locale)),
-    sectionResult(() => api.profile(locale)),
-    sectionResult(() => api.work(locale)),
-    sectionResult(() => api.projects(locale)),
-    sectionResult(() => api.skills()),
-    sectionResult(() => api.labels(locale)),
-    sectionResult(() => api.contact(locale)),
+    sectionResult(() => api.header(locale), 'header'),
+    sectionResult(() => api.profile(locale), 'profile'),
+    sectionResult(() => api.work(locale), 'work'),
+    sectionResult(() => api.projects(locale), 'projects'),
+    sectionResult(() => api.skills(), 'skills'),
+    sectionResult(() => api.labels(locale), 'labels'),
+    sectionResult(() => api.contact(locale), 'contact'),
   ]);
   if (env.STRAPI_URL) {
     if (projects.ok)

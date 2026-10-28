@@ -13,10 +13,40 @@ export type Request = <T>(path: string, signal?: AbortSignal) => Promise<T>;
 type Single<T> = { data: T | null };
 type Collection<T> = { data: T[] };
 export type SectionResult<T> = { ok: true; data: T } | { ok: false; error: 'unavailable' };
-export async function sectionResult<T>(load: () => Promise<T>): Promise<SectionResult<T>> {
+type CmsSection = 'header' | 'profile' | 'work' | 'projects' | 'skills' | 'labels' | 'contact';
+class StrapiHttpError extends Error {
+  constructor(readonly status: number) {
+    super('Strapi unavailable');
+  }
+}
+export async function readStrapiResponse<T>(response: Response): Promise<T> {
+  if (!response.ok) throw new StrapiHttpError(response.status);
+  return response.json() as Promise<T>;
+}
+export async function sectionResult<T>(
+  load: () => Promise<T>,
+  section?: CmsSection,
+): Promise<SectionResult<T>> {
   try {
     return { ok: true, data: await load() };
-  } catch {
+  } catch (error) {
+    // Only server callers supply section context. Never serialize the error or request.
+    if (section)
+      console.error({
+        event: 'strapi_section_failed',
+        section,
+        classification:
+          error instanceof StrapiHttpError
+            ? 'http'
+            : error instanceof Error && ['TimeoutError', 'AbortError'].includes(error.name)
+              ? 'timeout_or_abort'
+              : error instanceof SyntaxError
+                ? 'invalid_json'
+                : error instanceof TypeError
+                  ? 'network_or_configuration'
+                  : 'content_or_configuration',
+        ...(error instanceof StrapiHttpError ? { status: error.status } : {}),
+      });
     return { ok: false, error: 'unavailable' };
   }
 }

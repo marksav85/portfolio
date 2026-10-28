@@ -90,3 +90,53 @@ test('normal Strapi client always uses the published collection source', async (
   assert(path.includes('status=published'));
   assert(path.includes('locale=de'));
 });
+
+test('server CMS diagnostics classify failures once without exposing request or error data', async (t) => {
+  const { readStrapiResponse } = require('../src/api/strapi.ts');
+  const logs = t.mock.method(console, 'error', () => {});
+  const sensitive =
+    'https://user:password@cms.test/api/header?token=private Authorization: Bearer secret';
+  const cases = [
+    [() => readStrapiResponse(new Response(sensitive, { status: 403 })), 'http', 403],
+    [() => readStrapiResponse(new Response(sensitive, { status: 503 })), 'http', 503],
+    [
+      async () => {
+        throw new TypeError(sensitive);
+      },
+      'network_or_configuration',
+    ],
+    [
+      async () => {
+        throw new DOMException(sensitive, 'TimeoutError');
+      },
+      'timeout_or_abort',
+    ],
+    [() => readStrapiResponse(new Response(sensitive)), 'invalid_json'],
+    [
+      async () => {
+        throw Error(sensitive);
+      },
+      'content_or_configuration',
+    ],
+  ];
+  for (const [load, classification, status] of cases) {
+    const before = logs.mock.callCount();
+    assert.deepEqual(await sectionResult(load, 'header'), { ok: false, error: 'unavailable' });
+    assert.equal(logs.mock.callCount(), before + 1);
+    assert.deepEqual(logs.mock.calls.at(-1).arguments, [
+      {
+        event: 'strapi_section_failed',
+        section: 'header',
+        classification,
+        ...(status ? { status } : {}),
+      },
+    ]);
+  }
+  const before = logs.mock.callCount();
+  assert.deepEqual(
+    await sectionResult(() => readStrapiResponse(Response.json({ data: null })), 'profile'),
+    { ok: true, data: { data: null } },
+  );
+  assert.equal(logs.mock.callCount(), before);
+  assert(!JSON.stringify(logs.mock.calls.map((call) => call.arguments)).includes(sensitive));
+});
