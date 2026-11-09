@@ -21,6 +21,7 @@ export function ProjectDialog({
   labels: LabelsContent | null;
   onClose: () => void;
 }) {
+  // Gallery state and image navigation
   const { project } = selection,
     m = messages[locale],
     images = project.Images;
@@ -40,6 +41,7 @@ export function ProjectDialog({
     >
       <DialogContent
         onCloseAutoFocus={(event) => {
+          // Keep focus on the control that opened the dialog for keyboard users.
           event.preventDefault();
           selection.trigger.focus();
         }}
@@ -54,6 +56,7 @@ export function ProjectDialog({
           }
         }}
       >
+        {/* Dialog heading and close control */}
         <header className="modal-header">
           <p className="eyebrow">
             {m.work} <span aria-hidden="true"> / </span>
@@ -64,6 +67,7 @@ export function ProjectDialog({
           </DialogClose>
         </header>
         <div className="modal-grid">
+          {/* Project imagery and gallery controls */}
           <section className="modal-media" aria-label={m.moreImages}>
             {image ? (
               <>
@@ -121,6 +125,7 @@ export function ProjectDialog({
               <div className="no-cover">{m.noImages}</div>
             )}
           </section>
+          {/* Project details and external actions */}
           <section className="modal-copy" tabIndex={0} aria-label={project.Title || project.name}>
             <div>
               <DialogTitle className="modal-title">{project.Title || project.name}</DialogTitle>

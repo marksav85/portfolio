@@ -20,6 +20,7 @@ interface ProjectPage {
 }
 type Request = <T>(path: string, signal?: AbortSignal) => Promise<T>;
 
+// Validate project links before rendering them.
 export const validProjectUrl = (value: string | null | undefined): string | null => {
   if (!value || value.trim() !== value) return null;
   try {
@@ -32,6 +33,7 @@ export const validProjectUrl = (value: string | null | undefined): string | null
   }
 };
 
+// Fetch published projects, validate identity and normalize CMS content.
 export async function fetchProjectCollection(
   locale: PortfolioLocale,
   request: Request,
@@ -95,6 +97,7 @@ export async function fetchProjectCollection(
   return projects;
 }
 
+// Adapt the legacy project-set shape for shared presentation.
 export function legacyProjectsToArray(set: ProjectSet | null): PortfolioProject[] {
   if (!set) return [];
   return Object.keys(set)
@@ -120,6 +123,7 @@ export function legacyProjectsToArray(set: ProjectSet | null): PortfolioProject[
     });
 }
 
+// Apply the approved ordering and split featured from additional projects.
 export function groupProjects(projects: PortfolioProject[], config: ProjectPresentation) {
   const rank = new Map(
     [...config.featuredSlugs, ...config.preferredOrder]
@@ -133,6 +137,7 @@ export function groupProjects(projects: PortfolioProject[], config: ProjectPrese
   return { primary: ordered.slice(0, count), additional: ordered.slice(count) };
 }
 
+// Resolve public links according to migrated CMS flags and reviewed policy.
 export function projectLinkUrls(
   project: PortfolioProject,
   policy: {

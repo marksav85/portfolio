@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @source '../';
+/* Local fonts and design tokens */
 @font-face {
   font-family: 'Inter Variable';
   font-style: normal;
@@ -76,6 +77,7 @@
   --font-heading: 'Plus Jakarta Sans Variable', sans-serif;
   --font-mono: 'JetBrains Mono Variable', monospace;
 }
+/* Root tokens and global element defaults */
 :root {
   --page: 1280px;
   --radius-sm: 0.25rem;
@@ -144,6 +146,7 @@ a {
 img {
   max-width: 100%;
 }
+/* Shared layout, controls and dialog shell */
 .container {
   width: 100%;
   max-width: var(--page);
@@ -267,6 +270,7 @@ button:disabled {
     transition: none !important;
   }
 }
+/* Header and hero */
 .site-header {
   position: sticky;
   top: 0;
@@ -413,6 +417,7 @@ button:disabled {
 .social-row a:hover {
   color: var(--color-primary);
 }
+/* Project cards and actions */
 .project-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -514,6 +519,7 @@ button:disabled {
   text-align: center;
   margin-top: 2.5rem;
 }
+/* Profile and skills */
 .profile-grid {
   display: grid;
   grid-template-columns: 5fr 7fr;
@@ -578,6 +584,7 @@ button:disabled {
   margin-bottom: 1rem;
   min-height: 44px;
 }
+/* Contact form, footer and status messages */
 .contact-subtitle {
   margin-top: -1.5rem;
   margin-bottom: 2.5rem;
@@ -676,6 +683,7 @@ textarea {
   font-size: 0.85rem;
   min-height: 44px;
 }
+/* Responsive site layout */
 @media (max-width: 1100px) {
   .desktop-nav {
     gap: 1rem;
@@ -747,6 +755,7 @@ textarea {
     padding: 1.25rem;
   }
 }
+/* Project dialog and gallery */
 .modal-header {
   position: sticky;
   top: 0;
@@ -889,6 +898,7 @@ textarea {
 .modal-copy code {
   overflow-wrap: anywhere;
 }
+/* Responsive project dialog layout */
 @media (min-width: 768px) {
   .modal-grid {
     max-height: calc(88dvh - 80px);

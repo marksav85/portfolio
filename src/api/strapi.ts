@@ -19,6 +19,7 @@ class StrapiHttpError extends Error {
     super('Strapi unavailable');
   }
 }
+// Parse CMS responses and convert section failures into safe results.
 export async function readStrapiResponse<T>(response: Response): Promise<T> {
   if (!response.ok) throw new StrapiHttpError(response.status);
   return response.json() as Promise<T>;
@@ -50,6 +51,7 @@ export async function sectionResult<T>(
     return { ok: false, error: 'unavailable' };
   }
 }
+// Normalize CMS media and expose locale-aware content requests.
 export function normalizeImage(value: ImageAttributes | ImageAttributes[] | null | undefined) {
   return (
     (Array.isArray(value) ? value : value ? [value] : []).find((image) => Boolean(image?.url)) ??
@@ -91,6 +93,7 @@ export function createStrapi(request: Request) {
     projects: (locale: PortfolioLocale) => fetchProjectCollection(locale, request),
   };
 }
+// Sort skills by their display area, then alphabetically.
 export function sortSkills(rows: SkillsTableEntry[]) {
   const rank: Record<string, number> = { Frontend: 1, 'Backend & CMS': 2, 'Data & Platforms': 3 };
   return [...rows].sort(

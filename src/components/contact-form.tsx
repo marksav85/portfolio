@@ -7,10 +7,12 @@ import { messages } from '@/lib/locale';
 import type { PortfolioLocale } from '@/types/portfolio';
 export function ContactForm({ locale }: { locale: PortfolioLocale }) {
   const m = messages[locale];
+  // The ref blocks same-tick duplicate submits before React applies pending state.
   const busy = useRef(false);
   const [pending, setPending] = useState(false);
   const [status, setStatus] = useState<'idle' | 'sent' | 'failed' | 'limited'>('idle');
   const [errors, setErrors] = useState<ContactErrors>({});
+  // Validate and submit the contact request
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (busy.current) return;
@@ -53,6 +55,7 @@ export function ContactForm({ locale }: { locale: PortfolioLocale }) {
       setPending(false);
     }
   }
+  // Build localized fields with shared validation feedback
   function field(key: 'name' | 'email' | 'message') {
     const props = {
       id: `contact-${key}`,
@@ -77,6 +80,7 @@ export function ContactForm({ locale }: { locale: PortfolioLocale }) {
       </label>
     );
   }
+  // Form fields, anti-spam input and submission status
   return (
     <form
       className="contact-form panel"

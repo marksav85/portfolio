@@ -20,6 +20,7 @@ export const professionalLinks = {
 };
 export function Portfolio({ data, locale }: { data: PortfolioData; locale: PortfolioLocale }) {
   const m = messages[locale];
+  // Page state
   const [menu, setMenu] = useState(false);
   const [more, setMore] = useState(false);
   const revealButton = useRef<HTMLButtonElement>(null);
@@ -37,6 +38,7 @@ export function Portfolio({ data, locale }: { data: PortfolioData; locale: Portf
     image: number;
     trigger: HTMLElement;
   } | null>(null);
+  // CMS data and presentation groups
   const profile = data.profile.ok ? data.profile.data : null,
     work = data.work.ok ? data.work.data : null,
     labels = data.labels.ok ? data.labels.data : null,
@@ -53,6 +55,7 @@ export function Portfolio({ data, locale }: { data: PortfolioData; locale: Portf
       rows: skills.filter((row) => !known.includes(row.Column3)),
     },
   ].filter((group) => group.rows.length);
+  // Page interactions and reusable status content
   const open = (project: PortfolioProject, image: number, event: MouseEvent<HTMLButtonElement>) =>
     setSelection({ project, image, trigger: event.currentTarget });
   function languageLink(event: MouseEvent<HTMLAnchorElement>, target: PortfolioLocale) {
@@ -71,6 +74,7 @@ export function Portfolio({ data, locale }: { data: PortfolioData; locale: Portf
     ) : null;
   return (
     <>
+      {/* Site header and navigation */}
       <a className="button skip-link" href="#main">
         {m.skip}
       </a>
@@ -141,6 +145,7 @@ export function Portfolio({ data, locale }: { data: PortfolioData; locale: Portf
             {m.fixture}
           </p>
         )}
+        {/* Portfolio introduction */}
         <section className="hero" aria-labelledby="hero-title">
           <div className="role-badge mono">
             <span aria-hidden="true" /> {m.role}
@@ -174,6 +179,7 @@ export function Portfolio({ data, locale }: { data: PortfolioData; locale: Portf
             </a>
           </div>
         </section>
+        {/* Project listing */}
         <Section id="work" eyebrow={m.portfolio} title={work?.Title || m.work}>
           {notice(data.work.ok)}
           {notice(data.projects.ok, projects.length === 0)}
@@ -206,6 +212,7 @@ export function Portfolio({ data, locale }: { data: PortfolioData; locale: Portf
             </div>
           )}
         </Section>
+        {/* Profile and skills */}
         <Section id="about" eyebrow={m.background} title={profile?.Title || m.about}>
           {notice(data.profile.ok, !profile)}
           {profile && (
@@ -267,6 +274,7 @@ export function Portfolio({ data, locale }: { data: PortfolioData; locale: Portf
             </>
           )}
         </Section>
+        {/* Contact details and form */}
         <Section id="contact" eyebrow={m.contact} title={contact?.Title || m.conversation}>
           {notice(data.contact.ok)}
           {contact?.Subtitle && <p className="contact-subtitle muted">{contact.Subtitle}</p>}
@@ -289,6 +297,7 @@ export function Portfolio({ data, locale }: { data: PortfolioData; locale: Portf
           </div>
         </Section>
       </main>
+      {/* Site footer and project details dialog */}
       <footer className="site-footer">
         <div className="container">
           <div className="footer-row">

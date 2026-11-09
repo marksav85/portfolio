@@ -1,10 +1,12 @@
 import type { PortfolioLocale } from '@/types/portfolio';
+// Resolve locale values and build locale-preserving links.
 export function parseLocale(value: string | string[] | undefined | null): PortfolioLocale {
   return value === 'en' ? 'en' : 'de';
 }
 export function localeHref(locale: PortfolioLocale, hash = '') {
   return `${locale === 'en' ? '/?lang=en' : '/'}${hash}`;
 }
+// User-facing copy for each supported locale.
 export const messages = {
   de: {
     work: 'Projekte',
@@ -126,6 +128,7 @@ export const messages = {
   },
 } as const;
 
+// Normalize CMS project categories to the localized labels.
 const projectTypeAliases = {
   personal: ['personal', 'personal project', 'eigenprojekt'],
   client: ['client', 'client project', 'kundenprojekt'],

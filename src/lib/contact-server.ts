@@ -19,6 +19,7 @@ const reply = (status: number) =>
       headers: { 'Cache-Control': 'no-store', ...(status === 429 ? { 'Retry-After': '60' } : {}) },
     },
   );
+// Validate the request, apply origin/rate limits, and deliver accepted messages.
 export function createContactHandler(config: ContactConfig, deliver: typeof fetch = fetch) {
   return async (request: Request) => {
     if (request.method !== 'POST')
