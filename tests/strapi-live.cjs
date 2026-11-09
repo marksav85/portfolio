@@ -78,7 +78,7 @@ test('explicit read-only real Strapi and local Workers integration in EN/DE', as
       assert(Array.isArray(header.Text));
       assert.equal(typeof profile.Text, 'string');
       assert.equal(contact.Telephone, null);
-      assert.equal(projects.length, 12);
+      assert.equal(projects.length, 13);
       assert.equal(new Set(projects.map((p) => p.documentId)).size, projects.length);
       assert.equal(new Set(projects.map((p) => p.slug)).size, projects.length);
       for (const slug of projectPresentation.preferredOrder)
