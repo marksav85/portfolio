@@ -1,6 +1,6 @@
 # Mark Saville — Developer Portfolio
 
-A bilingual developer portfolio showcasing my web development projects, technical skills and professional experience. Built with Next.js and React, the website combines an interactive, responsive interface with content managed through a separate Strapi CMS.
+A bilingual developer portfolio showcasing my web development projects, technical skills and professional experience. Built with React and TypeScript using Next.js-compatible vinext and Vite, the website combines an interactive, responsive interface with content managed through a separate Strapi CMS.
 
 [**Explore the live website**](https://portfolio.marksavilledesigns.com/)
 
@@ -22,60 +22,57 @@ A bilingual developer portfolio showcasing my web development projects, technica
 
 ## Technology Stack
 
-| Area               | Technologies                         |
-| ------------------ | ------------------------------------ |
-| Frontend           | Next.js, React 19, TypeScript        |
-| Styling and UI     | Tailwind CSS 4, Radix UI             |
-| Build and runtime  | vinext, Vite, Cloudflare Workers     |
-| Content management | Strapi REST API                      |
-| Email integration  | Resend                               |
-| Testing            | Playwright, axe, Node.js test runner |
+| Area               | Technologies                                    |
+| ------------------ | ----------------------------------------------- |
+| Frontend           | React 19, TypeScript, Next.js-compatible vinext |
+| Styling and UI     | Tailwind CSS 4, Radix UI                        |
+| Build and runtime  | Vite, Cloudflare Workers                        |
+| Content management | Strapi REST API                                 |
+| Email integration  | Resend                                          |
+| Testing            | Playwright, axe, Node.js test runner            |
 
 ## Technical Highlights
 
-### Headless CMS integration
+### CMS-driven rendering and resilience
 
-Portfolio projects, skills and profile content are managed independently through Strapi. Next.js retrieves the published content server-side, allowing updates without rebuilding the frontend.
+Published portfolio content is retrieved from Strapi on the server, so content updates do not require rebuilding the frontend. Sections load independently and can report unavailable content without preventing the rest of the page from rendering.
 
-Content-loading operations are isolated so that a temporary failure in one CMS section does not prevent other sections from rendering.
+### Localization and accessibility
 
-### Cloudflare Workers architecture
+German and English content is supported throughout project descriptions, navigation, metadata and contact-form feedback. Project dialogs and galleries support keyboard interaction, focus management and responsive layouts.
 
-The application runs on Cloudflare Workers using vinext, combining server-rendered pages and server-side API functionality within a single deployment.
+### Curated project presentation
 
-The existing Strapi backend remains independently hosted, separating content management from frontend delivery.
+The portfolio presents 13 projects from Strapi. Eight appear initially; five more are available through **Show More**. Project ordering is curated in the frontend while project details and media remain CMS-managed.
 
-### Localization and SEO
+### Search and contact
 
-German and English content is supported throughout the interface, including project descriptions, navigation and contact-form feedback.
+Localized metadata, canonical URLs, language alternates and an XML sitemap support search discovery. Contact enquiries are validated on the server, protected by origin checks, a honeypot and Cloudflare rate limiting, then delivered through Resend.
 
-The application provides localized page metadata, canonical URLs, language alternates and an XML sitemap to support search-engine discovery.
+## How it works
 
-### Interactive project presentation
+The Vite build uses vinext to provide a Next.js-compatible React application on Cloudflare Workers. The server retrieves and normalizes localized content and media from the independently maintained Strapi REST API. The frontend does not administer or redeploy Strapi.
 
-Project galleries support multiple screenshots, responsive layouts, thumbnail navigation and keyboard-accessible dialogs.
+The contact form posts to a server-side API route. That route validates requests, applies abuse protection and sends accepted messages through Resend. Email credentials stay on the server; validated visitor addresses are used for Reply-To.
 
-Project content is mapped from structured CMS responses, preserving image ordering, descriptions and optional links to live projects or source repositories.
+`wrangler.jsonc` defines separate production and staging Worker environments. Runtime bindings and secrets are server-side and are not included in the client bundle.
 
-### Secure contact integration
+## Getting started
 
-Contact enquiries are processed through a server-side API route using Resend.
+Use Node.js 20.19.x or another compatible release in the 20.x line, or Node.js 22.12.0 or newer, plus npm 11.19.0 as declared in `package.json`.
 
-The implementation includes server-side validation, origin checking, a honeypot field and Cloudflare rate limiting. Email credentials remain server-side, while validated visitor addresses are used for Reply-To.
+```sh
+npm ci
+npm run dev
+```
 
-## Architecture
+The Vite development server uses `http://127.0.0.1:5173` by default. To display live portfolio content, provide the local Worker with `STRAPI_URL` and, if required, the server-side `STRAPI_API_TOKEN`. For isolated interface development, set the local `PORTFOLIO_FIXTURES` binding to `true`; this displays labeled synthetic content and does not verify live CMS data. Keep credentials out of source control.
 
-The portfolio uses a headless architecture that separates content management, application rendering and email delivery.
+### Testing
 
-- **Strapi** manages the project's structured content and media.
+Run `npm test` for the deterministic project, content, contact, indexing and SEO checks. The Playwright browser suite is available through `npm run test:browser` and requires a running local application and a compatible Chrome/Chromium executable; set `PORTFOLIO_TEST_URL` if it is not available at the test's default address.
 
-- **Next.js** retrieves and renders published content, including localized project information.
-
-- **Cloudflare Workers** hosts the application and its server-side functionality.
-
-- **Resend** handles contact-form email delivery through a protected API route.
-
-This architecture allows content updates to be managed independently while retaining server-side rendering, interactive frontend functionality and centralized deployment.
+## Deployment
 
 ## Project Status
 
