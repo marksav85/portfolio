@@ -9,7 +9,7 @@ import {
   DialogDescription,
 } from '@/components/ui/dialog';
 import { messages } from '@/lib/locale';
-import { RichText, Media, ExternalActions } from '@/components/portfolio';
+import { RichText, Media, ExternalActions } from '@/components/portfolio-content';
 export function ProjectDialog({
   selection,
   locale,

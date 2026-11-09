@@ -1,109 +1,23 @@
 'use client';
 import { useLayoutEffect, useRef, useState } from 'react';
-import type { ReactNode } from 'react';
+import type { MouseEvent } from 'react';
 import type { PortfolioData } from '@/lib/strapi-server';
-import type {
-  PortfolioLocale,
-  RichTextParagraph,
-  RichTextChild,
-  ImageAttributes,
-  PortfolioProject,
-} from '@/types/portfolio';
-import { messages, localeHref, projectTypeLabel } from '@/lib/locale';
-import { groupProjects, projectLinkUrls } from '@/api/projects';
+import type { PortfolioLocale, PortfolioProject } from '@/types/portfolio';
+import { messages, localeHref } from '@/lib/locale';
+import { groupProjects } from '@/api/projects';
 import { sortSkills } from '@/api/strapi';
-import { projectPresentation, projectLinks } from '@/config/projects';
+import { projectPresentation } from '@/config/projects';
 import { Section } from '@/components/ui/section';
 import { ContactForm } from '@/components/contact-form';
 import { ProjectDialog } from '@/components/project-dialog';
+import { ProjectCard } from '@/components/project-card';
+import { Media, RichText } from '@/components/portfolio-content';
 
 export const professionalLinks = {
   github: 'https://github.com/marksav85',
   linkedin: 'https://linkedin.com/in/mark-saville',
   website: 'https://marksavilledesigns.com',
 };
-function markedText(child: RichTextChild, key: number) {
-  let text: ReactNode = child.text;
-  if (child.bold) text = <strong>{text}</strong>;
-  if (child.italic) text = <em>{text}</em>;
-  if (child.underline) text = <u>{text}</u>;
-  if (child.strikethrough) text = <s>{text}</s>;
-  if (child.code) text = <code>{text}</code>;
-  return <span key={key}>{text}</span>;
-}
-export function RichText({ blocks }: { blocks: RichTextParagraph[] | null }) {
-  return (
-    <>
-      {blocks?.map((block, index) => (
-        <p key={index}>
-          {block.children?.filter((child) => child.type === 'text').map(markedText)}
-        </p>
-      ))}
-    </>
-  );
-}
-export function Media({
-  image,
-  className,
-  locale,
-}: {
-  image: ImageAttributes;
-  className?: string;
-  locale: PortfolioLocale;
-}) {
-  const [failed, setFailed] = useState(false);
-  // Allow relative CMS media only after the server has resolved the actual CMS origin.
-  const safe = /^(https?:\/\/|\/[^/])/.test(image.url);
-  if (failed || !safe)
-    return (
-      <span className={`image-failure ${className ?? ''}`}>
-        {messages[locale].imageUnavailable}
-      </span>
-    );
-  return (
-    <img
-      src={image.url}
-      alt={image.alternativeText ?? ''}
-      width={image.width && image.width > 0 ? image.width : undefined}
-      height={image.height && image.height > 0 ? image.height : undefined}
-      className={className}
-      loading="lazy"
-      decoding="async"
-      onError={() => setFailed(true)}
-    />
-  );
-}
-export function ExternalActions({
-  project,
-  locale,
-  labels,
-}: {
-  project: PortfolioProject;
-  locale: PortfolioLocale;
-  labels?: { Homepage: string; Repository: string } | null;
-}) {
-  const urls = projectLinkUrls(project, projectLinks),
-    m = messages[locale];
-  return (
-    <div className="project-actions">
-      {urls.homepage && (
-        <a className="button" href={urls.homepage} target="_blank" rel="noopener noreferrer">
-          {labels?.Homepage || m.website} ↗
-        </a>
-      )}
-      {urls.repository && (
-        <a
-          className="button secondary"
-          href={urls.repository}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {labels?.Repository || m.repository} ↗
-        </a>
-      )}
-    </div>
-  );
-}
 export function Portfolio({ data, locale }: { data: PortfolioData; locale: PortfolioLocale }) {
   const m = messages[locale];
   const [menu, setMenu] = useState(false);
@@ -139,12 +53,9 @@ export function Portfolio({ data, locale }: { data: PortfolioData; locale: Portf
       rows: skills.filter((row) => !known.includes(row.Column3)),
     },
   ].filter((group) => group.rows.length);
-  const open = (
-    project: PortfolioProject,
-    image: number,
-    event: React.MouseEvent<HTMLButtonElement>,
-  ) => setSelection({ project, image, trigger: event.currentTarget });
-  function languageLink(event: React.MouseEvent<HTMLAnchorElement>, target: PortfolioLocale) {
+  const open = (project: PortfolioProject, image: number, event: MouseEvent<HTMLButtonElement>) =>
+    setSelection({ project, image, trigger: event.currentTarget });
+  function languageLink(event: MouseEvent<HTMLAnchorElement>, target: PortfolioLocale) {
     event.currentTarget.href = localeHref(target, window.location.hash);
   }
   const notice = (ok: boolean, empty = false) =>
@@ -268,54 +179,13 @@ export function Portfolio({ data, locale }: { data: PortfolioData; locale: Portf
           {notice(data.projects.ok, projects.length === 0)}
           <div className="project-grid" id="project-grid">
             {visible.map((project) => (
-              <article key={project.slug} className="project-card panel">
-                {project.Images[0] ? (
-                  <button
-                    className="project-cover"
-                    onClick={(event) => open(project, 0, event)}
-                    aria-label={`${labels?.buttonShow || m.details}: ${project.Title ?? project.name}`}
-                  >
-                    <Media image={project.Images[0]} locale={locale} />
-                  </button>
-                ) : (
-                  <div className="no-cover muted">{m.noImages}</div>
-                )}
-                <div className="project-body">
-                  <h3>{project.Title}</h3>
-                  {projectTypeLabel(project.Text, locale) && (
-                    <p className="project-type mono muted">
-                      {projectTypeLabel(project.Text, locale)}
-                    </p>
-                  )}
-                  {project.Intro && <p className="muted project-intro">{project.Intro}</p>}
-                  {project.Images.length > 0 && (
-                    <div className="thumbnail-row">
-                      {project.Images.slice(0, 3).map((image, index) => (
-                        <button
-                          key={`${image.url}-${index}`}
-                          className="thumbnail"
-                          onClick={(event) => open(project, index, event)}
-                          aria-label={`${m.image} ${index + 1}: ${project.Title ?? project.name}`}
-                        >
-                          <Media image={image} locale={locale} />
-                        </button>
-                      ))}
-                      <span className="mono muted">
-                        {project.Images.length} {locale === 'de' ? 'Bilder' : 'images'}
-                      </span>
-                    </div>
-                  )}
-                  {project.Technologies && <p className="tech mono">{project.Technologies}</p>}
-                  <ExternalActions project={project} locale={locale} labels={labels} />
-                  <button
-                    className="details-button mono"
-                    onClick={(event) => open(project, 0, event)}
-                  >
-                    {labels?.buttonShow || m.details}
-                    <span aria-hidden="true">↗</span>
-                  </button>
-                </div>
-              </article>
+              <ProjectCard
+                key={project.slug}
+                project={project}
+                locale={locale}
+                labels={labels}
+                onOpen={open}
+              />
             ))}
           </div>
           {groups.additional.length > 0 && (

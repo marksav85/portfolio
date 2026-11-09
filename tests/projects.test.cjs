@@ -196,15 +196,15 @@ test('approved production order yields eight initial cards and five additional c
     'language-coach',
     'mark-saville-designs',
     'movie-api',
-    'meet-app',
     'patagonia-2025',
+    'bikeshare-app',
     'myflix-react',
+    'meet-app',
     'ec-wedding',
-    'golden-crane-restaurant',
     'myflix-angular',
     'pokedex-app',
     'chat-app',
-    'bikeshare-app',
+    'golden-crane-restaurant',
   ];
   const groups = groupProjects(
     [...slugs].reverse().map((slug) => project(slug)),
@@ -220,7 +220,7 @@ test('approved production order yields eight initial cards and five additional c
   );
   assert.equal(groups.primary.length, 8);
   assert.equal(groups.additional.length, 5);
-  assert.equal(groups.additional.at(-1).slug, 'bikeshare-app');
+  assert.equal(groups.additional.at(-1).slug, 'golden-crane-restaurant');
   for (const locale of ['en', 'de']) {
     const localized = groupProjects(
       [...slugs].reverse().map((slug) => project(slug, { locale })),
@@ -233,8 +233,11 @@ test('approved production order yields eight initial cards and five additional c
     );
     assert.equal(new Set(all.map((p) => p.slug)).size, 13);
     assert.equal(localized.primary[2].slug, 'mark-saville-designs');
-    assert.equal(localized.primary[7].slug, 'ec-wedding');
-    assert.equal(localized.additional[0].slug, 'golden-crane-restaurant');
+    assert.equal(localized.primary[5].slug, 'bikeshare-app');
+    assert.equal(localized.primary[6].slug, 'myflix-react');
+    assert.equal(localized.primary[7].slug, 'meet-app');
+    assert.equal(localized.additional[0].slug, 'ec-wedding');
+    assert.equal(localized.additional.at(-1).slug, 'golden-crane-restaurant');
   }
   assert(
     projectLinkUrls(
