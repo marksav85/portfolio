@@ -72,8 +72,6 @@ The Vite development server uses `http://127.0.0.1:5173` by default. To display 
 
 Run `npm test` for the deterministic project, content, contact, indexing and SEO checks. The Playwright browser suite is available through `npm run test:browser` and requires a running local application and a compatible Chrome/Chromium executable; set `PORTFOLIO_TEST_URL` if it is not available at the test's default address.
 
-## Deployment
-
 ## Project Status
 
 The portfolio is live and actively maintained, with English and German versions available through the production website.
